@@ -82,7 +82,7 @@ header{padding:16px 28px;display:flex;align-items:center;justify-content:space-b
 .exercise-card-inner{display:flex}
 .exercise-image{width:180px;min-height:140px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;background:var(--surface2)}
 .exercise-image svg{width:100%;height:100%}
-.exercise-image img{width:100%;height:100%;object-fit:cover;border-radius:4px}
+.exercise-image img{width:100%;height:100%;object-fit:contain;border-radius:4px;background:var(--surface2)}
 .exercise-content{padding:20px;flex:1;min-width:0}
 .exercise-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .exercise-card h4{font-size:16px;font-weight:600;letter-spacing:-0.3px}
@@ -101,7 +101,7 @@ header{padding:16px 28px;display:flex;align-items:center;justify-content:space-b
   .content-panel{max-height:none;padding:24px}
   .header-tag{display:none}
   .exercise-card-inner{flex-direction:column}
-  .exercise-image{width:100%;min-height:120px;max-height:160px}
+  .exercise-image{width:100%;min-height:220px;max-height:280px}
 }
 /* ── Phone-specific optimizations ── */
 @media(max-width:600px){
@@ -137,7 +137,7 @@ header{padding:16px 28px;display:flex;align-items:center;justify-content:space-b
   /* Exercises */
   .exercise-card{margin-bottom:14px}
   .exercise-card-inner{flex-direction:column}
-  .exercise-image{width:100%;min-height:100px;max-height:140px}
+  .exercise-image{width:100%;min-height:220px;max-height:280px}
   .exercise-text{padding:14px}
   .exercise-text h4{font-size:15px}
   .exercise-text p{font-size:13px;line-height:1.6}
