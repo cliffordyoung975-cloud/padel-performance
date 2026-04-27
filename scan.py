@@ -1,14 +1,17 @@
-
 #!/usr/bin/env python3
 """
 Hoplon Lead Scanner
 Runs daily via GitHub Actions. Queries Hacker News (Algolia) and Reddit
 for posts matching Hoplon's ICP pain triggers, scores them, dedupes,
 and writes results to leads.json for the dashboard to read.
+
+v3: Added relevance filtering to reject developer/technical chatter
+and focus on business owners/founders actually asking for help.
 """
 
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime, timezone, timedelta
@@ -20,167 +23,211 @@ import urllib.error
 # ============ CONFIG ============
 
 LOOKBACK_HOURS_NORMAL = 36
-LOOKBACK_HOURS_SEED = 168  # 7 days — used when leads.json is empty
+LOOKBACK_HOURS_SEED = 168  # 7 days
 
 OUTPUT_FILE = Path(__file__).parent / "leads.json"
 MAX_LEADS = 500
 
+# Minimum relevance score to keep a lead. Posts below this are discarded.
+MIN_SCORE = 20
+
 # ============ QUERY DEFINITIONS ============
+# Focused on "Ask HN" style queries and terms that indicate someone
+# ASKING for help, not discussing security as a topic.
 
 HN_QUERIES = [
-    # --- COMPLIANCE AS SALES BLOCKER ---
-    ("iso27001",    "ISO 27001"),
-    ("iso27001",    "SOC 2"),
-    ("iso27001",    "SOC2 compliance"),
-    ("iso27001",    "SOC 2 audit"),
-    ("compliance",  "Cyber Essentials"),
-    ("compliance",  "GDPR compliance startup"),
-    ("compliance",  "security certification startup"),
+    # --- COMPLIANCE URGENCY ---
+    ("iso27001",    "Ask HN ISO 27001"),
+    ("iso27001",    "Ask HN SOC 2"),
+    ("iso27001",    "need ISO 27001"),
+    ("iso27001",    "need SOC 2"),
+    ("iso27001",    "client wants SOC 2"),
+    ("iso27001",    "customer requires ISO"),
+    ("compliance",  "Ask HN Cyber Essentials"),
+    ("compliance",  "Ask HN GDPR compliance"),
+    ("compliance",  "need GDPR compliant"),
 
     # --- CYBER INSURANCE ---
-    ("compliance",  "cyber insurance requirements"),
     ("compliance",  "cyber insurance denied"),
-    ("compliance",  "cyber insurance application"),
-    ("compliance",  "cyber insurance premium"),
+    ("compliance",  "cyber insurance requirements"),
+    ("compliance",  "cyber insurance small business"),
 
-    # --- SUPPLY CHAIN / VENDOR QUESTIONNAIRES ---
-    ("iso27001",    "security questionnaire vendor"),
-    ("iso27001",    "security assessment client"),
-    ("iso27001",    "supplier security requirements"),
-    ("iso27001",    "customer security audit"),
+    # --- VENDOR QUESTIONNAIRES ---
+    ("iso27001",    "security questionnaire customer"),
+    ("iso27001",    "vendor security assessment help"),
 
-    # --- WHERE TO START / NEW TO SECURITY ---
-    ("starter",     "Ask HN security startup"),
-    ("starter",     "cybersecurity getting started"),
-    ("starter",     "startup security checklist"),
-    ("starter",     "security best practices startup"),
-    ("starter",     "small business security basics"),
+    # --- ASKING FOR HELP / WHERE TO START ---
+    ("starter",     "Ask HN cybersecurity startup"),
+    ("starter",     "Ask HN security small business"),
+    ("starter",     "Ask HN security checklist"),
+    ("starter",     "how to secure my startup"),
+    ("starter",     "how to secure my business"),
+    ("starter",     "security for non-technical founder"),
+    ("starter",     "small business cybersecurity help"),
 
-    # --- REMOTE / HYBRID / BYOD ---
-    ("starter",     "remote team security"),
-    ("starter",     "BYOD security policy"),
-    ("starter",     "work from home security"),
-    ("starter",     "personal laptop security company"),
+    # --- REMOTE / BYOD ---
+    ("starter",     "secure remote team small business"),
+    ("starter",     "BYOD policy small company"),
 
-    # --- M365 / GOOGLE WORKSPACE ---
-    ("starter",     "Microsoft 365 security settings"),
-    ("starter",     "Google Workspace security"),
-    ("starter",     "MFA enforce company"),
-
-    # --- PASSWORDS ---
-    ("starter",     "shared passwords team"),
-    ("starter",     "password manager company"),
-    ("starter",     "password spreadsheet"),
-
-    # --- NO EXPERTISE / HIRING ---
-    ("noexpertise", "security hire startup"),
-    ("noexpertise", "CISO small company"),
+    # --- NO EXPERTISE ---
+    ("noexpertise", "Ask HN hire security"),
     ("noexpertise", "fractional CISO"),
-    ("noexpertise", "outsource security"),
-    ("noexpertise", "IT person security"),
-    ("noexpertise", "only IT person"),
+    ("noexpertise", "outsource cybersecurity small"),
+    ("noexpertise", "no security team startup"),
+    ("noexpertise", "need security help startup"),
 
-    # --- EMPLOYEE OFFBOARDING ---
+    # --- OFFBOARDING ---
     ("noexpertise", "employee left still has access"),
-    ("noexpertise", "offboarding security checklist"),
-    ("noexpertise", "revoke access employee"),
 
-    # --- DATA HANDLING / PII ---
-    ("compliance",  "customer data protection small business"),
-    ("compliance",  "handling PII startup"),
-    ("compliance",  "data protection policy"),
-
-    # --- BUDGET / SMB ---
-    ("budget",      "security budget startup"),
-    ("budget",      "cheap cybersecurity"),
-    ("budget",      "affordable security small business"),
-    ("budget",      "security small team"),
+    # --- BUDGET ---
+    ("budget",      "Ask HN affordable security"),
+    ("budget",      "cybersecurity on a budget"),
+    ("budget",      "security startup budget"),
 
     # --- BREACH / INCIDENT ---
-    ("breach",      "startup hacked"),
-    ("breach",      "ransomware small business"),
-    ("breach",      "data breach startup"),
-    ("breach",      "business email compromise"),
+    ("breach",      "my startup got hacked"),
+    ("breach",      "small business ransomware help"),
+    ("breach",      "we got hacked what do"),
+    ("breach",      "business email compromise help"),
     ("breach",      "phishing attack small business"),
-    ("breach",      "CEO fraud invoice"),
 
     # --- BUYING INTENT ---
-    ("other",       "recommend MSSP"),
-    ("other",       "security consultant startup"),
-    ("other",       "security vendor recommendation"),
+    ("other",       "recommend MSSP small"),
+    ("other",       "recommend security consultant"),
+    ("other",       "looking for security vendor"),
+
+    # --- PASSWORDS ---
+    ("starter",     "password manager small team"),
+    ("starter",     "team password management"),
 ]
 
 REDDIT_QUERIES = [
     # --- COMPLIANCE ---
     ("iso27001",    "smallbusiness",   "ISO 27001"),
     ("iso27001",    "ITManagers",      "ISO 27001"),
-    ("iso27001",    "cybersecurity",   "ISO 27001 help"),
     ("iso27001",    "startups",        "SOC 2"),
     ("iso27001",    "SaaS",            "SOC 2"),
-    ("compliance",  "smallbusiness",   "SOC 2"),
-    ("compliance",  "startups",        "Cyber Essentials"),
-    ("compliance",  "cybersecurity",   "GDPR compliance"),
+    ("compliance",  "smallbusiness",   "Cyber Essentials"),
+    ("compliance",  "smallbusiness",   "GDPR compliance"),
 
     # --- CYBER INSURANCE ---
     ("compliance",  "smallbusiness",   "cyber insurance"),
-    ("compliance",  "cybersecurity",   "cyber insurance requirements"),
     ("compliance",  "Insurance",       "cyber insurance small business"),
 
-    # --- SUPPLY CHAIN / QUESTIONNAIRES ---
-    ("iso27001",    "smallbusiness",   "security questionnaire client"),
-    ("iso27001",    "cybersecurity",   "vendor security assessment"),
+    # --- VENDOR QUESTIONNAIRES ---
+    ("iso27001",    "smallbusiness",   "security questionnaire"),
     ("iso27001",    "ITManagers",      "security audit client"),
 
     # --- STARTER ---
     ("starter",     "smallbusiness",   "cybersecurity where to start"),
-    ("starter",     "startups",        "security getting started"),
     ("starter",     "smallbusiness",   "cyber security advice"),
-    ("starter",     "Entrepreneur",    "cybersecurity"),
+    ("starter",     "Entrepreneur",    "cybersecurity help"),
     ("starter",     "smallbusiness",   "security checklist"),
 
     # --- REMOTE / BYOD ---
     ("starter",     "smallbusiness",   "remote work security"),
-    ("starter",     "sysadmin",        "BYOD policy"),
-    ("starter",     "smallbusiness",   "personal laptop work security"),
+    ("starter",     "smallbusiness",   "BYOD security"),
 
     # --- M365 / GOOGLE ---
-    ("starter",     "Office365",       "security settings"),
-    ("starter",     "gsuite",          "security"),
-    ("starter",     "sysadmin",        "MFA enforce small business"),
+    ("starter",     "smallbusiness",   "Microsoft 365 security"),
+    ("starter",     "smallbusiness",   "MFA enforce"),
 
     # --- PASSWORDS ---
     ("starter",     "smallbusiness",   "password manager team"),
-    ("starter",     "sysadmin",        "shared passwords company"),
 
     # --- NO EXPERTISE ---
-    ("noexpertise", "smallbusiness",   "no IT security"),
-    ("noexpertise", "ITManagers",      "first security hire"),
+    ("noexpertise", "smallbusiness",   "no IT security help"),
+    ("noexpertise", "smallbusiness",   "need security help"),
     ("noexpertise", "cybersecurity",   "small business security help"),
     ("noexpertise", "msp",             "small business security"),
-    ("noexpertise", "smallbusiness",   "IT guy security"),
 
     # --- OFFBOARDING ---
     ("noexpertise", "smallbusiness",   "employee left access"),
-    ("noexpertise", "sysadmin",        "offboarding checklist security"),
 
     # --- BUDGET ---
     ("budget",      "smallbusiness",   "cyber security cost"),
-    ("budget",      "startups",        "security budget"),
     ("budget",      "smallbusiness",   "affordable cybersecurity"),
 
     # --- BREACH ---
     ("breach",      "smallbusiness",   "hacked"),
-    ("breach",      "cybersecurity",   "small business breach"),
     ("breach",      "smallbusiness",   "ransomware"),
     ("breach",      "smallbusiness",   "phishing attack"),
-    ("breach",      "smallbusiness",   "phishing email"),
     ("breach",      "smallbusiness",   "invoice scam"),
-    ("breach",      "cybersecurity",   "business email compromise"),
 
     # --- BUYING INTENT ---
     ("other",       "cybersecurity",   "recommend MSSP"),
-    ("other",       "msp",             "security vendor"),
+    ("other",       "msp",             "security vendor small business"),
 ]
+
+# ============ RELEVANCE FILTERING ============
+# The key insight: we want BUSINESS OWNERS asking for help,
+# not DEVELOPERS discussing security as a topic.
+
+# If a post contains 2+ of these, it's probably dev/technical chatter
+DEV_SIGNALS = [
+    'github.com', 'pull request', 'merge', 'npm', 'pip install',
+    'docker', 'kubernetes', 'k8s', 'terraform', 'aws lambda',
+    'api endpoint', 'oauth implementation', 'jwt', 'csrf',
+    'sql injection', 'xss', 'buffer overflow', 'heap overflow',
+    'cve-20', 'exploit', 'payload', 'reverse shell', 'ctf',
+    'binary', 'disassembl', 'decompil', 'fuzzing', 'pentest',
+    'bug bounty', 'responsible disclosure', 'zero day', '0day',
+    'kernel', 'syscall', 'elf', 'shellcode',
+    'rust', 'golang', 'python security library', 'node.js',
+    'cryptograph', 'encryption algorithm', 'hash function',
+    'public key', 'private key', 'diffie-hellman',
+    'saas product', 'my side project', 'i built',
+    'open source', 'self-hosted', 'self hosted',
+    'linux server', 'nginx', 'apache',
+    'startup i work at', 'our engineering team',
+    'series a', 'series b', 'raised', 'valuation',
+    'hiring for', 'we are hiring', 'job posting',
+]
+
+# Posts MUST contain at least one of these to be considered relevant
+# (signals that someone is asking for help or has a business problem)
+BUSINESS_SIGNALS = [
+    # Asking for help
+    'help', 'advice', 'recommend', 'suggestion', 'anyone',
+    'how do i', 'how do we', 'how should', 'what should',
+    'where do i start', 'where to start', 'looking for',
+    'need', 'require', 'struggling', 'confused', 'overwhelmed',
+    'no idea', 'not sure', 'stuck',
+    # Business context
+    'my business', 'my company', 'our company', 'small business',
+    'my team', 'our team', 'employees', 'staff', 'my startup',
+    'founder', 'ceo', 'owner', 'director', 'managing director',
+    'client', 'customer', 'contract', 'deal', 'sales',
+    'revenue', 'cost', 'budget', 'afford', 'pricing',
+    'insurance', 'compliance', 'audit', 'certification',
+    'policy', 'procedure', 'risk', 'liability',
+    # Pain / urgency
+    'deadline', 'urgent', 'asap', 'quickly', 'immediately',
+    'lost a deal', 'blocking', 'denied', 'failed',
+    'hacked', 'breached', 'ransomware', 'phishing',
+    'incident', 'compromised',
+    # Buying
+    'vendor', 'provider', 'consultant', 'managed service',
+    'mssp', 'outsource', 'hire', 'pay for',
+    'quote', 'proposal',
+]
+
+def is_relevant(text: str) -> bool:
+    """Filter out developer/technical chatter. Keep business pain signals."""
+    lower = text.lower()
+
+    # Count dev signals
+    dev_count = sum(1 for s in DEV_SIGNALS if s in lower)
+    if dev_count >= 2:
+        return False
+
+    # Must have at least one business signal
+    biz_count = sum(1 for s in BUSINESS_SIGNALS if s in lower)
+    if biz_count == 0:
+        return False
+
+    return True
+
 
 # ============ SCORING ============
 
@@ -245,6 +292,7 @@ def http_get_json(url: str, headers: dict = None) -> dict:
 def scan_hn(lookback_hours: int) -> list:
     leads = []
     cutoff = int((datetime.now(timezone.utc) - timedelta(hours=lookback_hours)).timestamp())
+    filtered_count = 0
 
     for trigger, query in HN_QUERIES:
         url = (
@@ -263,11 +311,23 @@ def scan_hn(lookback_hours: int) -> list:
             text = text.replace("<p>", "\n").replace("</p>", "")
             for tag in ["<i>", "</i>", "<b>", "</b>", "<a>", "</a>"]:
                 text = text.replace(tag, "")
+            # Also strip href attributes left behind
+            text = re.sub(r'href="[^"]*"', '', text)
             text = text[:1000]
+
+            # RELEVANCE FILTER — skip dev/technical chatter
+            if not is_relevant(text):
+                filtered_count += 1
+                continue
 
             author = hit.get("author", "anonymous")
             obj_id = hit.get("objectID")
             title = hit.get("title") or hit.get("story_title") or ""
+
+            score = score_lead(text, trigger)
+            if score < MIN_SCORE:
+                filtered_count += 1
+                continue
 
             leads.append({
                 "id": f"hn_{obj_id}",
@@ -280,11 +340,13 @@ def scan_hn(lookback_hours: int) -> list:
                 "stage": "inbox",
                 "created": int(hit.get("created_at_i", time.time())) * 1000,
                 "discovered": int(time.time() * 1000),
-                "score": score_lead(text, trigger),
+                "score": score,
                 "notes": "",
                 "auto": True,
             })
         time.sleep(0.5)
+
+    print(f"  >> Filtered out {filtered_count} irrelevant HN results")
     return leads
 
 
@@ -322,6 +384,7 @@ def scan_reddit(lookback_hours: int) -> list:
     if not token: return []
 
     leads = []
+    filtered_count = 0
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=lookback_hours)).timestamp()
     headers = {"Authorization": f"Bearer {token}", "User-Agent": USER_AGENT}
     time_filter = "month" if lookback_hours > 48 else "week"
@@ -344,6 +407,16 @@ def scan_reddit(lookback_hours: int) -> list:
             text = (title + "\n\n" + body)[:1000].strip()
             if not text: continue
 
+            # RELEVANCE FILTER
+            if not is_relevant(text):
+                filtered_count += 1
+                continue
+
+            score = score_lead(text, trigger)
+            if score < MIN_SCORE:
+                filtered_count += 1
+                continue
+
             leads.append({
                 "id": f"rd_{d.get('id')}",
                 "url": f"https://reddit.com{d.get('permalink', '')}",
@@ -355,11 +428,13 @@ def scan_reddit(lookback_hours: int) -> list:
                 "stage": "inbox",
                 "created": int(d.get("created_utc", time.time())) * 1000,
                 "discovered": int(time.time() * 1000),
-                "score": score_lead(text, trigger),
+                "score": score,
                 "notes": "",
                 "auto": True,
             })
         time.sleep(1.0)
+
+    print(f"  >> Filtered out {filtered_count} irrelevant Reddit results")
     return leads
 
 
