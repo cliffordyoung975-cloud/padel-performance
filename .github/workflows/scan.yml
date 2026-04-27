@@ -1,4 +1,4 @@
-yamlname: Daily Lead Scan
+name: Daily Lead Scan
 
 on:
   schedule:
@@ -8,3 +8,33 @@ on:
 
 permissions:
   contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run scanner
+        env:
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+        run: python scan.py
+
+      - name: Commit results
+        run: |
+          git config user.name "Hoplon Bot"
+          git config user.email "actions@github.com"
+          git add leads.json scan-meta.json
+          if git diff --staged --quiet; then
+            echo "No changes — skipping commit"
+          else
+            git commit -m "Auto-scan: $(date -u +%Y-%m-%d_%H:%M)"
+            git push
+          fi
