@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOPLON // Lead Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Fraunces:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e0a;
+    --bg-2: #111711;
+    --bg-3: #1a231a;
+    --line: #1f2a1f;
+    --line-2: #2a3a2a;
+    --text: #d4e4d4;
+    --text-dim: #7a8a7a;
+    --text-faint: #4a5a4a;
+    --accent: #7dff7d;
+    --accent-dim: #4a9a4a;
+    --warn: #ffb86b;
+    --hot: #ff5c5c;
+    --cool: #6bb8ff;
+    --inbox: #d89bff;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --serif: 'Fraunces', Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--mono); font-size: 13px; line-height: 1.5;
+    min-height: 100vh;
+  }
+  body {
+    background-image:
+      radial-gradient(ellipse at top left, rgba(125,255,125,0.04), transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(107,184,255,0.03), transparent 50%),
+      repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(125,255,125,0.008) 2px, rgba(125,255,125,0.008) 3px);
+  }
+  button, input, textarea, select {
+    font-family: inherit; font-size: inherit; color: inherit;
+    background: transparent; border: 1px solid var(--line-2); outline: none;
+  }
+  button { cursor: pointer; transition: all 0.15s; }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  input, textarea, select { background: var(--bg-2); padding: 8px 10px; width: 100%; }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 60px; font-family: var(--mono); }
+
+  header {
+    border-bottom: 1px solid var(--line-2); padding: 18px 28px;
+    display: flex; align-items: center; gap: 24px;
+    background: var(--bg-2); position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(10px);
+  }
+  .logo { font-family: var(--serif); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+  .logo .shield { color: var(--accent); }
+  .logo .tag {
+    font-family: var(--mono); font-size: 10px; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.2em; margin-left: 10px; font-weight: 400;
+  }
+  .status-strip {
+    margin-left: auto; display: flex; gap: 20px;
+    font-size: 11px; color: var(--text-dim); align-items: center;
+  }
+  .status-strip .stat { display: flex; flex-direction: column; align-items: flex-end; }
+  .status-strip .stat .num { color: var(--accent); font-size: 16px; font-weight: 700; }
+  .status-strip .stat .lbl { text-transform: uppercase; letter-spacing: 0.15em; font-size: 9px; }
+  .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); display: inline-block; margin-right: 6px;
+    box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite;
+  }
+  .pulse.stale { background: var(--warn); box-shadow: 0 0 8px var(--warn); }
+  .pulse.dead { background: var(--hot); box-shadow: 0 0 8px var(--hot); animation: none; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  main { display: grid; grid-template-columns: 340px 1fr; min-height: calc(100vh - 66px); }
+  aside {
+    border-right: 1px solid var(--line-2); padding: 20px;
+    background: var(--bg-2); overflow-y: auto;
+    max-height: calc(100vh - 66px); position: sticky; top: 66px;
+  }
+  .content { padding: 20px 28px; overflow-x: hidden; }
+
+  .sec-h {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.25em;
+    color: var(--text-dim); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sec-h::before { content: ''; width: 6px; height: 6px; background: var(--accent); transform: rotate(45deg); }
+  .sec-h .count { margin-left: auto; color: var(--text-faint); }
+
+  /* SCAN STATUS BANNER */
+  .scan-banner {
+    background: var(--bg-3); border: 1px solid var(--line-2);
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px; margin-bottom: 18px;
+    font-size: 11px; display: flex; align-items: center; gap: 10px;
+  }
+  .scan-banner.stale { border-left-color: var(--warn); }
+  .scan-banner.dead { border-left-color: var(--hot); }
+  .scan-banner .label { color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.15em; font-size: 9px; }
+  .scan-banner .value { color: var(--text); font-weight: 500; }
+  .scan-banner .sub { color: var(--text-faint); margin-left: auto; font-size: 10px; }
+
+  .hunt-group { margin-bottom: 22px; }
+  .hunt-src {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.15em; margin-bottom: 8px; color: var(--text);
+    padding: 6px 0; border-bottom: 1px dashed var(--line);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hunt-src .src-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-dim); }
+  .hunt-src .src-dot.auto { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+  .hunt-link {
+    display: block; padding: 7px 10px; margin: 3px 0;
+    border: 1px solid transparent; border-left: 2px solid var(--line-2);
+    color: var(--text-dim); text-decoration: none; font-size: 11px;
+    transition: all 0.15s; position: relative;
+  }
+  .hunt-link:hover { color: var(--accent); border-left-color: var(--accent); background: var(--bg-3); }
+  .hunt-link .trig {
+    font-size: 9px; color: var(--text-faint); text-transform: uppercase;
+    letter-spacing: 0.1em; display: block; margin-top: 2px;
+  }
+  .hunt-link:hover .trig { color: var(--accent-dim); }
+  .auto-badge {
+    background: var(--accent); color: var(--bg); font-size: 8px;
+    padding: 2px 5px; letter-spacing: 0.15em; font-weight: 700;
+    margin-left: 6px; border-radius: 2px;
+  }
+
+  .add-form { background: var(--bg-3); border: 1px solid var(--line-2); padding: 16px; margin-bottom: 20px; }
+  .add-form h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 18px;
+    margin-bottom: 12px; font-style: italic;
+  }
+  .form-row { margin-bottom: 10px; }
+  .form-row label {
+    display: block; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 4px;
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn-primary {
+    background: var(--accent); color: var(--bg);
+    border: 1px solid var(--accent); padding: 10px 18px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 11px;
+  }
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+  .btn-ghost {
+    padding: 8px 14px; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--text-dim);
+  }
+
+  .kanban {
+    display: grid; grid-template-columns: repeat(6, minmax(220px, 1fr));
+    gap: 12px; margin-top: 14px;
+  }
+  .col {
+    background: var(--bg-2); border: 1px solid var(--line-2);
+    min-height: 300px; padding: 10px; display: flex; flex-direction: column;
+  }
+  .col-h {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em;
+    padding-bottom: 10px; border-bottom: 1px solid var(--line-2);
+    margin-bottom: 10px; display: flex; justify-content: space-between; color: var(--text);
+  }
+  .col-inbox .col-h { color: var(--inbox); }
+  .col-inbox { border-left: 2px solid var(--inbox); }
+  .col-new .col-h { color: var(--cool); }
+  .col-qual .col-h { color: var(--accent); }
+  .col-out .col-h { color: var(--warn); }
+  .col-rep .col-h { color: #d89bff; }
+  .col-done .col-h { color: var(--text-dim); }
+
+  .lead {
+    background: var(--bg-3); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent-dim);
+    padding: 10px; margin-bottom: 8px; font-size: 11px;
+    cursor: grab; transition: all 0.15s;
+  }
+  .lead:hover { border-color: var(--accent); transform: translateX(2px); }
+  .lead.dragging { opacity: 0.4; }
+  .lead.hot { border-left-color: var(--hot); }
+  .lead.warm { border-left-color: var(--warn); }
+  .lead.cool { border-left-color: var(--cool); }
+
+  .lead-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 6px; margin-bottom: 6px;
+  }
+  .lead-src {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--text-dim); padding: 2px 6px; border: 1px solid var(--line-2);
+  }
+  .lead-src.auto { color: var(--accent); border-color: var(--accent-dim); }
+  .lead-score {
+    font-size: 9px; font-weight: 700; padding: 2px 6px; border: 1px solid;
+  }
+  .lead-score.hot { color: var(--hot); border-color: var(--hot); }
+  .lead-score.warm { color: var(--warn); border-color: var(--warn); }
+  .lead-score.cool { color: var(--cool); border-color: var(--cool); }
+  .lead-name { font-weight: 700; margin-bottom: 4px; word-break: break-word; }
+  .lead-snip {
+    color: var(--text-dim); font-size: 10px; line-height: 1.4; margin-bottom: 6px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .lead-trig {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent); margin-bottom: 6px;
+  }
+  .lead-actions { display: flex; gap: 4px; flex-wrap: wrap; }
+  .lead-actions button, .lead-actions a {
+    font-size: 9px; padding: 3px 6px; text-transform: uppercase;
+    letter-spacing: 0.1em; text-decoration: none; color: var(--text-dim);
+    border: 1px solid var(--line-2); background: transparent;
+  }
+  .lead-actions button:hover, .lead-actions a:hover { color: var(--accent); border-color: var(--accent); }
+  .lead-actions .accept { color: var(--accent); border-color: var(--accent-dim); }
+  .lead-actions .dismiss { color: var(--hot); border-color: var(--line); }
+
+  .modal-bg {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+    display: none; align-items: center; justify-content: center;
+    z-index: 100; padding: 20px; backdrop-filter: blur(4px);
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--bg-2); border: 1px solid var(--accent-dim);
+    max-width: 640px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 24px;
+  }
+  .modal h3 { font-family: var(--serif); font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .modal .sub {
+    font-size: 10px; color: var(--text-dim); text-transform: uppercase;
+    letter-spacing: 0.2em; margin-bottom: 16px;
+  }
+  .draft-out {
+    background: var(--bg); border: 1px solid var(--line-2);
+    padding: 14px; margin-top: 10px; white-space: pre-wrap;
+    font-size: 12px; line-height: 1.6; color: var(--text);
+  }
+  .modal-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+
+  .tab-row { display: flex; gap: 2px; margin-bottom: 12px; border-bottom: 1px solid var(--line-2); }
+  .tab {
+    padding: 8px 14px; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.15em; border: none; border-bottom: 2px solid transparent;
+    color: var(--text-dim); background: transparent;
+  }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .empty {
+    color: var(--text-faint); font-size: 10px; text-align: center;
+    padding: 20px 10px; font-style: italic;
+  }
+
+  details > summary { cursor: pointer; list-style: none; padding: 4px 0; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] > summary .chev { transform: rotate(90deg); }
+  .chev { display: inline-block; transition: transform 0.15s; color: var(--text-faint); }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--line-2); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
+  @media (max-width: 1100px) {
+    main { grid-template-columns: 1fr; }
+    aside { position: static; max-height: none; }
+    .kanban { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="shield">◆</span> HOPLON <span class="tag">// Lead Intelligence v2 // Auto</span>
+  </div>
+  <div class="status-strip">
+    <div class="stat"><span class="num" id="stat-inbox" style="color:var(--inbox)">0</span><span class="lbl">Inbox</span></div>
+    <div class="stat"><span class="num" id="stat-total">0</span><span class="lbl">Tracked</span></div>
+    <div class="stat"><span class="num" id="stat-hot" style="color:var(--hot)">0</span><span class="lbl">Hot</span></div>
+    <div class="stat"><span class="num" id="stat-today">0</span><span class="lbl">Today</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><span class="pulse" id="health-dot"></span><span class="lbl" style="font-size:10px" id="health-lbl">Live</span></div>
+  </div>
+</header>
+
+<main>
+
+<aside>
+  <div class="scan-banner" id="scan-banner">
+    <div>
+      <div class="label">Last Auto-Scan</div>
+      <div class="value" id="last-scan-val">Loading…</div>
+    </div>
+    <div class="sub" id="last-scan-sub"></div>
+  </div>
+
+  <div class="sec-h">Hunt Sources</div>
+  <p style="font-size:10px;color:var(--text-faint);margin-bottom:16px;line-height:1.5">
+    HN &amp; Reddit are scanned automatically each morning — results land in the Inbox.
+    LinkedIn, X, and Indie Hackers can't be safely automated; click the manual links below.
+  </p>
+
+  <div id="hunt-panel"></div>
+
+  <div class="sec-h" style="margin-top:28px">Data Ops</div>
+  <button class="btn-ghost" onclick="reloadAuto()" style="width:100%;margin-bottom:6px">↻ Refresh auto-scan</button>
+  <button class="btn-ghost" onclick="exportData()" style="width:100%;margin-bottom:6px">↓ Export local JSON</button>
+  <button class="btn-ghost" onclick="document.getElementById('importFile').click()" style="width:100%;margin-bottom:6px">↑ Import local JSON</button>
+  <input type="file" id="importFile" style="display:none" accept=".json" onchange="importData(event)">
+  <button class="btn-ghost" onclick="if(confirm('Wipe all manually-added leads and triage state? Auto-scan inbox is preserved on next refresh.')){localLeads=[];dismissed={};stageOverride={};notesOverride={};save();render();}" style="width:100%;color:var(--hot);border-color:var(--line)">⚠ Clear Local State</button>
+</aside>
+
+<div class="content">
+
+  <div class="add-form">
+    <h2>Capture <em style="color:var(--accent-dim)">manual lead</em></h2>
+    <p style="font-size:10px;color:var(--text-faint);margin-bottom:12px">For LinkedIn, X, Indie Hackers, or anything found outside the auto-scan.</p>
+    <div class="form-row">
+      <label>Source URL</label>
+      <input type="url" id="f-url" placeholder="https://linkedin.com/posts/...">
+    </div>
+    <div class="form-grid">
+      <div class="form-row"><label>Name / Handle</label><input type="text" id="f-name" placeholder="Jane Doe @ Acme Co"></div>
+      <div class="form-row"><label>Source</label><select id="f-src">
+        <option value="LinkedIn">LinkedIn</option>
+        <option value="X">X / Twitter</option>
+        <option value="IndieHackers">Indie Hackers</option>
+        <option value="Other">Other</option>
+      </select></div>
+    </div>
+    <div class="form-row">
+      <label>Snippet / What they said</label>
+      <textarea id="f-snip" placeholder="Paste the exact post, comment, or pain signal..."></textarea>
+    </div>
+    <div class="form-grid">
+      <div class="form-row"><label>Trigger type</label><select id="f-trig">
+        <option value="iso27001">ISO 27001 urgency</option>
+        <option value="starter">Where to start with cyber</option>
+        <option value="budget">Small budget / new business</option>
+        <option value="noexpertise">No in-house expertise</option>
+        <option value="breach">Post-incident / breach</option>
+        <option value="compliance">Other compliance</option>
+        <option value="other">Other signal</option>
+      </select></div>
+      <div class="form-row"><label>Company context (optional)</label><input type="text" id="f-co" placeholder="SaaS startup, 12 staff, UK"></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:6px">
+      <button class="btn-primary" onclick="addLead()">+ Add to pipeline</button>
+      <button class="btn-ghost" onclick="clearForm()">Clear</button>
+    </div>
+  </div>
+
+  <div class="sec-h">Pipeline <span class="count" id="pipeline-count"></span></div>
+  <div class="kanban" id="kanban"></div>
+
+</div>
+
+</main>
+
+<div class="modal-bg" id="modal"><div class="modal"><div id="modal-body"></div></div></div>
+
+<script>
+/* ============ HUNT PANEL — manual sources only (auto sources run server-side) ============ */
+const HUNT = [
+  { src: 'LinkedIn', auto: false, queries: [
+    { q: 'ISO 27001 urgency', url: 'https://www.linkedin.com/search/results/content/?keywords=%22need%20ISO%2027001%22&sortBy=%22date_posted%22', trig: 'Compliance deadline' },
+    { q: 'customer asking for ISO', url: 'https://www.linkedin.com/search/results/content/?keywords=%22customer%20asked%20for%20ISO%2027001%22&sortBy=%22date_posted%22', trig: 'Sales-blocked' },
+    { q: 'where to start with cyber', url: 'https://www.linkedin.com/search/results/content/?keywords=%22where%20do%20I%20start%20with%20cybersecurity%22&sortBy=%22date_posted%22', trig: 'Starter' },
+    { q: 'small business cyber security', url: 'https://www.linkedin.com/search/results/content/?keywords=%22small%20business%22%20%22cyber%20security%22%20help&sortBy=%22date_posted%22', trig: 'SMB budget' },
+    { q: 'Cyber Essentials certification', url: 'https://www.linkedin.com/search/results/content/?keywords=%22Cyber%20Essentials%22%20certification&sortBy=%22date_posted%22', trig: 'UK compliance' },
+  ]},
+  { src: 'X / Twitter', auto: false, queries: [
+    { q: 'ISO 27001 help', url: 'https://twitter.com/search?q=%22need%20ISO%2027001%22%20OR%20%22ISO%2027001%20help%22&src=typed_query&f=live', trig: 'Compliance' },
+    { q: 'startup cyber security', url: 'https://twitter.com/search?q=%22startup%22%20%22cyber%20security%22%20(help%20OR%20recommend)&src=typed_query&f=live', trig: 'Starter' },
+    { q: 'recommend MSSP', url: 'https://twitter.com/search?q=%22recommend%22%20(MSSP%20OR%20%22security%20consultant%22)&src=typed_query&f=live', trig: 'Buying intent' },
+  ]},
+  { src: 'Indie Hackers', auto: false, queries: [
+    { q: 'security discussions', url: 'https://www.indiehackers.com/search?q=security&type=post', trig: 'Founder pain' },
+    { q: 'compliance', url: 'https://www.indiehackers.com/search?q=compliance&type=post', trig: 'Compliance' },
+    { q: 'SOC 2', url: 'https://www.indiehackers.com/search?q=SOC%202&type=post', trig: 'Enterprise-ready' },
+  ]},
+  { src: 'Hacker News', auto: true, queries: [] },
+  { src: 'Reddit', auto: true, queries: [] },
+];
+
+function renderHunt() {
+  const el = document.getElementById('hunt-panel');
+  el.innerHTML = HUNT.map(group => {
+    if (group.auto) {
+      return `
+        <details class="hunt-group">
+          <summary class="hunt-src">
+            <span class="chev">▸</span>
+            <span class="src-dot auto"></span>
+            ${group.src}
+            <span class="auto-badge">AUTO</span>
+          </summary>
+          <div style="padding:8px 4px;font-size:10px;color:var(--text-faint);line-height:1.5">
+            Scanned automatically each morning. Results appear in the Inbox column.
+          </div>
+        </details>
+      `;
+    }
+    return `
+      <details class="hunt-group" open>
+        <summary class="hunt-src">
+          <span class="chev">▸</span>
+          <span class="src-dot"></span>
+          ${group.src}
+          <span style="margin-left:auto;color:var(--text-faint);font-size:10px;font-weight:400">${group.queries.length}</span>
+        </summary>
+        <div style="margin-top:6px">
+          ${group.queries.map(q => `
+            <a class="hunt-link" href="${q.url}" target="_blank" rel="noopener">
+              → ${q.q}<span class="trig">${q.trig}</span>
+            </a>
+          `).join('')}
+        </div>
+      </details>
+    `;
+  }).join('');
+}
+
+/* ============ STATE ============
+   Two stores:
+   - autoLeads: fetched from leads.json (read-only data from scanner)
+   - localLeads: user-added manually (localStorage)
+   - dismissed/stageOverride/notesOverride: per-id overlays for auto leads
+*/
+let autoLeads = [];
+let localLeads = JSON.parse(localStorage.getItem('hoplon_local_leads') || '[]');
+let dismissed = JSON.parse(localStorage.getItem('hoplon_dismissed') || '{}');
+let stageOverride = JSON.parse(localStorage.getItem('hoplon_stage_override') || '{}');
+let notesOverride = JSON.parse(localStorage.getItem('hoplon_notes_override') || '{}');
+
+function save() {
+  localStorage.setItem('hoplon_local_leads', JSON.stringify(localLeads));
+  localStorage.setItem('hoplon_dismissed', JSON.stringify(dismissed));
+  localStorage.setItem('hoplon_stage_override', JSON.stringify(stageOverride));
+  localStorage.setItem('hoplon_notes_override', JSON.stringify(notesOverride));
+}
+
+function uid() { return 'm_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+/* ============ SCORING ============ */
+const TRIG_WEIGHT = { iso27001:40, breach:45, compliance:30, budget:20, noexpertise:25, starter:15, other:10 };
+const KEYWORDS = {
+  urgent: ['asap','urgent','deadline','this week','next month','quickly','immediately','need now','scrambling','help'],
+  buying: ['recommend','looking for','who can','any good','consultant','partner','vendor','quote','budget','pay'],
+  pain:   ['confused','lost','overwhelmed','no idea','first time','never','no team','solo','one-person','small team'],
+};
+function scoreLead(lead) {
+  let s = TRIG_WEIGHT[lead.trigger] || 10;
+  const text = (lead.snippet + ' ' + (lead.context||'')).toLowerCase();
+  KEYWORDS.urgent.forEach(k => { if (text.includes(k)) s += 6; });
+  KEYWORDS.buying.forEach(k => { if (text.includes(k)) s += 5; });
+  KEYWORDS.pain.forEach(k => { if (text.includes(k)) s += 3; });
+  if (lead.snippet.length > 200) s += 5;
+  return Math.min(100, s);
+}
+function scoreBand(s) { return s >= 65 ? 'hot' : s >= 40 ? 'warm' : 'cool'; }
+
+/* ============ OUTREACH DRAFTER ============ */
+const TRIG_LABEL = {
+  iso27001:'ISO 27001 urgency', starter:'Where to start with cyber',
+  budget:'Small budget / new business', noexpertise:'No in-house expertise',
+  breach:'Post-incident', compliance:'Other compliance framework', other:'General signal',
+};
+function hookFor(t) {
+  return ({iso27001:'needing ISO 27001 sorted', starter:'figuring out where to start with cyber',
+    budget:'security on a startup budget', noexpertise:'not having in-house security expertise',
+    breach:'the incident', compliance:'the compliance work', other:"what you're working through"})[t];
+}
+function draftOutreach(lead, channel) {
+  const name = (lead.name || '').replace(/^[@u]\/?/, '').split(/[\s—]/)[0] || 'there';
+  const t = lead.trigger;
+  const openers = {
+    dm: `Hey ${name} — saw your ${lead.source} post about ${hookFor(t)}.`,
+    comment: `${hookFor(t)} — a few practical thoughts from the trenches:`,
+    email: `Hi ${name},\n\nSaw your post on ${lead.source} about ${hookFor(t)} — the timing caught my attention because it's exactly the gap Hoplon was built for.`,
+  };
+  const bodies = {
+    iso27001: {
+      dm: `Most teams hit ISO 27001 when a big customer demands it — and then realise the gap analysis alone is weeks of work. Happy to share the 8-week path we've walked clients through (including the policy pack that cuts documentation time in half). No pitch, just useful.`,
+      comment: `The fastest ISO 27001 wins come from treating it as two separate problems: (1) the paper trail (policies, SoA, risk register) and (2) the technical controls. Do the paper trail first — it unblocks 60% of audit prep and most SMBs overspend trying to solve both at once.`,
+      email: `ISO 27001 done reactively (customer-forced) usually costs 3x what it should — because teams try to solve compliance and security posture simultaneously, and both suffer.\n\nWe run a compressed 8-week path: gap assessment → policy pack → controls → audit-ready. Built for teams without a dedicated CISO.\n\nWorth a 20-min call to see if the shape of it fits? Happy to share a one-pager either way.`,
+    },
+    starter: {
+      dm: `That question comes up a lot and honestly the advice online is bad — 90% of it is either enterprise-scale overkill or vendor blog spam. Happy to share the actual first-3-moves that matter for a team your size. Zero sales-y, just the framework.`,
+      comment: `The honest starter checklist for a small team: (1) MFA everywhere + password manager, (2) endpoint protection you actually maintain, (3) backups that are tested (not just configured), (4) a written incident plan even if it's one page. Everything else is nice-to-have until those four exist.`,
+      email: `"Where do I start" is the hardest question in cyber because every vendor answers it with their own product.\n\nThe real answer for a <50-person team is boring: identity, endpoints, backups, a written plan. Hoplon's starter engagement is literally those four things plus quarterly check-ins — priced for teams who don't have budget for an MSSP retainer.\n\nCan send over the one-pager if useful?`,
+    },
+    budget: {
+      dm: `Small budget is actually the easier problem — it forces clarity. The expensive mistake is buying tools before knowing the threat model. Happy to walk through a ~£X/month setup that covers the 80% for a team your size if useful.`,
+      comment: `Cyber on a startup budget is doable — the mistake is treating it like a procurement exercise. Start with free tier MFA, a £5/seat endpoint tool, and 90 minutes on your incident plan. You'll outperform most mid-market companies.`,
+      email: `Budget-constrained security is where most vendors lose interest — which is exactly why Hoplon exists.\n\nOur SMB package is built for teams that need real coverage without a £30k/yr retainer: assessment, core controls, quarterly reviews. Transparent pricing, no lock-in.\n\nWant me to send the pricing page? Happy to answer questions either way.`,
+    },
+    noexpertise: {
+      dm: `The "no one on the team knows cyber" problem is the most common one we see — and the worst approach is hiring a junior and hoping. A fractional setup (someone senior, part-time) usually outperforms a full-time hire for the first 18 months. Happy to explain the model if useful.`,
+      comment: `Not having in-house expertise is fine — what kills small teams is pretending they do. Get a fractional advisor who reviews decisions monthly. Cheaper than a hire, more senior than you could otherwise afford, and you learn as you go.`,
+      email: `The gap between "we need security" and "we can hire a CISO" is where most SMBs get stuck — and where the worst vendor relationships start.\n\nHoplon's fractional model covers exactly that gap: senior advisory + hands-on controls, priced monthly. Works especially well for teams who want to build internal capability over time rather than outsource forever.\n\nHappy to share how it's structured if helpful.`,
+    },
+    breach: {
+      dm: `Rough spot — genuinely sorry. Two things that help immediately: (1) don't touch anything until you've preserved logs, (2) assume the breach is wider than the first indicator. If you want a second pair of eyes (free, no pitch) happy to help in the next 24h.`,
+      comment: `Post-incident the priority order is: contain → preserve evidence → notify (if regulated) → root cause → hardening. Most teams jump to hardening first and destroy the evidence trail. If you're in hour-one, slow down.`,
+      email: `If you're still in the active response window, ignore this and come back later — time matters more than email.\n\nOnce things are stable, Hoplon runs post-incident reviews focused on the "what changes permanently" question — not just the forensics. That's where most teams fail to convert an incident into lasting improvement.\n\nHere if useful. No rush.`,
+    },
+    compliance: {
+      dm: `Which framework? SOC 2 and Cyber Essentials have very different shortest paths. Happy to share the compressed timeline for whichever you're chasing — we've run both.`,
+      comment: `Multi-framework tip: map controls to NIST CSF once, then each framework (SOC 2, ISO 27001, Cyber Essentials) becomes a mapping exercise rather than three separate projects. Saves roughly 40% of the work if you're pursuing more than one.`,
+      email: `Compliance frameworks overlap more than vendors let on — the inefficient path is treating each as a separate project.\n\nHoplon maps controls once and reuses across SOC 2, ISO 27001, and Cyber Essentials. For teams pursuing more than one, it cuts timeline roughly in half.\n\nHappy to share the mapping approach if useful — no commitment.`,
+    },
+    other: {
+      dm: `Saw your post and it resonated — the pattern you're describing is really common in teams at your stage. Happy to share what usually works (and what doesn't) if useful. No agenda.`,
+      comment: `Common pattern and worth saying out loud: the right answer depends heavily on your threat model, not the generic advice. Happy to share specifics if you share more context on what you're protecting.`,
+      email: `Saw your post and wanted to reach out directly rather than comment publicly.\n\nHoplon works with teams in similar situations — happy to share what's worked (and what hasn't) for comparable setups. Low-pressure, just useful to compare notes.\n\nWorth a quick call?`,
+    },
+  };
+  return openers[channel] + '\n\n' + bodies[t][channel];
+}
+
+/* ============ CRUD ============ */
+function addLead() {
+  const url = document.getElementById('f-url').value.trim();
+  const name = document.getElementById('f-name').value.trim();
+  const src = document.getElementById('f-src').value;
+  const snip = document.getElementById('f-snip').value.trim();
+  const trig = document.getElementById('f-trig').value;
+  const co = document.getElementById('f-co').value.trim();
+  if (!snip || !name) { alert('Name and snippet required'); return; }
+  const lead = {
+    id: uid(), url, name, source: src, snippet: snip, trigger: trig, context: co,
+    stage: 'new', created: Date.now(), score: 0, notes: '', auto: false,
+  };
+  lead.score = scoreLead(lead);
+  localLeads.unshift(lead);
+  save(); clearForm(); render();
+}
+function clearForm() { ['f-url','f-name','f-snip','f-co'].forEach(id => document.getElementById(id).value = ''); }
+
+/* For auto leads: we don't mutate them — we use overlay maps */
+function getEffectiveStage(lead) {
+  if (lead.auto) return stageOverride[lead.id] || lead.stage; // 'inbox' default
+  return lead.stage;
+}
+function getEffectiveNotes(lead) {
+  if (lead.auto) return notesOverride[lead.id] || '';
+  return lead.notes || '';
+}
+function setStage(id, stage) {
+  const lead = allLeads().find(l => l.id === id);
+  if (!lead) return;
+  if (lead.auto) { stageOverride[id] = stage; }
+  else { lead.stage = stage; }
+  save(); render();
+}
+function dismissLead(id) {
+  dismissed[id] = Date.now();
+  save(); render(); closeModal();
+}
+function deleteLead(id) {
+  if (!confirm('Delete this lead?')) return;
+  const lead = allLeads().find(l => l.id === id);
+  if (!lead) return;
+  if (lead.auto) { dismissLead(id); return; }
+  localLeads = localLeads.filter(l => l.id !== id);
+  save(); render(); closeModal();
+}
+
+/* Combined view */
+function allLeads() {
+  return [...autoLeads.filter(l => !dismissed[l.id]), ...localLeads];
+}
+
+/* ============ RENDER ============ */
+const STAGES = [
+  { key: 'inbox',     label: '◇ Inbox (auto)', cls: 'col-inbox' },
+  { key: 'new',       label: 'New',            cls: 'col-new' },
+  { key: 'qualified', label: 'Qualified',      cls: 'col-qual' },
+  { key: 'outreach',  label: 'Outreach Sent',  cls: 'col-out' },
+  { key: 'replied',   label: 'Replied',        cls: 'col-rep' },
+  { key: 'closed',    label: 'Won / Lost',     cls: 'col-done' },
+];
+
+function render() {
+  const all = allLeads();
+  document.getElementById('stat-total').textContent = all.length;
+  document.getElementById('stat-hot').textContent = all.filter(l => l.score >= 65).length;
+  document.getElementById('stat-inbox').textContent = all.filter(l => getEffectiveStage(l) === 'inbox').length;
+  const today = new Date(); today.setHours(0,0,0,0);
+  document.getElementById('stat-today').textContent = all.filter(l => (l.discovered || l.created) >= today.getTime()).length;
+
+  const k = document.getElementById('kanban');
+  k.innerHTML = STAGES.map(st => {
+    const items = all.filter(l => getEffectiveStage(l) === st.key).sort((a,b) => b.score - a.score);
+    return `
+      <div class="col ${st.cls}" data-stage="${st.key}"
+           ondragover="event.preventDefault()" ondrop="onDrop(event,'${st.key}')">
+        <div class="col-h"><span>${st.label}</span><span>${items.length}</span></div>
+        ${items.length === 0 ? `<div class="empty">— empty —</div>` : items.map(renderCard).join('')}
+      </div>
+    `;
+  }).join('');
+  document.getElementById('pipeline-count').textContent = `${all.length} total`;
+}
+
+function renderCard(l) {
+  const band = scoreBand(l.score);
+  const isInbox = getEffectiveStage(l) === 'inbox';
+  return `
+    <div class="lead ${band}" draggable="true"
+         ondragstart="onDragStart(event,'${l.id}')"
+         ondragend="event.target.classList.remove('dragging')">
+      <div class="lead-top">
+        <span class="lead-src ${l.auto ? 'auto' : ''}">${l.source}${l.auto ? ' ⚡' : ''}</span>
+        <span class="lead-score ${band}">${l.score}</span>
+      </div>
+      <div class="lead-name">${escape(l.name)}</div>
+      <div class="lead-trig">▸ ${TRIG_LABEL[l.trigger]}</div>
+      <div class="lead-snip">${escape(l.snippet)}</div>
+      <div class="lead-actions">
+        ${l.url ? `<a href="${l.url}" target="_blank" rel="noopener">↗ open</a>` : ''}
+        <button onclick="openModal('${l.id}')">draft</button>
+        ${isInbox
+          ? `<button class="accept" onclick="setStage('${l.id}','qualified')">✓ accept</button>
+             <button class="dismiss" onclick="dismissLead('${l.id}')">✗ dismiss</button>`
+          : `<button onclick="cycleStage('${l.id}')">→</button>`}
+      </div>
+    </div>
+  `;
+}
+
+function escape(s) {
+  return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+}
+
+function cycleStage(id) {
+  const lead = allLeads().find(l => l.id === id);
+  if (!lead) return;
+  const cur = getEffectiveStage(lead);
+  const i = STAGES.findIndex(s => s.key === cur);
+  // Skip 'inbox' when cycling — only auto-discovered things start there
+  let next = STAGES[(i + 1) % STAGES.length];
+  if (next.key === 'inbox') next = STAGES[(i + 2) % STAGES.length];
+  setStage(id, next.key);
+}
+
+/* DRAG */
+let dragId = null;
+function onDragStart(e, id) { dragId = id; e.target.classList.add('dragging'); }
+function onDrop(e, stage) { e.preventDefault(); if (dragId) setStage(dragId, stage); dragId = null; }
+
+/* MODAL */
+let modalLeadId = null, modalChannel = 'dm';
+function openModal(id) { modalLeadId = id; modalChannel = 'dm'; renderModal(); document.getElementById('modal').classList.add('open'); }
+function closeModal() { document.getElementById('modal').classList.remove('open'); modalLeadId = null; }
+
+function renderModal() {
+  const l = allLeads().find(x => x.id === modalLeadId);
+  if (!l) return;
+  const draft = draftOutreach(l, modalChannel);
+  document.getElementById('modal-body').innerHTML = `
+    <h3>${escape(l.name)}</h3>
+    <div class="sub">${l.source} // ${TRIG_LABEL[l.trigger]} // score ${l.score}${l.auto ? ' // auto-discovered' : ''}</div>
+    <div class="tab-row">
+      <button class="tab ${modalChannel==='dm'?'active':''}" onclick="setChannel('dm')">DM / Direct</button>
+      <button class="tab ${modalChannel==='comment'?'active':''}" onclick="setChannel('comment')">Public comment</button>
+      <button class="tab ${modalChannel==='email'?'active':''}" onclick="setChannel('email')">Email</button>
+    </div>
+    <div class="sec-h">Draft</div>
+    <div class="draft-out">${escape(draft)}</div>
+    <div class="sec-h" style="margin-top:16px">Source snippet</div>
+    <div class="draft-out" style="font-size:11px;color:var(--text-dim)">${escape(l.snippet)}</div>
+    <div class="sec-h" style="margin-top:16px">Notes</div>
+    <textarea id="note-text" placeholder="Call notes, follow-up reminders, objections...">${escape(getEffectiveNotes(l))}</textarea>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="copyDraft()">Copy draft</button>
+      <button class="btn-ghost" onclick="saveNote()">Save notes</button>
+      <button class="btn-ghost" onclick="moveAndClose('outreach')" style="color:var(--warn);border-color:var(--warn)">Mark as sent →</button>
+      <button class="btn-ghost" onclick="deleteLead('${l.id}')" style="color:var(--hot);border-color:var(--hot);margin-left:auto">${l.auto ? 'Dismiss' : 'Delete'}</button>
+      <button class="btn-ghost" onclick="closeModal()">Close</button>
+    </div>
+  `;
+}
+function setChannel(c) { modalChannel = c; renderModal(); }
+function copyDraft() {
+  const l = allLeads().find(x => x.id === modalLeadId);
+  navigator.clipboard.writeText(draftOutreach(l, modalChannel)).then(() => {
+    const btn = event.target; const t = btn.textContent;
+    btn.textContent = '✓ Copied'; setTimeout(() => btn.textContent = t, 1500);
+  });
+}
+function saveNote() {
+  const l = allLeads().find(x => x.id === modalLeadId);
+  if (!l) return;
+  const v = document.getElementById('note-text').value;
+  if (l.auto) { notesOverride[l.id] = v; }
+  else { l.notes = v; }
+  save();
+  const btn = event.target; const t = btn.textContent;
+  btn.textContent = '✓ Saved'; setTimeout(() => btn.textContent = t, 1500);
+}
+function moveAndClose(stage) { setStage(modalLeadId, stage); closeModal(); }
+
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ============ AUTO-SCAN FETCH ============ */
+async function loadAutoScan() {
+  try {
+    // Cache-bust so we always get the latest commit
+    const [leadsRes, metaRes] = await Promise.all([
+      fetch('leads.json?t=' + Date.now()),
+      fetch('scan-meta.json?t=' + Date.now()),
+    ]);
+    if (leadsRes.ok) {
+      autoLeads = await leadsRes.json();
+    } else {
+      console.warn('No leads.json yet — first scan may not have run');
+    }
+    if (metaRes.ok) {
+      const meta = await metaRes.json();
+      updateScanBanner(meta);
+    } else {
+      updateScanBanner(null);
+    }
+  } catch (e) {
+    console.error('Auto-scan load failed:', e);
+    updateScanBanner(null);
+  }
+  render();
+}
+
+function updateScanBanner(meta) {
+  const banner = document.getElementById('scan-banner');
+  const val = document.getElementById('last-scan-val');
+  const sub = document.getElementById('last-scan-sub');
+  const dot = document.getElementById('health-dot');
+  const lbl = document.getElementById('health-lbl');
+
+  if (!meta) {
+    banner.classList.add('dead');
+    val.textContent = 'No scan data yet';
+    sub.textContent = 'Trigger via GitHub Actions';
+    dot.classList.add('dead'); lbl.textContent = 'No data';
+    return;
+  }
+  const last = new Date(meta.last_scan);
+  const ageH = (Date.now() - last.getTime()) / 36e5;
+  val.textContent = formatRelative(last);
+  sub.textContent = `${meta.new_this_run} new // ${meta.total} total`;
+
+  banner.classList.remove('stale','dead');
+  dot.classList.remove('stale','dead');
+  if (ageH > 48) { banner.classList.add('dead'); dot.classList.add('dead'); lbl.textContent = 'Stale'; }
+  else if (ageH > 26) { banner.classList.add('stale'); dot.classList.add('stale'); lbl.textContent = 'Late'; }
+  else { lbl.textContent = 'Live'; }
+}
+
+function formatRelative(d) {
+  const mins = Math.floor((Date.now() - d.getTime()) / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const h = Math.floor(mins / 60);
+  if (h < 24) return `${h}h ago`;
+  const days = Math.floor(h / 24);
+  return `${days}d ago`;
+}
+
+function reloadAuto() { loadAutoScan(); }
+
+/* ============ IMPORT / EXPORT (manual leads only) ============ */
+function exportData() {
+  const blob = new Blob([JSON.stringify({localLeads, dismissed, stageOverride, notesOverride}, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `hoplon-state-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+}
+function importData(e) {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (confirm('Import will replace local state. Continue?')) {
+        localLeads = data.localLeads || [];
+        dismissed = data.dismissed || {};
+        stageOverride = data.stageOverride || {};
+        notesOverride = data.notesOverride || {};
+        save(); render();
+      }
+    } catch (err) { alert('Invalid JSON file'); }
+  };
+  r.readAsText(f);
+  e.target.value = '';
+}
+
+/* ============ INIT ============ */
+renderHunt();
+render();
+loadAutoScan();
+// Re-fetch every 10 min in case scan runs while dashboard is open
+setInterval(loadAutoScan, 10 * 60 * 1000);
+</script>
+</body>
+</html>
