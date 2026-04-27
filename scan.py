@@ -1,13 +1,10 @@
-
 #!/usr/bin/env python3
 """
-Hoplon Lead Scanner
-Runs daily via GitHub Actions. Queries Hacker News (Algolia) and Reddit
-for posts matching Hoplon's ICP pain triggers, scores them, dedupes,
-and writes results to leads.json for the dashboard to read.
-
-v3: Added relevance filtering to reject developer/technical chatter
-and focus on business owners/founders actually asking for help.
+Hoplon Lead Scanner v5
+- HN: ONLY searches 'Ask HN' posts (not comments, not Show HN, not news)
+- Three-gate relevance filter: reject dev chatter, require security context,
+  require business/help-seeking signal
+- Reddit: subreddit-targeted searches (when API creds available)
 """
 
 import json
@@ -24,237 +21,181 @@ import urllib.error
 # ============ CONFIG ============
 
 LOOKBACK_HOURS_NORMAL = 36
-LOOKBACK_HOURS_SEED = 168  # 7 days
+LOOKBACK_HOURS_SEED = 336  # 14 days — Ask HN security posts are rare
 
 OUTPUT_FILE = Path(__file__).parent / "leads.json"
 MAX_LEADS = 500
-
-# Minimum relevance score to keep a lead. Posts below this are discarded.
 MIN_SCORE = 20
 
-# ============ QUERY DEFINITIONS ============
-# Focused on "Ask HN" style queries and terms that indicate someone
-# ASKING for help, not discussing security as a topic.
+# ============ HN QUERIES ============
+# CRITICAL CHANGE: we now search ONLY 'Ask HN' stories using the
+# Algolia tag 'ask_hn'. This eliminates Show HN, news articles,
+# and random comments where someone mentions "security" in passing.
+#
+# Because Ask HN posts are rarer, we use broader search terms —
+# the three-gate filter handles false positives.
 
 HN_QUERIES = [
-    # --- COMPLIANCE URGENCY ---
-    ("iso27001",    "Ask HN ISO 27001"),
-    ("iso27001",    "Ask HN SOC 2"),
-    ("iso27001",    "need ISO 27001"),
-    ("iso27001",    "need SOC 2"),
-    ("iso27001",    "client wants SOC 2"),
-    ("iso27001",    "customer requires ISO"),
-    ("compliance",  "Ask HN Cyber Essentials"),
-    ("compliance",  "Ask HN GDPR compliance"),
-    ("compliance",  "need GDPR compliant"),
-
-    # --- CYBER INSURANCE ---
-    ("compliance",  "cyber insurance denied"),
-    ("compliance",  "cyber insurance requirements"),
-    ("compliance",  "cyber insurance small business"),
-
-    # --- VENDOR QUESTIONNAIRES ---
-    ("iso27001",    "security questionnaire customer"),
-    ("iso27001",    "vendor security assessment help"),
-
-    # --- ASKING FOR HELP / WHERE TO START ---
-    ("starter",     "Ask HN cybersecurity startup"),
-    ("starter",     "Ask HN security small business"),
-    ("starter",     "Ask HN security checklist"),
-    ("starter",     "how to secure my startup"),
-    ("starter",     "how to secure my business"),
-    ("starter",     "security for non-technical founder"),
-    ("starter",     "small business cybersecurity help"),
-
-    # --- REMOTE / BYOD ---
-    ("starter",     "secure remote team small business"),
-    ("starter",     "BYOD policy small company"),
-
-    # --- NO EXPERTISE ---
-    ("noexpertise", "Ask HN hire security"),
-    ("noexpertise", "fractional CISO"),
-    ("noexpertise", "outsource cybersecurity small"),
-    ("noexpertise", "no security team startup"),
-    ("noexpertise", "need security help startup"),
-
-    # --- OFFBOARDING ---
-    ("noexpertise", "employee left still has access"),
-
-    # --- BUDGET ---
-    ("budget",      "Ask HN affordable security"),
-    ("budget",      "cybersecurity on a budget"),
-    ("budget",      "security startup budget"),
-
-    # --- BREACH / INCIDENT ---
-    ("breach",      "my startup got hacked"),
-    ("breach",      "small business ransomware help"),
-    ("breach",      "we got hacked what do"),
-    ("breach",      "business email compromise help"),
-    ("breach",      "phishing attack small business"),
-
-    # --- BUYING INTENT ---
-    ("other",       "recommend MSSP small"),
-    ("other",       "recommend security consultant"),
-    ("other",       "looking for security vendor"),
-
-    # --- PASSWORDS ---
-    ("starter",     "password manager small team"),
-    ("starter",     "team password management"),
+    # Compliance
+    ("iso27001",    "ISO 27001"),
+    ("iso27001",    "SOC 2"),
+    ("compliance",  "Cyber Essentials"),
+    ("compliance",  "GDPR"),
+    ("compliance",  "compliance"),
+    ("compliance",  "cyber insurance"),
+    # Security help
+    ("starter",     "cybersecurity"),
+    ("starter",     "security startup"),
+    ("starter",     "security small business"),
+    ("starter",     "secure my company"),
+    ("starter",     "security checklist"),
+    ("starter",     "security best practices"),
+    # No expertise
+    ("noexpertise", "hire security"),
+    ("noexpertise", "CISO"),
+    ("noexpertise", "security team"),
+    ("noexpertise", "outsource security"),
+    # Budget
+    ("budget",      "security budget"),
+    ("budget",      "affordable security"),
+    # Breach
+    ("breach",      "hacked"),
+    ("breach",      "ransomware"),
+    ("breach",      "phishing"),
+    ("breach",      "data breach"),
+    # Buying
+    ("other",       "MSSP"),
+    ("other",       "security consultant"),
+    ("other",       "security vendor"),
+    # Misc
+    ("starter",     "password manager"),
+    ("starter",     "MFA"),
+    ("noexpertise", "offboarding"),
 ]
 
+# ============ REDDIT QUERIES ============
 REDDIT_QUERIES = [
-    # --- COMPLIANCE ---
     ("iso27001",    "smallbusiness",   "ISO 27001"),
     ("iso27001",    "ITManagers",      "ISO 27001"),
     ("iso27001",    "startups",        "SOC 2"),
     ("iso27001",    "SaaS",            "SOC 2"),
     ("compliance",  "smallbusiness",   "Cyber Essentials"),
     ("compliance",  "smallbusiness",   "GDPR compliance"),
-
-    # --- CYBER INSURANCE ---
     ("compliance",  "smallbusiness",   "cyber insurance"),
     ("compliance",  "Insurance",       "cyber insurance small business"),
-
-    # --- VENDOR QUESTIONNAIRES ---
     ("iso27001",    "smallbusiness",   "security questionnaire"),
     ("iso27001",    "ITManagers",      "security audit client"),
-
-    # --- STARTER ---
     ("starter",     "smallbusiness",   "cybersecurity where to start"),
     ("starter",     "smallbusiness",   "cyber security advice"),
     ("starter",     "Entrepreneur",    "cybersecurity help"),
     ("starter",     "smallbusiness",   "security checklist"),
-
-    # --- REMOTE / BYOD ---
     ("starter",     "smallbusiness",   "remote work security"),
     ("starter",     "smallbusiness",   "BYOD security"),
-
-    # --- M365 / GOOGLE ---
     ("starter",     "smallbusiness",   "Microsoft 365 security"),
     ("starter",     "smallbusiness",   "MFA enforce"),
-
-    # --- PASSWORDS ---
     ("starter",     "smallbusiness",   "password manager team"),
-
-    # --- NO EXPERTISE ---
     ("noexpertise", "smallbusiness",   "no IT security help"),
     ("noexpertise", "smallbusiness",   "need security help"),
     ("noexpertise", "cybersecurity",   "small business security help"),
     ("noexpertise", "msp",             "small business security"),
-
-    # --- OFFBOARDING ---
     ("noexpertise", "smallbusiness",   "employee left access"),
-
-    # --- BUDGET ---
     ("budget",      "smallbusiness",   "cyber security cost"),
     ("budget",      "smallbusiness",   "affordable cybersecurity"),
-
-    # --- BREACH ---
     ("breach",      "smallbusiness",   "hacked"),
     ("breach",      "smallbusiness",   "ransomware"),
     ("breach",      "smallbusiness",   "phishing attack"),
     ("breach",      "smallbusiness",   "invoice scam"),
-
-    # --- BUYING INTENT ---
     ("other",       "cybersecurity",   "recommend MSSP"),
     ("other",       "msp",             "security vendor small business"),
 ]
 
-# ============ RELEVANCE FILTERING ============
-# The key insight: we want BUSINESS OWNERS asking for help,
-# not DEVELOPERS discussing security as a topic.
+# ============ THREE-GATE RELEVANCE FILTER ============
 
-# If a post contains 2+ of these, it's probably dev/technical chatter
+# Gate 1: Reject developer/technical chatter (2+ matches = rejected)
 DEV_SIGNALS = [
-    'github.com', 'pull request', 'merge', 'npm', 'pip install',
+    'github.com', 'pull request', 'merge request', 'npm', 'pip install',
     'docker', 'kubernetes', 'k8s', 'terraform', 'aws lambda',
-    'api endpoint', 'oauth implementation', 'jwt', 'csrf',
+    'api endpoint', 'oauth implementation', 'jwt token', 'csrf token',
     'sql injection', 'xss', 'buffer overflow', 'heap overflow',
-    'cve-20', 'exploit', 'payload', 'reverse shell', 'ctf',
-    'binary', 'disassembl', 'decompil', 'fuzzing', 'pentest',
+    'cve-20', 'reverse shell', 'ctf challenge',
+    'disassembl', 'decompil', 'fuzzing', 'pentest report',
     'bug bounty', 'responsible disclosure', 'zero day', '0day',
-    'kernel', 'syscall', 'elf', 'shellcode',
-    'rust', 'golang', 'python security library', 'node.js',
-    'cryptograph', 'encryption algorithm', 'hash function',
-    'public key', 'private key', 'diffie-hellman',
-    'saas product', 'my side project', 'i built',
-    'open source', 'self-hosted', 'self hosted',
-    'linux server', 'nginx', 'apache',
-    'startup i work at', 'our engineering team',
-    'series a', 'series b', 'raised', 'valuation',
-    'hiring for', 'we are hiring', 'job posting',
+    'kernel', 'syscall', 'shellcode',
+    'golang', 'python library', 'node.js', 'react',
+    'encryption algorithm', 'hash function',
+    'diffie-hellman', 'elliptic curve',
+    'my side project', 'i built this',
+    'open source project', 'self-hosted',
+    'nginx', 'apache config',
+    'our engineering team', 'engineering blog',
+    'series a', 'series b', 'we raised',
+    'we are hiring', 'job posting', 'hiring for',
+    'agentic', 'llm', 'large language model', 'claude code',
+    'machine learning', 'neural network', 'transformer',
+    'saas product', 'show hn',
 ]
 
-# Posts MUST contain at least one of these to be considered relevant
-# (signals that someone is asking for help or has a business problem)
+# Gate 2: Must be about cybersecurity (not healthcare, tax, etc.)
+SECURITY_CONTEXT = [
+    'cybersecurity', 'cyber security', 'infosec', 'information security',
+    'data breach', 'breach', 'malware', 'ransomware', 'phishing',
+    'firewall', 'antivirus', 'endpoint protection', 'endpoint security',
+    'mfa', 'multi-factor', 'two-factor', '2fa',
+    'password manager', 'password policy', 'credential',
+    'soc 2', 'soc2', 'iso 27001', 'iso27001',
+    'cyber essentials', 'gdpr', 'data protection act',
+    'ciso', 'mssp', 'penetration test', 'vulnerability scan',
+    'vpn', 'zero trust',
+    'incident response', 'disaster recovery',
+    'access control', 'identity management', 'iam',
+    'siem', 'edr', 'xdr', 'mdm',
+    'byod security', 'remote access security',
+    'cyber insurance',
+    'security questionnaire', 'security assessment',
+    'security policy', 'security team', 'security audit',
+    'security consultant', 'security vendor',
+    'hacked', 'compromised', 'attacked',
+    'backup strategy', 'offboarding security',
+    'security awareness', 'security training',
+]
+
+# Gate 3: Must show help-seeking or business pain (not just discussing)
 BUSINESS_SIGNALS = [
     # Asking for help
-    'help', 'advice', 'recommend', 'suggestion', 'anyone',
+    'help', 'advice', 'recommend', 'suggestion',
     'how do i', 'how do we', 'how should', 'what should',
     'where do i start', 'where to start', 'looking for',
-    'need', 'require', 'struggling', 'confused', 'overwhelmed',
-    'no idea', 'not sure', 'stuck',
+    'need', 'struggling', 'confused', 'overwhelmed',
+    'no idea', 'not sure how', 'stuck',
     # Business context
     'my business', 'my company', 'our company', 'small business',
     'my team', 'our team', 'employees', 'staff', 'my startup',
-    'founder', 'ceo', 'owner', 'director', 'managing director',
-    'client', 'customer', 'contract', 'deal', 'sales',
-    'revenue', 'cost', 'budget', 'afford', 'pricing',
-    'insurance', 'compliance', 'audit', 'certification',
-    'policy', 'procedure', 'risk', 'liability',
+    'founder', 'ceo', 'owner', 'managing director',
+    'client asking', 'customer requires', 'contract requires',
     # Pain / urgency
-    'deadline', 'urgent', 'asap', 'quickly', 'immediately',
-    'lost a deal', 'blocking', 'denied', 'failed',
-    'hacked', 'breached', 'ransomware', 'phishing',
-    'incident', 'compromised',
+    'deadline', 'urgent', 'asap', 'quickly',
+    'lost a deal', 'blocking', 'denied',
     # Buying
-    'vendor', 'provider', 'consultant', 'managed service',
-    'mssp', 'outsource', 'hire', 'pay for',
-    'quote', 'proposal',
-]
-
-# Post MUST mention at least one of these — proves it's actually about
-# cybersecurity, not healthcare insurance or California tax policy.
-SECURITY_CONTEXT = [
-    'security', 'cybersecurity', 'cyber security', 'infosec',
-    'hack', 'breach', 'malware', 'ransomware', 'phishing',
-    'firewall', 'antivirus', 'endpoint protection',
-    'mfa', 'multi-factor', 'two-factor', '2fa',
-    'password', 'credential', 'authentication',
-    'soc 2', 'soc2', 'iso 27001', 'iso27001',
-    'cyber essentials', 'gdpr', 'data protection',
-    'ciso', 'mssp', 'penetration test', 'vulnerability',
-    'encryption', 'vpn', 'ssl', 'tls',
-    'compliance', 'audit', 'risk assessment',
-    'incident response', 'disaster recovery',
-    'access control', 'identity management',
-    'siem', 'edr', 'xdr', 'mdm',
-    'byod', 'remote access',
-    'cyber insurance', 'security questionnaire',
-    'security policy', 'security team',
-    'threat', 'attack', 'exploit',
-    'backup', 'offboarding',
+    'vendor', 'provider', 'consultant',
+    'mssp', 'outsource', 'hire',
+    'quote', 'pricing', 'cost',
 ]
 
 def is_relevant(text: str) -> bool:
-    """Three-gate filter:
-    1. Reject if too many developer/technical signals
-    2. Require at least one cybersecurity-related term
-    3. Require at least one business/help-seeking signal
-    """
+    """Three-gate filter. ALL three must pass."""
     lower = text.lower()
 
-    # Gate 1: reject dev chatter
+    # Gate 1: reject dev/technical chatter
     dev_count = sum(1 for s in DEV_SIGNALS if s in lower)
     if dev_count >= 2:
         return False
 
-    # Gate 2: must be about cybersecurity (not healthcare, tax, etc.)
+    # Gate 2: must actually be about cybersecurity
     sec_count = sum(1 for s in SECURITY_CONTEXT if s in lower)
     if sec_count == 0:
         return False
 
-    # Gate 3: must have business/help-seeking signal
+    # Gate 3: must show help-seeking or business pain
     biz_count = sum(1 for s in BUSINESS_SIGNALS if s in lower)
     if biz_count == 0:
         return False
@@ -270,26 +211,25 @@ TRIG_WEIGHT = {
 }
 URGENT_KW = [
     'asap', 'urgent', 'deadline', 'this week', 'next month', 'quickly',
-    'immediately', 'need now', 'scrambling', 'help', 'desperate',
+    'immediately', 'need now', 'scrambling', 'desperate',
     'running out of time', 'client requires', 'customer asking',
-    'audit coming', 'renewal coming', 'deal depends', 'blocking us',
+    'audit coming', 'deal depends', 'blocking us',
     'lost a deal', 'contract requires', 'insurance requires',
-    'denied coverage', 'premium went up',
 ]
 BUYING_KW = [
     'recommend', 'looking for', 'who can', 'any good', 'consultant',
-    'partner', 'vendor', 'quote', 'budget', 'pay', 'hire', 'suggestions',
-    'anyone use', 'what do you use', 'which provider', 'who do you use',
+    'partner', 'vendor', 'quote', 'pay', 'hire', 'suggestions',
+    'anyone use', 'what do you use', 'which provider',
     'need someone', 'looking to outsource', 'managed service',
     'how much does', 'what does it cost', 'pricing',
 ]
 PAIN_KW = [
-    'confused', 'lost', 'overwhelmed', 'no idea', 'first time', 'never',
+    'confused', 'overwhelmed', 'no idea', 'first time',
     'no team', 'solo', 'one-person', 'small team', 'clueless',
-    'dont know where', 'no clue', 'struggling', 'stuck',
+    'no clue', 'struggling', 'stuck',
     'out of my depth', 'way over my head', 'no experience',
     'wearing many hats', 'not my expertise', 'only IT person',
-    'no security person', 'nobody on staff', 'spreadsheet of passwords',
+    'no security person', 'nobody on staff',
     'still has access', 'shared admin', 'no policy',
 ]
 
@@ -306,7 +246,7 @@ def score_lead(snippet: str, trigger: str) -> int:
     return min(100, s)
 
 
-# ============ HTTP HELPERS ============
+# ============ HTTP ============
 
 USER_AGENT = "HoplonLeadScanner/1.0 (lead research tool)"
 
@@ -326,38 +266,46 @@ def scan_hn(lookback_hours: int) -> list:
     leads = []
     cutoff = int((datetime.now(timezone.utc) - timedelta(hours=lookback_hours)).timestamp())
     filtered_count = 0
+    seen_ids = set()
 
     for trigger, query in HN_QUERIES:
+        # KEY CHANGE: tags=ask_hn — ONLY search "Ask HN" posts.
+        # No comments, no Show HN, no news links, no random discussions.
         url = (
             "https://hn.algolia.com/api/v1/search_by_date"
             f"?query={urllib.parse.quote(query)}"
             f"&numericFilters=created_at_i>{cutoff}"
-            "&hitsPerPage=20&tags=(story,comment)"
+            "&hitsPerPage=20&tags=ask_hn"
         )
         data = http_get_json(url)
         hits = data.get("hits", [])
         print(f"  HN [{trigger}] '{query}': {len(hits)} hits")
 
         for hit in hits:
-            text = hit.get("story_text") or hit.get("comment_text") or hit.get("title") or ""
-            if not text: continue
-            text = text.replace("<p>", "\n").replace("</p>", "")
-            for tag in ["<i>", "</i>", "<b>", "</b>", "<a>", "</a>"]:
-                text = text.replace(tag, "")
-            # Also strip href attributes left behind
-            text = re.sub(r'href="[^"]*"', '', text)
-            text = text[:1000]
+            obj_id = hit.get("objectID")
+            if obj_id in seen_ids:
+                continue
+            seen_ids.add(obj_id)
 
-            # RELEVANCE FILTER — skip dev/technical chatter
-            if not is_relevant(text):
+            title = hit.get("title") or ""
+            text = hit.get("story_text") or ""
+            # Combine title + body for filtering
+            full_text = (title + "\n" + text).strip()
+            if not full_text:
+                continue
+
+            # Strip HTML
+            full_text = full_text.replace("<p>", "\n").replace("</p>", "")
+            full_text = re.sub(r'<[^>]+>', '', full_text)
+            full_text = full_text[:1000]
+
+            # THREE-GATE RELEVANCE FILTER
+            if not is_relevant(full_text):
                 filtered_count += 1
                 continue
 
             author = hit.get("author", "anonymous")
-            obj_id = hit.get("objectID")
-            title = hit.get("title") or hit.get("story_title") or ""
-
-            score = score_lead(text, trigger)
+            score = score_lead(full_text, trigger)
             if score < MIN_SCORE:
                 filtered_count += 1
                 continue
@@ -365,11 +313,11 @@ def scan_hn(lookback_hours: int) -> list:
             leads.append({
                 "id": f"hn_{obj_id}",
                 "url": f"https://news.ycombinator.com/item?id={obj_id}",
-                "name": f"@{author}" + (f" — {title[:60]}" if title else ""),
+                "name": f"@{author} — {title[:80]}",
                 "source": "HackerNews",
-                "snippet": text.strip(),
+                "snippet": full_text.strip(),
                 "trigger": trigger,
-                "context": "",
+                "context": f"{hit.get('num_comments', 0)} comments",
                 "stage": "inbox",
                 "created": int(hit.get("created_at_i", time.time())) * 1000,
                 "discovered": int(time.time() * 1000),
@@ -440,7 +388,6 @@ def scan_reddit(lookback_hours: int) -> list:
             text = (title + "\n\n" + body)[:1000].strip()
             if not text: continue
 
-            # RELEVANCE FILTER
             if not is_relevant(text):
                 filtered_count += 1
                 continue
@@ -474,7 +421,7 @@ def scan_reddit(lookback_hours: int) -> list:
 # ============ MAIN ============
 
 def main():
-    print(f"=== Hoplon scan @ {datetime.now(timezone.utc).isoformat()} ===")
+    print(f"=== Hoplon scan v5 @ {datetime.now(timezone.utc).isoformat()} ===")
 
     existing = []
     if OUTPUT_FILE.exists():
@@ -488,12 +435,12 @@ def main():
 
     if len(existing) == 0:
         lookback = LOOKBACK_HOURS_SEED
-        print(f">> Seed mode: looking back {lookback}h (7 days)")
+        print(f">> Seed mode: looking back {lookback}h (14 days)")
     else:
         lookback = LOOKBACK_HOURS_NORMAL
         print(f">> Normal mode: looking back {lookback}h")
 
-    print("\n--- Hacker News ---")
+    print("\n--- Hacker News (Ask HN only) ---")
     hn_leads = scan_hn(lookback)
     print(f"\n--- Reddit ---")
     rd_leads = scan_reddit(lookback)
