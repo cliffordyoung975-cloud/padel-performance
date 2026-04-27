@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 Hoplon Lead Scanner
@@ -18,59 +19,199 @@ import urllib.error
 
 # ============ CONFIG ============
 
-# How far back to look on each run. 36h gives overlap so nothing slips
-# through if a run fails. Dedup handles the overlap.
-LOOKBACK_HOURS = 36
+LOOKBACK_HOURS_NORMAL = 36
+LOOKBACK_HOURS_SEED = 168  # 7 days — used when leads.json is empty
 
-# Output file consumed by the dashboard
 OUTPUT_FILE = Path(__file__).parent / "leads.json"
-
-# Keep at most this many leads in the file (oldest dropped). Prevents
-# the JSON from growing unbounded over months.
 MAX_LEADS = 500
 
-# Pain trigger queries. Each query maps to a Hoplon trigger type.
-# Keep queries specific — generic terms ("security") return too much noise.
+# ============ QUERY DEFINITIONS ============
+
 HN_QUERIES = [
-    ("iso27001",    '"ISO 27001"'),
-    ("iso27001",    '"SOC 2" startup'),
-    ("compliance",  '"Cyber Essentials"'),
-    ("starter",     '"where to start" security'),
-    ("starter",     '"first security hire"'),
-    ("noexpertise", '"no security team"'),
-    ("breach",      'startup ransomware'),
-    ("budget",      'startup security budget'),
+    # --- COMPLIANCE AS SALES BLOCKER ---
+    ("iso27001",    "ISO 27001"),
+    ("iso27001",    "SOC 2"),
+    ("iso27001",    "SOC2 compliance"),
+    ("iso27001",    "SOC 2 audit"),
+    ("compliance",  "Cyber Essentials"),
+    ("compliance",  "GDPR compliance startup"),
+    ("compliance",  "security certification startup"),
+
+    # --- CYBER INSURANCE ---
+    ("compliance",  "cyber insurance requirements"),
+    ("compliance",  "cyber insurance denied"),
+    ("compliance",  "cyber insurance application"),
+    ("compliance",  "cyber insurance premium"),
+
+    # --- SUPPLY CHAIN / VENDOR QUESTIONNAIRES ---
+    ("iso27001",    "security questionnaire vendor"),
+    ("iso27001",    "security assessment client"),
+    ("iso27001",    "supplier security requirements"),
+    ("iso27001",    "customer security audit"),
+
+    # --- WHERE TO START / NEW TO SECURITY ---
+    ("starter",     "Ask HN security startup"),
+    ("starter",     "cybersecurity getting started"),
+    ("starter",     "startup security checklist"),
+    ("starter",     "security best practices startup"),
+    ("starter",     "small business security basics"),
+
+    # --- REMOTE / HYBRID / BYOD ---
+    ("starter",     "remote team security"),
+    ("starter",     "BYOD security policy"),
+    ("starter",     "work from home security"),
+    ("starter",     "personal laptop security company"),
+
+    # --- M365 / GOOGLE WORKSPACE ---
+    ("starter",     "Microsoft 365 security settings"),
+    ("starter",     "Google Workspace security"),
+    ("starter",     "MFA enforce company"),
+
+    # --- PASSWORDS ---
+    ("starter",     "shared passwords team"),
+    ("starter",     "password manager company"),
+    ("starter",     "password spreadsheet"),
+
+    # --- NO EXPERTISE / HIRING ---
+    ("noexpertise", "security hire startup"),
+    ("noexpertise", "CISO small company"),
+    ("noexpertise", "fractional CISO"),
+    ("noexpertise", "outsource security"),
+    ("noexpertise", "IT person security"),
+    ("noexpertise", "only IT person"),
+
+    # --- EMPLOYEE OFFBOARDING ---
+    ("noexpertise", "employee left still has access"),
+    ("noexpertise", "offboarding security checklist"),
+    ("noexpertise", "revoke access employee"),
+
+    # --- DATA HANDLING / PII ---
+    ("compliance",  "customer data protection small business"),
+    ("compliance",  "handling PII startup"),
+    ("compliance",  "data protection policy"),
+
+    # --- BUDGET / SMB ---
+    ("budget",      "security budget startup"),
+    ("budget",      "cheap cybersecurity"),
+    ("budget",      "affordable security small business"),
+    ("budget",      "security small team"),
+
+    # --- BREACH / INCIDENT ---
+    ("breach",      "startup hacked"),
+    ("breach",      "ransomware small business"),
+    ("breach",      "data breach startup"),
+    ("breach",      "business email compromise"),
+    ("breach",      "phishing attack small business"),
+    ("breach",      "CEO fraud invoice"),
+
+    # --- BUYING INTENT ---
+    ("other",       "recommend MSSP"),
+    ("other",       "security consultant startup"),
+    ("other",       "security vendor recommendation"),
 ]
 
-# Reddit: (trigger, subreddit, search query)
 REDDIT_QUERIES = [
+    # --- COMPLIANCE ---
     ("iso27001",    "smallbusiness",   "ISO 27001"),
     ("iso27001",    "ITManagers",      "ISO 27001"),
     ("iso27001",    "cybersecurity",   "ISO 27001 help"),
+    ("iso27001",    "startups",        "SOC 2"),
+    ("iso27001",    "SaaS",            "SOC 2"),
     ("compliance",  "smallbusiness",   "SOC 2"),
     ("compliance",  "startups",        "Cyber Essentials"),
-    ("starter",     "smallbusiness",   "where to start cyber security"),
-    ("starter",     "startups",        "security where to start"),
-    ("noexpertise", "smallbusiness",   "no IT team security"),
+    ("compliance",  "cybersecurity",   "GDPR compliance"),
+
+    # --- CYBER INSURANCE ---
+    ("compliance",  "smallbusiness",   "cyber insurance"),
+    ("compliance",  "cybersecurity",   "cyber insurance requirements"),
+    ("compliance",  "Insurance",       "cyber insurance small business"),
+
+    # --- SUPPLY CHAIN / QUESTIONNAIRES ---
+    ("iso27001",    "smallbusiness",   "security questionnaire client"),
+    ("iso27001",    "cybersecurity",   "vendor security assessment"),
+    ("iso27001",    "ITManagers",      "security audit client"),
+
+    # --- STARTER ---
+    ("starter",     "smallbusiness",   "cybersecurity where to start"),
+    ("starter",     "startups",        "security getting started"),
+    ("starter",     "smallbusiness",   "cyber security advice"),
+    ("starter",     "Entrepreneur",    "cybersecurity"),
+    ("starter",     "smallbusiness",   "security checklist"),
+
+    # --- REMOTE / BYOD ---
+    ("starter",     "smallbusiness",   "remote work security"),
+    ("starter",     "sysadmin",        "BYOD policy"),
+    ("starter",     "smallbusiness",   "personal laptop work security"),
+
+    # --- M365 / GOOGLE ---
+    ("starter",     "Office365",       "security settings"),
+    ("starter",     "gsuite",          "security"),
+    ("starter",     "sysadmin",        "MFA enforce small business"),
+
+    # --- PASSWORDS ---
+    ("starter",     "smallbusiness",   "password manager team"),
+    ("starter",     "sysadmin",        "shared passwords company"),
+
+    # --- NO EXPERTISE ---
+    ("noexpertise", "smallbusiness",   "no IT security"),
     ("noexpertise", "ITManagers",      "first security hire"),
-    ("budget",      "smallbusiness",   "cyber security cheap"),
-    ("budget",      "startups",        "security on a budget"),
-    ("breach",      "smallbusiness",   "we got hacked"),
-    ("breach",      "cybersecurity",   "small business breach help"),
+    ("noexpertise", "cybersecurity",   "small business security help"),
+    ("noexpertise", "msp",             "small business security"),
+    ("noexpertise", "smallbusiness",   "IT guy security"),
+
+    # --- OFFBOARDING ---
+    ("noexpertise", "smallbusiness",   "employee left access"),
+    ("noexpertise", "sysadmin",        "offboarding checklist security"),
+
+    # --- BUDGET ---
+    ("budget",      "smallbusiness",   "cyber security cost"),
+    ("budget",      "startups",        "security budget"),
+    ("budget",      "smallbusiness",   "affordable cybersecurity"),
+
+    # --- BREACH ---
+    ("breach",      "smallbusiness",   "hacked"),
+    ("breach",      "cybersecurity",   "small business breach"),
+    ("breach",      "smallbusiness",   "ransomware"),
+    ("breach",      "smallbusiness",   "phishing attack"),
+    ("breach",      "smallbusiness",   "phishing email"),
+    ("breach",      "smallbusiness",   "invoice scam"),
+    ("breach",      "cybersecurity",   "business email compromise"),
+
+    # --- BUYING INTENT ---
+    ("other",       "cybersecurity",   "recommend MSSP"),
+    ("other",       "msp",             "security vendor"),
 ]
 
-# ============ SCORING (mirrors dashboard logic) ============
+# ============ SCORING ============
 
 TRIG_WEIGHT = {
     "iso27001": 40, "breach": 45, "compliance": 30,
     "budget": 20, "noexpertise": 25, "starter": 15, "other": 10,
 }
-URGENT_KW = ['asap','urgent','deadline','this week','next month','quickly',
-             'immediately','need now','scrambling','help']
-BUYING_KW = ['recommend','looking for','who can','any good','consultant',
-             'partner','vendor','quote','budget','pay','hire']
-PAIN_KW   = ['confused','lost','overwhelmed','no idea','first time','never',
-             'no team','solo','one-person','small team','clueless']
+URGENT_KW = [
+    'asap', 'urgent', 'deadline', 'this week', 'next month', 'quickly',
+    'immediately', 'need now', 'scrambling', 'help', 'desperate',
+    'running out of time', 'client requires', 'customer asking',
+    'audit coming', 'renewal coming', 'deal depends', 'blocking us',
+    'lost a deal', 'contract requires', 'insurance requires',
+    'denied coverage', 'premium went up',
+]
+BUYING_KW = [
+    'recommend', 'looking for', 'who can', 'any good', 'consultant',
+    'partner', 'vendor', 'quote', 'budget', 'pay', 'hire', 'suggestions',
+    'anyone use', 'what do you use', 'which provider', 'who do you use',
+    'need someone', 'looking to outsource', 'managed service',
+    'how much does', 'what does it cost', 'pricing',
+]
+PAIN_KW = [
+    'confused', 'lost', 'overwhelmed', 'no idea', 'first time', 'never',
+    'no team', 'solo', 'one-person', 'small team', 'clueless',
+    'dont know where', 'no clue', 'struggling', 'stuck',
+    'out of my depth', 'way over my head', 'no experience',
+    'wearing many hats', 'not my expertise', 'only IT person',
+    'no security person', 'nobody on staff', 'spreadsheet of passwords',
+    'still has access', 'shared admin', 'no policy',
+]
 
 def score_lead(snippet: str, trigger: str) -> int:
     s = TRIG_WEIGHT.get(trigger, 10)
@@ -90,7 +231,6 @@ def score_lead(snippet: str, trigger: str) -> int:
 USER_AGENT = "HoplonLeadScanner/1.0 (lead research tool)"
 
 def http_get_json(url: str, headers: dict = None) -> dict:
-    """GET a URL and parse JSON. Returns {} on failure rather than raising."""
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **(headers or {})})
     try:
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -102,10 +242,9 @@ def http_get_json(url: str, headers: dict = None) -> dict:
 
 # ============ HACKER NEWS ============
 
-def scan_hn() -> list:
-    """Query HN via Algolia. No auth needed. Returns list of lead dicts."""
+def scan_hn(lookback_hours: int) -> list:
     leads = []
-    cutoff = int((datetime.now(timezone.utc) - timedelta(hours=LOOKBACK_HOURS)).timestamp())
+    cutoff = int((datetime.now(timezone.utc) - timedelta(hours=lookback_hours)).timestamp())
 
     for trigger, query in HN_QUERIES:
         url = (
@@ -119,14 +258,12 @@ def scan_hn() -> list:
         print(f"  HN [{trigger}] '{query}': {len(hits)} hits")
 
         for hit in hits:
-            # HN returns either story_text, comment_text, or just title
             text = hit.get("story_text") or hit.get("comment_text") or hit.get("title") or ""
             if not text: continue
-            # Strip basic HTML
             text = text.replace("<p>", "\n").replace("</p>", "")
             for tag in ["<i>", "</i>", "<b>", "</b>", "<a>", "</a>"]:
                 text = text.replace(tag, "")
-            text = text[:1000]  # cap snippet length
+            text = text[:1000]
 
             author = hit.get("author", "anonymous")
             obj_id = hit.get("objectID")
@@ -140,21 +277,20 @@ def scan_hn() -> list:
                 "snippet": text.strip(),
                 "trigger": trigger,
                 "context": "",
-                "stage": "inbox",  # auto-discovered leads land in inbox
+                "stage": "inbox",
                 "created": int(hit.get("created_at_i", time.time())) * 1000,
                 "discovered": int(time.time() * 1000),
                 "score": score_lead(text, trigger),
                 "notes": "",
                 "auto": True,
             })
-        time.sleep(0.5)  # polite rate-limit
+        time.sleep(0.5)
     return leads
 
 
 # ============ REDDIT ============
 
 def reddit_token() -> str | None:
-    """Get OAuth token using client credentials flow. Returns None if creds missing."""
     cid = os.environ.get("REDDIT_CLIENT_ID")
     secret = os.environ.get("REDDIT_CLIENT_SECRET")
     if not cid or not secret:
@@ -181,19 +317,20 @@ def reddit_token() -> str | None:
         return None
 
 
-def scan_reddit() -> list:
+def scan_reddit(lookback_hours: int) -> list:
     token = reddit_token()
     if not token: return []
 
     leads = []
-    cutoff = (datetime.now(timezone.utc) - timedelta(hours=LOOKBACK_HOURS)).timestamp()
+    cutoff = (datetime.now(timezone.utc) - timedelta(hours=lookback_hours)).timestamp()
     headers = {"Authorization": f"Bearer {token}", "User-Agent": USER_AGENT}
+    time_filter = "month" if lookback_hours > 48 else "week"
 
     for trigger, sub, query in REDDIT_QUERIES:
         url = (
             f"https://oauth.reddit.com/r/{sub}/search"
             f"?q={urllib.parse.quote(query)}"
-            "&restrict_sr=1&sort=new&limit=15&t=week"
+            f"&restrict_sr=1&sort=new&limit=15&t={time_filter}"
         )
         data = http_get_json(url, headers=headers)
         posts = data.get("data", {}).get("children", [])
@@ -222,7 +359,7 @@ def scan_reddit() -> list:
                 "notes": "",
                 "auto": True,
             })
-        time.sleep(1.0)  # Reddit rate limit is generous but be polite
+        time.sleep(1.0)
     return leads
 
 
@@ -231,7 +368,6 @@ def scan_reddit() -> list:
 def main():
     print(f"=== Hoplon scan @ {datetime.now(timezone.utc).isoformat()} ===")
 
-    # Load existing leads (preserve user-curated state)
     existing = []
     if OUTPUT_FILE.exists():
         try:
@@ -242,31 +378,33 @@ def main():
 
     existing_ids = {l["id"] for l in existing}
 
-    # Run scans
-    print("\n--- Hacker News ---")
-    hn_leads = scan_hn()
-    print(f"\n--- Reddit ---")
-    rd_leads = scan_reddit()
+    if len(existing) == 0:
+        lookback = LOOKBACK_HOURS_SEED
+        print(f">> Seed mode: looking back {lookback}h (7 days)")
+    else:
+        lookback = LOOKBACK_HOURS_NORMAL
+        print(f">> Normal mode: looking back {lookback}h")
 
-    # Merge: only add genuinely new IDs
+    print("\n--- Hacker News ---")
+    hn_leads = scan_hn(lookback)
+    print(f"\n--- Reddit ---")
+    rd_leads = scan_reddit(lookback)
+
     new_leads = [l for l in (hn_leads + rd_leads) if l["id"] not in existing_ids]
     print(f"\n=== {len(new_leads)} new leads (after dedup) ===")
 
     combined = new_leads + existing
 
-    # Cap total size, dropping oldest first (sorted by discovered timestamp)
     if len(combined) > MAX_LEADS:
         combined.sort(key=lambda l: l.get("discovered", l.get("created", 0)), reverse=True)
         combined = combined[:MAX_LEADS]
 
-    # Write atomically
     tmp = OUTPUT_FILE.with_suffix(".tmp")
     tmp.write_text(json.dumps(combined, indent=2, ensure_ascii=False))
     tmp.replace(OUTPUT_FILE)
 
     print(f"Wrote {len(combined)} leads to {OUTPUT_FILE}")
 
-    # Also write a tiny meta file so the dashboard can show "last scan"
     meta = {
         "last_scan": datetime.now(timezone.utc).isoformat(),
         "new_this_run": len(new_leads),
