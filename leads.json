@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_47923106",
+    "url": "https://news.ycombinator.com/item?id=47923106",
+    "name": "@abdulmdev — AI Usage Analytics – Real-time budget enforcement and PII redaction for LLM",
+    "source": "HackerNews",
+    "snippet": "AI Usage Analytics – Real-time budget enforcement and PII redaction for LLM\nI’ve been working on a project to solve two big problems in the LLM space: unpredictable costs and data privacy.\nUnlike passive monitoring tools, this acts as a proxy&#x2F;interceptor. When an event is ingested, it checks the cumulative cost against a user-defined threshold. If the threshold is breached, it flags the key for immediate suspension.\nKey Architecture Decisions:\nLocal-first: Designed to run as a sidecar or a local gateway to minimize latency.\nRegex-based PII stripping: Before the request reaches the provider, we strip sensitive tokens.\nRecharts Dashboard: High-granularity cost tracking per feature&#x2F;model.\nI&#x27;d love to hear the community&#x27;s thoughts on the latency overhead of adding an interceptor layer like this.\nDemo&#x2F;Waitlist: https:&#x2F;&#x2F;tally.so&#x2F;r&#x2F;2EbRGA",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1777304654000,
+    "discovered": 1777364619489,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_47832842",
     "url": "https://news.ycombinator.com/item?id=47832842",
     "name": "@jaynate — Ask HN: What Vercel alternatives do you recommend?",
