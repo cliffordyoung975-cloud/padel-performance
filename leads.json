@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_47945581",
+    "url": "https://news.ycombinator.com/item?id=47945581",
+    "name": "@CountVonGuetzli — Ask HN: How are you stopping supply chain attacks via compromised dev keys?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How are you stopping supply chain attacks via compromised dev keys?\nGitHub and GitLab will verify that a commit is signed by some key on the user&#x27;s account. They won&#x27;t let you require that it be signed by a specific key, like a hardware-backed YubiKey your org issued. So if an attacker compromises a developer&#x27;s laptop or GitHub account, they can add a new signing key, push commits signed with it, and pass every &quot;Require signed commits&quot; protection in place. The malicious commit lands in the repo with a &quot;Verified&quot; badge.\nAs far as I can tell, neither platform offers:\n- An org-level allowlist of approved signing keys\n- A way to reject a push based on the signing key itself\n- A built-in way to audit who has accessed what (You have to stream and parse the audit logs yourself!)\nThe workarounds I&#x27;ve seen, like re-verifying signatures in CI, blocking deployments on unapproved keys, self-hosting Git with pre-receive hooks, all share the same probl",
+    "trigger": "breach",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1777451121000,
+    "discovered": 1777453634529,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_47923106",
     "url": "https://news.ycombinator.com/item?id=47923106",
     "name": "@abdulmdev — AI Usage Analytics – Real-time budget enforcement and PII redaction for LLM",
