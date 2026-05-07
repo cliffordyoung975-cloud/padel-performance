@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48046281",
+    "url": "https://news.ycombinator.com/item?id=48046281",
+    "name": "@ghassenfaidi — Everything is just files and programs",
+    "source": "HackerNews",
+    "snippet": "Everything is just files and programs\nLast year, two years into my CS studies at college, I was reading Computer Networking: A Top Down Approach, at the end of chapter 2 it contained a list of project ideas to do. I was hooked.\nI still remember the thrill I had, disabling the firewall (in the settings) on my laptop (later I realized the client doesn&#x27;t need to disable the firewall :D)\nCreating a python script that sends &quot;hello&quot; via TCP, and running the &quot;server&quot; (which is just a python program) on my friend&#x27;s laptop, the server makes it uppercase, and sends &quot;HELLO&quot; back.\na week later I had finished building a simple multithreaded http server.\nI changed the router setting to do port forwarding to my laptop, so that anyone can use my (insecure) HTTP server anywhere, successfully putting all the files on my laptop in risk :D\nAt that moment everything started to click, everything is bunch of files and programs.\nI thought, &quot;I love computer science&",
+    "trigger": "iso27001",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1778136961000,
+    "discovered": 1778142723711,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_47945581",
     "url": "https://news.ycombinator.com/item?id=47945581",
     "name": "@CountVonGuetzli — Ask HN: How are you stopping supply chain attacks via compromised dev keys?",
