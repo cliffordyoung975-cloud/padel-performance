@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48056817",
+    "url": "https://news.ycombinator.com/item?id=48056817",
+    "name": "@dougcol — Hard SiFi Author'Search for Readers",
+    "source": "HackerNews",
+    "snippet": "Hard SiFi Author'Search for Readers\nHi, I’d like to introduce you to my science fiction books but first a little blurb on my background. I’m 75 years old and have spent the majority of my working life working in cyberspace (today’s terminology). My efforts have been concentrated in cybersecurity as an auditor and consultant, now a CEO of my own cybersecurity consultancy. I post numerous articles to LinkedIn on this subject and I’m very concerned with its current direction and ability to service both AI and Quantum computing. This concern has led to my book writing in hard science fiction that is near reality.\nMy series Quantum Worlds consisting of 3 books leads you down a path about cybersecurity’s ability to alter geopolitics. Then leading you on into a world entrenched in the affects of AI, quantum computing and robotics.\nMy series with book one on the cusp of release takes you deep inside the world of robotics coupled with super intelligence that they possess through quantum computi",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1778199164000,
+    "discovered": 1778225306554,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48046281",
     "url": "https://news.ycombinator.com/item?id=48046281",
     "name": "@ghassenfaidi — Everything is just files and programs",
