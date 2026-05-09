@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48069781",
+    "url": "https://news.ycombinator.com/item?id=48069781",
+    "name": "@straydusk — Ask HN: Is agent-driven QA a thing?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Is agent-driven QA a thing?\nTDD has become the default workflow for AI coding agents, for a lot of reasons.\nSomething I recently started doing that I really like is, when building a feature, I write acceptance criteria and then I make sure the agents have everything they need to do QA and verify it themselves. The main difference from before is that instead of QAing it myself (which I still do but it&#x27;s almost always working), the agent can exercise the whole flow itself and verify the acceptance criteria. It takes more work because I often have to set up MCPs, accounts, credentials, etc - but the output is better.\nMy question... do people have good approaches to this? Is this a common workflow? I see some of this conversation called harness engineering; I see some called feedback-loop engineering; I see some startups (Shiplight AI, Autosana, Ranger). I&#x27;m trying to find more discussion &amp; best practices here, and see how others are thinking about this.",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1778281051000,
+    "discovered": 1778313300435,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48056817",
     "url": "https://news.ycombinator.com/item?id=48056817",
     "name": "@dougcol — Hard SiFi Author'Search for Readers",
