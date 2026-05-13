@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48109792",
+    "url": "https://news.ycombinator.com/item?id=48109792",
+    "name": "@fnoef — Ask HN: Is software cooked with all the recent malware?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Is software cooked with all the recent malware?\nFeels like malware and security vulnerabilities are thriving recently. Are we witnessing a potential collapse of the way software is being developed, or am I just stuck with selection bias and it was always a shit show?",
+    "trigger": "starter",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1778599910000,
+    "discovered": 1778661752257,
+    "score": 23,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48069781",
     "url": "https://news.ycombinator.com/item?id=48069781",
     "name": "@straydusk — Ask HN: Is agent-driven QA a thing?",
