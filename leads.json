@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_48145524",
+    "url": "https://news.ycombinator.com/item?id=48145524",
+    "name": "@sochix — Ask HN: How to be SOC2 Type 2 compliant as a solo-entreprenuer?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How to be SOC2 Type 2 compliant as a solo-entreprenuer?\nIs it possible? Do you know success cases w&#x2F;o spending 20+k $ on auditors? My customers bombards me with question about certification of my app Perfect Wiki, I need help with finding the best way to show them that my app could be trusted.",
+    "trigger": "iso27001",
+    "context": "23 comments",
+    "stage": "inbox",
+    "created": 1778829503000,
+    "discovered": 1778834831160,
+    "score": 48,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_48134972",
+    "url": "https://news.ycombinator.com/item?id=48134972",
+    "name": "@elric — Ask HN: How do you defend against supply chain attacks today?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How do you defend against supply chain attacks today?\nSeems like software supply chain attacks have been increasing in speed, scope, and complexity of late. Especially in NPM and PyPi packages.\nHow are people defending against this increased threat? Relying on dependency scanners seems way too slow now. Automagically updating to the latest &amp; greatest is likely to include the latest &amp; greatest malware. Auditing every version of every dependency in use is going to be a costly affair.",
+    "trigger": "starter",
+    "context": "4 comments",
+    "stage": "inbox",
+    "created": 1778764556000,
+    "discovered": 1778834849439,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48109792",
     "url": "https://news.ycombinator.com/item?id=48109792",
     "name": "@fnoef — Ask HN: Is software cooked with all the recent malware?",
