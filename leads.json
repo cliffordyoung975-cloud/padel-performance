@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_48201176",
+    "url": "https://news.ycombinator.com/item?id=48201176",
+    "name": "@awaisras — Ask HN: How are you handling the identity sprawl in your company/startup?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How are you handling the identity sprawl in your company/startup?\nA founder I know had to let an engineer go last month. After few days; the core database gone. Thankfully, they recovered from a backup.\nThe fired engineer had an SSH key which no one knew about; hence no one revoked it. They had a leading IdP&#x2F;SSO solution, but that solution wasn&#x27;t connected to their db.\nThis got me thinking; at early stage, who is actually keeping track of all the keys, tokens, and credentials floating around? There&#x27;s no IT, no security team, just founders and engineers barely taking care of their own tasks.\nTo every early stage  founders, how are you tackling this today?",
+    "trigger": "starter",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1779234165000,
+    "discovered": 1779269428832,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_48199725",
+    "url": "https://news.ycombinator.com/item?id=48199725",
+    "name": "@C0oki3s — VeilGate- Deception Reverse Proxy",
+    "source": "HackerNews",
+    "snippet": "VeilGate- Deception Reverse Proxy\nIn my day job, I run AI pentest agents against real targets like banks, fintechs, and secured production stacks with paid WAFs. I also deal with multilayer infrastructure and dedicated security teams. Despite these defenses, I keep finding high and critical vulnerabilities using just an LLM agent loop, a few open-source tools, MCP servers, and Burp Suite.\nThe volume of traffic is increasing quickly. Agent-driven activity in web logs has shifted from occasional noise to a constant background presence. Tools like PentestGPT, CAI, Strix, and HexStrike allow you to set up fully autonomous agents against any target for under a dollar an hour of API cost. Most teams haven’t noticed this change because their tools weren’t designed to detect it.\nThis repetition started to concern me. Despite all the paid WAFs, the rules, and the layered infrastructure, I could still guide an AI agent through a secured target and find critical issues. So what is the actual defe",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1779225183000,
+    "discovered": 1779269428832,
+    "score": 26,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48145524",
     "url": "https://news.ycombinator.com/item?id=48145524",
     "name": "@sochix — Ask HN: How to be SOC2 Type 2 compliant as a solo-entreprenuer?",
