@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48230104",
+    "url": "https://news.ycombinator.com/item?id=48230104",
+    "name": "@theorchid — Tell HN: I'm tired of AI-generated answers",
+    "source": "HackerNews",
+    "snippet": "Tell HN: I'm tired of AI-generated answers\nI found GitHub repositories that were spreading malware. I asked AI what I should do about it, but it gave me nothing useful. So I opened a discussion on GitHub. Someone replied. It was literally the exact same text the AI had given me. I called it out and the comment was deleted. Then another person replied. Same exact AI response again.\nI worked as a developer in a company. I asked the business owner a question about a business task. He sent me a ChatGPT screenshot with the answer. I replied that it had nothing to do with the question and everything there was wrong. A minute later he sent me another ChatGPT screenshot. He didn&#x27;t even read the AI&#x27;s answer. He just screenshots and forwards it.\nRecently someone sent me a DM on Reddit about my post. I replied. He wrote again, I replied again. After a few messages I realized I was talking to an AI agent.\nI&#x27;m tired of talking to AI.\nI want to talk to real people.\nBut even when I tal",
+    "trigger": "starter",
+    "context": "48 comments",
+    "stage": "inbox",
+    "created": 1779406634000,
+    "discovered": 1779441640252,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48201176",
     "url": "https://news.ycombinator.com/item?id=48201176",
     "name": "@awaisras — Ask HN: How are you handling the identity sprawl in your company/startup?",
