@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_48269493",
+    "url": "https://news.ycombinator.com/item?id=48269493",
+    "name": "@yanbinette — S there room for a VPN with zero Five Eyes servers and RAM-only infrastructure?",
+    "source": "HackerNews",
+    "snippet": "S there room for a VPN with zero Five Eyes servers and RAM-only infrastructure?\nI&#x27;ve been building on AWS for years and got deep into privacy&#x2F;networking recently. The more I learned, the more I realized most VPN providers are theatre.\nThe problem I see: &quot;no-logs&quot; is meaningless if your servers are physically in the US, UK, Canada or Australia. A warrant is a warrant. Even providers I respect like Mullvad and Proton have servers in Five Eyes countries.\nWhat I&#x27;m thinking:\n- Servers only in Iceland, Switzerland, Luxembourg, Romania, Japan\n- RAM-only — no disk, no logs possible by design, reboot wipes everything\n- WireGuard\n- Open source, annual Cure53 audit\n- BTC&#x2F;Monero, no account required\nBreak even is around 200-300 customers. Infrastructure to start is maybe $500-1000&#x2F;month.\nHonest question: does Mullvad already own this positioning well enough that there&#x27;s no room? Or is &quot;zero Five Eyes + provably no logs&quot; a real differentiator for a",
+    "trigger": "starter",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1779730725000,
+    "discovered": 1779789223297,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_48265794",
+    "url": "https://news.ycombinator.com/item?id=48265794",
+    "name": "@buffer_overlord — Ask HN: Is paying $2/pull request too high?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Is paying $2/pull request too high?\nI’m paying about $2 for any bugs found and a pr to fix it   I get like 20-30 applicants it’s all agents and bots of course but I’m thinking $1 now is better\nThe problem is if these 20-30 applicants I accept only 2-3 actually do it and follow up to be paid I need to some how filter out the garbage if anyone has any ideas\nThe site is ugig and it’s foss\nThe funnny thing is if I offer 500 sats (about .39 cents) the same thing happens  lol\nI do have to check for malware in PRs though",
+    "trigger": "starter",
+    "context": "4 comments",
+    "stage": "inbox",
+    "created": 1779710021000,
+    "discovered": 1779789223297,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48230104",
     "url": "https://news.ycombinator.com/item?id=48230104",
     "name": "@theorchid — Tell HN: I'm tired of AI-generated answers",
