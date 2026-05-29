@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48318922",
+    "url": "https://news.ycombinator.com/item?id=48318922",
+    "name": "@InfosGeocast — Get Your USA J-1 Work Permit with in 6 months",
+    "source": "HackerNews",
+    "snippet": "Get Your USA J-1 Work Permit with in 6 months\nIf you want to work in United States of America with a legal work permit &amp; belongs to Hotel industry, this visa category is designed for you. This program helps hotel management students and recent graduates get a USA J-1 visa in about 6 months from start to arrival. You will work in a real American hotel. You will get paid.\nTo apply you just need:\n1. To be a hotel management student OR graduated within last 12 months\n2. Basic English (you can talk and understand)\n3. Indian passport or passport from any country except USA\nJob Location:- Top hotel brands including Marriott, Hilton, Hyatt, Sheraton, and Westin. Locations include New York City, Miami, Orlando, Las Vegas, Chicago, San Francisco, and Los Angeles.\nSalary:- You will earn 12 to 25US$ per hour, plus tips in many roles. A full-time schedule (30-40 hours&#x2F;week) means you can earn US$ 1500 to US$ 4,000 per month – enough to cover living expenses and save.\nNote:- The BridgeUSA p",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1780027830000,
+    "discovered": 1780048333137,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48269493",
     "url": "https://news.ycombinator.com/item?id=48269493",
     "name": "@yanbinette — S there room for a VPN with zero Five Eyes servers and RAM-only infrastructure?",
