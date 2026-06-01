@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48350239",
+    "url": "https://news.ycombinator.com/item?id=48350239",
+    "name": "@parable — Tell HN: Meta's AI support feature allows Instagram accounts to be stolen",
+    "source": "HackerNews",
+    "snippet": "Tell HN: Meta's AI support feature allows Instagram accounts to be stolen\nIf the AI support option is enabled for your Instagram account (it appears to be A&#x2F;B tested for only a percentage of accounts), anyone can hijack it with little effort. Simply get on a proxy or VPN close to the account&#x27;s region, then ask the agent to send a code to an arbitrary email address. Once you receive the code, pass it forward to the agent, and it&#x27;ll provide you with a password reset link which you can then use to sign into the account.\nPosting here for any Meta employees who may be reading. This flaw has been around for at least a few days and has been used to hijack over 100 high-value Instagram accounts. The correct patch would be to disable the AI support feature entirely for the time being until this is sorted and revert accounts and usernames that have been hijacked over the last few days. This is a pretty important flaw and it&#x27;s currently being exploited in blackhat circles. The",
+    "trigger": "starter",
+    "context": "9 comments",
+    "stage": "inbox",
+    "created": 1780265500000,
+    "discovered": 1780313448526,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48318922",
     "url": "https://news.ycombinator.com/item?id=48318922",
     "name": "@InfosGeocast — Get Your USA J-1 Work Permit with in 6 months",
