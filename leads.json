@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48357674",
+    "url": "https://news.ycombinator.com/item?id=48357674",
+    "name": "@EvanAnderson — Ask HN: Non-profit school possibly hacked, locked out of Google Workspace.",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Non-profit school possibly hacked, locked out of Google Workspace.\nThe financial admin for the Reggio Emilia-inspired school my daughter attended called me this morning in a last-ditch effort to talk to an &quot;IT person&quot; about a problem they&#x27;re having.\nSometime between last night and this morning (US Eastern time) all the accounts in their free non-profit Google Workspace tenant (including the dedicated &quot;admin@...&quot; account used only for administration) began entering a &quot;This account was recently deleted and may be recoverable. Click Next to attempt to restore this account.&quot; workflow. The &quot;Next&quot; page in that workflow says &quot;Contact your domain admin for help. Learn more&quot;. The &quot;Learn More&quot; link takes them to a support link talking about finding out who your Administrator is and a link to a page to reset the Workspace administrator password, which just follows this same flow.\nI don&#x27;t use Google products personally.",
+    "trigger": "starter",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1780325869000,
+    "discovered": 1780395663736,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48350239",
     "url": "https://news.ycombinator.com/item?id=48350239",
     "name": "@parable — Tell HN: Meta's AI support feature allows Instagram accounts to be stolen",
