@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48408729",
+    "url": "https://news.ycombinator.com/item?id=48408729",
+    "name": "@attogram — Devs Deserve PII Protection from Agents",
+    "source": "HackerNews",
+    "snippet": "Devs Deserve PII Protection from Agents\nYour company is GDPR compliant.\n&quot;Here&#x27;s your company MacBook.\nIts name is first-last-comp-dept.\nUser name is first.last.\nGo be a productive dev”\nThen you deployed coding agents.\n&quot;We have a DPA from Google. Use Gemini coding agent and be a more productive dev!&quot;\nYour full name is now always in agent context.\nYour full name is sent to USA datacenters.\nDevs deserve PII protection too.",
+    "trigger": "compliance",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1780640736000,
+    "discovered": 1780652638110,
+    "score": 35,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48357674",
     "url": "https://news.ycombinator.com/item?id=48357674",
     "name": "@EvanAnderson — Ask HN: Non-profit school possibly hacked, locked out of Google Workspace.",
