@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48437824",
+    "url": "https://news.ycombinator.com/item?id=48437824",
+    "name": "@ramon156 — Ask HN: What is happening with the Meta Ads dashboard?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: What is happening with the Meta Ads dashboard?\nI had to set up an account today to look around, potentially setting up Meta Ads for a customer.\nThrough-out the onboarding, almost every step I was met with some kind of generic error or loading page that was stuck. I had to manually refresh the pages multiple times.\nThe ads table (which contains zero rows) is met with a toast and a banner, both stating there was an error running the query, and that I should change my (non-existing) filters.\nI then wanted to login from another device, it asks me for an MFA code sent to my phone number. I did not receive one. I hit &quot;re-send confirmation code&quot;, which then shows an &quot;error while trying to resend your confirmation code&quot;.\nWhat is going on?\nEdit: I tried contacting support, only to be met with an auth.meta.com link that returned a broken redirect. All their support links go to the quest, which is unrelated.\nEdit edit: My account is now suspended. Awesome. I cannot con",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1780860999000,
+    "discovered": 1780915839015,
+    "score": 23,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48408729",
     "url": "https://news.ycombinator.com/item?id=48408729",
     "name": "@attogram — Devs Deserve PII Protection from Agents",
