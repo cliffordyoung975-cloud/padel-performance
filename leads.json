@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48475787",
+    "url": "https://news.ycombinator.com/item?id=48475787",
+    "name": "@gladiator291288 — Cybersecurity Product Launch Specifically Keeping AI in Focus",
+    "source": "HackerNews",
+    "snippet": "Cybersecurity Product Launch Specifically Keeping AI in Focus\nOne of my friend has launched a new startup and I truly admire the vision, I would definitely recommend to review and provide your valuable feedback to the product.\nProduct Name: Echelongraph \nWebsite: https:&#x2F;&#x2F;echelongraph.io",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1781097098000,
+    "discovered": 1781173241397,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48437824",
     "url": "https://news.ycombinator.com/item?id=48437824",
     "name": "@ramon156 — Ask HN: What is happening with the Meta Ads dashboard?",
