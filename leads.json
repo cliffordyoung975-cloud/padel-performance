@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48535569",
+    "url": "https://news.ycombinator.com/item?id=48535569",
+    "name": "@cmina — CoCoMS (Construction Correspondence Management System)",
+    "source": "HackerNews",
+    "snippet": "CoCoMS (Construction Correspondence Management System)\nI released yesterday version 2 of CoCoMS, a F&#x2F;OSS licensed (GNU GPL) Laravel PHP document management app.\nCoCoMS is a modern Laravel 12 application for managing construction project correspondence, documents, and communications. It provides role-based access control, file management, full-text search, and organized tagging of documents.\nWhy CoCoMS came to life? Simply because I wanted to scratch an itch! I wanted to create a simple yet powerful web-based document management system specifically for the management of correspondence generated during the execution of a construction project. I needed a system that can be used by the construction team and has the ability to control the access to the data based on the role of each user. Also wanted the system to be easily and readily accessible (i.e. using just a WEB browser) and have the ability to export data in Microsoft Excel format for further analysis and presentation.\nRepo: ht",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1781488079000,
+    "discovered": 1781525390610,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48475787",
     "url": "https://news.ycombinator.com/item?id=48475787",
     "name": "@gladiator291288 — Cybersecurity Product Launch Specifically Keeping AI in Focus",
