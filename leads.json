@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_48595587",
+    "url": "https://news.ycombinator.com/item?id=48595587",
+    "name": "@consumer451 — Ask HN: Is Google's AI Mode and AI summaries now gone for everyone in EU?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Is Google's AI Mode and AI summaries now gone for everyone in EU?\nIt was there yesterday, I believe. VPN&#x27;ed into USA, and it comes back. I assume it&#x27;s related to the recent EU decision making Google responsible for AI quote accuracy?",
+    "trigger": "starter",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1781851760000,
+    "discovered": 1781864622132,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_48592531",
+    "url": "https://news.ycombinator.com/item?id=48592531",
+    "name": "@vitorbaptistaa — Ask HN: How are you managing MCP servers across a team?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How are you managing MCP servers across a team?\nI&#x27;m the CTO of a small NGO (10 people, 3 devs). Each person has an account with one of the leading AI companies. I&#x27;m looking for an easy, reliable and cheap way to allow them to connect to external MCP servers without having the hassle of setting everything up.\nWhat I want is a simple MCP server that I can show them how to connect, which aggregates access to multiple MCP servers I configure (Slack, Google Drive, Asana, and others). Kind of an &quot;MCP Gateway&quot;.\nI tried:\n* Pipedream.com: Great to aggregate multiple MCP servers in one, but doesn&#x27;t seem to work as an MCP Gateway\n* Prefect Horizon: Seems perfect, but too expensive for us\n* Cloudflare MCP Server Portals: So far it looks like the best option. Still trying it out.\nDid you figure out a good solution for this? What is it?",
+    "trigger": "starter",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1781821960000,
+    "discovered": 1781864622133,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48535569",
     "url": "https://news.ycombinator.com/item?id=48535569",
     "name": "@cmina — CoCoMS (Construction Correspondence Management System)",
