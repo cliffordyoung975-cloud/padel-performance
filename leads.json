@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48597160",
+    "url": "https://news.ycombinator.com/item?id=48597160",
+    "name": "@rozumbrada — Self-adapting and mutating LLM based viruses/worms",
+    "source": "HackerNews",
+    "snippet": "Self-adapting and mutating LLM based viruses/worms\nI am thinking about a future of malware and cyber worms. I bet it&#x27;s gonna be self-mutating and adapting to local environment using local models (once they are built-in to all devices and performant enough in future years). Basically almost a real organism resembling real biological viruses. In this case the non-determinism of LLMs is a feature. Every infection could take its own development path - and half might die, half might survive. Think genetic programming but autonomous and on steroids. For some non tech (even tech?) people this reminds Skynet and it&#x27;s fascinating that we are in a trajectory that this suddenly imaginable and theoretically soon possible.\nWhy is not happening now? Inference is still expensive and local models are not there yet, so there&#x27;s no ROI in making this at scale. But once inference is local and cheap as electricity or running water, this is the natural development. How do we stop the spreadin",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1781866701000,
+    "discovered": 1781867791127,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48595587",
     "url": "https://news.ycombinator.com/item?id=48595587",
     "name": "@consumer451 — Ask HN: Is Google's AI Mode and AI summaries now gone for everyone in EU?",
