@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48604255",
+    "url": "https://news.ycombinator.com/item?id=48604255",
+    "name": "@brainstorm23 — Need guidance on Go-To-Market strategy",
+    "source": "HackerNews",
+    "snippet": "Need guidance on Go-To-Market strategy\nBootstrapped an AI Governance solution that focuses on bringing AI compliance transparency to organizations across multiple Business Units. It shows clear compliance and risk posture allowing executives and  external auditors to review evidences. \nVarious types of reports can be easily generated. It has vendor assessment capabilities. \nThe solution is live in production and is built on serverless technology with low operating cost and easy scalability. It has MFA and WAF for security. Don&#x27;t have funds to implement GTM plans.\nShould I sell the software or look for partner. Please suggest how to navigate from here.\nSolution: https:&#x2F;&#x2F;app.clearcompli.com",
+    "trigger": "compliance",
+    "context": "4 comments",
+    "stage": "inbox",
+    "created": 1781909699000,
+    "discovered": 1781945587138,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48597160",
     "url": "https://news.ycombinator.com/item?id=48597160",
     "name": "@rozumbrada — Self-adapting and mutating LLM based viruses/worms",
