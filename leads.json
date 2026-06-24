@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48649301",
+    "url": "https://news.ycombinator.com/item?id=48649301",
+    "name": "@ericyd — Ask HN: What jobs can I escape to outside of tech?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: What jobs can I escape to outside of tech?\nI’ve found myself increasingly apathetic and depressed about working in tech. I don’t need to elaborate, it isn’t really relevant, and probably many people can guess why or relate.\nI’ve started to seriously look at escape plans to get out of tech. Matching the salary for a US engineer is hard, but I’d be willing to take a bit of a pay cut for less apathy and frustration. I want to avoid additional schooling&#x2F;credential-gathering if possible (short certificates would be fine), but mostly I’m looking for ways to apply my core skillset to another industry (things like systematic problem solving; deep focus and critical thinking; a focus on building quality, durable solutions to problems). I’m not looking for a silver bullet because I have a list of ideas already but I’m curious to crowdsource this question and see if there are any intriguing ideas I hadn’t considered.",
+    "trigger": "starter",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1782239504000,
+    "discovered": 1782293162125,
+    "score": 30,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48604255",
     "url": "https://news.ycombinator.com/item?id=48604255",
     "name": "@brainstorm23 — Need guidance on Go-To-Market strategy",
