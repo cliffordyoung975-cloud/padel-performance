@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_48682173",
+    "url": "https://news.ycombinator.com/item?id=48682173",
+    "name": "@mnnnnnnn — Ho progettato un'infrastruttura logistica per azzerare lo spreco alimentare",
+    "source": "HackerNews",
+    "snippet": "Ho progettato un'infrastruttura logistica per azzerare lo spreco alimentare\nCiao a tutti,Da qualche mese sto lavorando al design di un&#x27;infrastruttura logistica e tecnologica chiamata Zero Waste Bridge. L&#x27;obiettivo è ambizioso: prendere il cibo fresco invenduto della grande distribuzione&#x2F;ristorazione a Milano, abbatterlo termicamente e spedirlo nelle zone a criticità alimentare in Africa usando risorse logistiche già esistenti ma totalmente inutilizzate.Ho calcolato che il costo finale per singolo pasto salvato e consegnato si aggira intorno ai 0.23 €.So che sembra la classica idea utopica da &quot;salvatori del mondo&quot;, ma dietlo c&#x27;è un modello ingegneristico ed economico molto rigido. Siccome so che su.... r&#x2F;italystartup ci sono fior fior di ingegneri, esperti di supply chain e programmatori, vi presento il progetto sotto forma di Q&amp;A (Domande e Risposte) sulle criticità tecniche.Smontatemi l&#x27;idea nei commenti, ho bisogno di capire dove sono i bug",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1782446258000,
+    "discovered": 1782465747606,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_48680354",
+    "url": "https://news.ycombinator.com/item?id=48680354",
+    "name": "@zeelex — How do you tackle a backlog of deferred maintenance you didn't create?",
+    "source": "HackerNews",
+    "snippet": "How do you tackle a backlog of deferred maintenance you didn't create?\nI don&#x27;t mean migration in the sense of switching databases or rewriting in another language. I mean that a codebase rots if nobody maintains it. Deprecations, warnings, upstream changes — each is cheap to handle the moment it appears, often a 10-minute fix (let&#x27;s say &#x27;in average&#x27;).\nBut plenty of teams never catch them. No real CI&#x2F;CD, no culture of reading changelogs or acting on warnings. So it piles up silently, and then at some point — usually when an infra or security team shows up with tickets — the whole accumulated pile lands on one person at once. Often a new hire or a junior who&#x27;s never seen the code, with no record of why any of it is the way it is beyond git blame, a stale changelog, and a few dead chat threads.\nWhat I think gets underestimated is that clearing it all at once costs far more than the sum of the small fixes would have. The problems tangle into each other, and th",
+    "trigger": "noexpertise",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1782428891000,
+    "discovered": 1782465756139,
+    "score": 35,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48649301",
     "url": "https://news.ycombinator.com/item?id=48649301",
     "name": "@ericyd — Ask HN: What jobs can I escape to outside of tech?",
