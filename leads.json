@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48700750",
+    "url": "https://news.ycombinator.com/item?id=48700750",
+    "name": "@viztor — @esbuild-kit/* packages on NPM Seems Hacked",
+    "source": "HackerNews",
+    "snippet": "@esbuild-kit/* packages on NPM Seems Hacked\nnot sure where to report this, so I will post it on HN.\nI got the following warn from two esbuild packages\n&quot;&quot;&quot;\nnpm warn deprecated @esbuild-kit&#x2F;core-utils@3.3.2: Merged into tsx: https:&#x2F;&#x2F;tsx.is\nnpm warn deprecated @esbuild-kit&#x2F;esm-loader@2.6.5: Merged into tsx: https:&#x2F;&#x2F;tsx.is\n&quot;&quot;&quot;\nwhere tsx.is is apparently leads hijacked some attacker site that got paid for each visit. I&#x27;m confused if tsx.is domain is hacked, or the package is hacked. Anyone?",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1782586839000,
+    "discovered": 1782636532653,
+    "score": 48,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48682173",
     "url": "https://news.ycombinator.com/item?id=48682173",
     "name": "@mnnnnnnn — Ho progettato un'infrastruttura logistica per azzerare lo spreco alimentare",
