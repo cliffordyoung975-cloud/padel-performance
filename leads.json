@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48716410",
+    "url": "https://news.ycombinator.com/item?id=48716410",
+    "name": "@protonisafk — ProtonVPN is AI support only. 4 days no human, made me BOTNET. Begging for help",
+    "source": "HackerNews",
+    "snippet": "ProtonVPN is AI support only. 4 days no human, made me BOTNET. Begging for help\nI&#x27;m sitting here crazy and stressed while typing this. My mother is sick and needs money for medical care and I can&#x27;t access my bank accounts because ProtonVPN&#x27;s automated system decided I&#x27;m a &quot;bot&quot; and is literally torturing my connection - and their support is fully AI like crazy even in emergency.\nI don’t want to get technical but if Proton VPN thinks you are using P2P at high connections, Proton has this &quot;DDoS guard&quot; that &quot;detects&quot; false high speed P2P and throttles you, even if you use 1 tiny p2p at 1kb&#x2F;s, if it sees many connections. I stopped using their P2P at even low speed, since Proton lied about P2P use and will disconnect you if it thinks ddosing it via p2p, and throttled me prior, and even if it’s incredibly low false positives are common on their system. Used accidentally p2p for a tiny connection and low speed, it triggered the system. O",
+    "trigger": "iso27001",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1782721843000,
+    "discovered": 1782730470738,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48700750",
     "url": "https://news.ycombinator.com/item?id=48700750",
     "name": "@viztor — @esbuild-kit/* packages on NPM Seems Hacked",
