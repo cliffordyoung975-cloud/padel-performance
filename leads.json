@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48764342",
+    "url": "https://news.ycombinator.com/item?id=48764342",
+    "name": "@artur_makly — Ask HN: What's the simplest way for me to get my AMEX data agentically?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: What's the simplest way for me to get my AMEX data agentically?\ni found this on their site: https:&#x2F;&#x2F;developer.americanexpress.com&#x2F;products&#x2F;nextgen-agentic-payments&#x2F;overview?intlink=us-ace-developerkit\nbut I think this is for folks making b2b apps. \nI just need a way to get my statements&#x2F;transactions reliably.\nwhat&#x27;s worked for you?\nClaude is warning me that &quot;Amex is a known re-auth offender. This is the real ongoing cost. Amex periodically forces reconnection — Amex is specifically flagged as a connection that requires re-authenticating more often, and there have been issues where Amex&#x27;s perpetual MFA broke the Plaid connection entirely with no ETA on a fix. For a set-and-forget cron that&#x27;s the dangerous failure mode: the connection silently drops, Amex charges stop flowing, and your model quietly understates costs again.&quot;\nIs Plaid a free option?",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1783011897000,
+    "discovered": 1783070132921,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48716410",
     "url": "https://news.ycombinator.com/item?id=48716410",
     "name": "@protonisafk — ProtonVPN is AI support only. 4 days no human, made me BOTNET. Begging for help",
