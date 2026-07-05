@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48788887",
+    "url": "https://news.ycombinator.com/item?id=48788887",
+    "name": "@gl9 — Ask HN: New employeer not providing equipment",
+    "source": "HackerNews",
+    "snippet": "Ask HN: New employeer not providing equipment\nI am joining a small ~10 person startup in SF next week as a full time W2 employee. I am a software dev. The work is in a very regulated space (ITAR&#x2F; SOC2&#x2F;etc) type stuff.\nMy manager (who is the CTO) texted me to bring my personal laptop in on the first day. This already seems like a red-flag and if needed I will not install any software or visit any sites beyond payroll.\nHow should I handle this situation if they refuse to provide me equipment. This is a in-person role.",
+    "trigger": "iso27001",
+    "context": "40 comments",
+    "stage": "inbox",
+    "created": 1783197750000,
+    "discovered": 1783241399561,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48764342",
     "url": "https://news.ycombinator.com/item?id=48764342",
     "name": "@artur_makly — Ask HN: What's the simplest way for me to get my AMEX data agentically?",
