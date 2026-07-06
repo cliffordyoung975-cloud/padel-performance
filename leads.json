@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48794040",
+    "url": "https://news.ycombinator.com/item?id=48794040",
+    "name": "@turbidimeter — Tell HN: FileVault does not protect Wi-Fi passwords on macOS 26",
+    "source": "HackerNews",
+    "snippet": "Tell HN: FileVault does not protect Wi-Fi passwords on macOS 26\nI was confused why the Wi-Fi symbol lights up when I boot my Mac, before I enter the password.\nI tested this, far away from my Wi-Fi network, and it doesn&#x27;t light up then.\nApple&#x27;s support pages say &quot;Unlock FileVault using SSH: On a Mac with Apple silicon with macOS 26 or later, FileVault can be unlocked over SSH after a restart if Remote Login is turned on and a network connection is available.&quot; and &quot;Network connectivity for FileVault is necessary to unlock FileVault using SSH and in certain configurations using FileVaultPolicy with Platform Single Sign-on.&quot; [1][2]\nSo that means the Wi-Fi password will be stored outside of the FileVault&#x27;ed volume then. (Where?)\nCool, but even &quot;Remote Login&quot; is off for me (no SSO&#x2F;MDM either) and it still connects to Wi-Fi. I never opted in to Wi-Fi passwords being silently removed from FileVault protection.\nSure, they might &quot;SecureEncla",
+    "trigger": "iso27001",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1783257072000,
+    "discovered": 1783332968090,
+    "score": 48,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48788887",
     "url": "https://news.ycombinator.com/item?id=48788887",
     "name": "@gl9 — Ask HN: New employeer not providing equipment",
