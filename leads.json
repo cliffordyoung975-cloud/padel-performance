@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48862083",
+    "url": "https://news.ycombinator.com/item?id=48862083",
+    "name": "@essina — Request for Senior Developer and Senior Cybersecurity",
+    "source": "HackerNews",
+    "snippet": "Request for Senior Developer and Senior Cybersecurity\nHello,\nReaching out because we&#x27;re currently looking for a senior developer or senior solutions architect and a senior cybersecurity analyst with governance experience to assist in creating a technical architecture and security design for a trade compliance platform. If you have this experience, please send an email to muna@essinasolutions.com",
+    "trigger": "compliance",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1783700658000,
+    "discovered": 1783756349076,
+    "score": 40,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48852607",
     "url": "https://news.ycombinator.com/item?id=48852607",
     "name": "@essina — Request for a Cybersecurity and Senior Developer",
