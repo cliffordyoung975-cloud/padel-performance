@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48903047",
+    "url": "https://news.ycombinator.com/item?id=48903047",
+    "name": "@flipdin — Anthropic banned my thirteen 20x accounts, what now?",
+    "source": "HackerNews",
+    "snippet": "Anthropic banned my thirteen 20x accounts, what now?\nFirstly, FAFO, I get it.\nI was using 13 Claude Code 20x subscriptions. Fable on ultra code.\nFirst, yes it was excessive. Yes I was using ultra code for everything unnecessarily, just because I cbf and the cost&#x2F;month was low for my business.\nWith that out of the way, Anthropic rejected my ban appeal.\nIt was all personal use, just me, doing stuff for my business, I have no employees.\nRegardless, appeal rejected, no reason given, and any account I create now gets instantly banned.\nI’ve tried using a VPN, and different credit cards, but my accounts get banned really quickly.\nThe thing that’s unclear, is what exactly is banned? My company? Me personally? My billing address?\nAm I not allowed to create any new accounts? And what is it that makes them able to detect any new accounts.\nI suspect it’s my chrome profile or something like that, that’s the last thing I’ve been unwilling to change just due to the amount of effort in converting",
+    "trigger": "iso27001",
+    "context": "5 comments",
+    "stage": "inbox",
+    "created": 1784011154000,
+    "discovered": 1784016028133,
+    "score": 51,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48862083",
     "url": "https://news.ycombinator.com/item?id=48862083",
     "name": "@essina — Request for Senior Developer and Senior Cybersecurity",
