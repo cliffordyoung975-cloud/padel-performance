@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48940976",
+    "url": "https://news.ycombinator.com/item?id=48940976",
+    "name": "@areoform — Ask HN: cybersecurity refusal for turning a jailbroken kindle into a monitor",
+    "source": "HackerNews",
+    "snippet": "Ask HN: cybersecurity refusal for turning a jailbroken kindle into a monitor\nAsking from a place of curiosity.\nI wanted to make a project where I upcycle an old kindle into an e-ink monitor via USB-C tether.\nThe jailbreaking process is extensively documented, but I wanted something custom to have a small local process push text like emails and terminal output onto the kindle with custom typography.\nFor me, the custom typography thing is the important bit as most type rendering on most e-readers feels bad &#x2F; stale (at least to me). And I want to understand how font rendering works from the firmware up.\nI tried to ask Fable to help me, but it refused. And then so did Opus;\n     Fable 5&#x27;s safeguards flagged this message. The safeguards are intentionally broad right now and may flag safe and routine coding, cybersecurity, or biology work. These measures let us bring you Mythos-level capabilities sooner, and we&#x27;re working to refine them. Switched to Opus 4.8. Send feedback wit",
+    "trigger": "iso27001",
+    "context": "5 comments",
+    "stage": "inbox",
+    "created": 1784240058000,
+    "discovered": 1784275612326,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48903047",
     "url": "https://news.ycombinator.com/item?id=48903047",
     "name": "@flipdin — Anthropic banned my thirteen 20x accounts, what now?",
