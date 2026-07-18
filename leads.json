@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48945681",
+    "url": "https://news.ycombinator.com/item?id=48945681",
+    "name": "@mstolpm — Ask HN: Any AWS billing issues known? Amazon forecast of 3 billion dollars",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Any AWS billing issues known? Amazon forecast of 3 billion dollars\nI receive an AWS Budgets alert that my budget is exceeding the alert threshold. Threshold is 5$. Forecasted amount is listed as $3,005,575,870.47. (Yepp, right, that’s 3 billion dollars.) I haven&#x27;t even used AWS actively in the last year, but AWS console lists the amount as stated above. No feedback from AWS support yet, but the support AI chat bot says: &quot;Die perfekt gleichmäßigen Tageskosten seit dem 1. Juli deuten stark auf einen Abrechnungs- oder Messfehler hin.&quot; (&quot;The perfectly consistent daily costs since July 1 strongly suggest a billing or metering error.&quot;) Bot created a support ticket (or at least told me so). Anyone else seeing something like this?\nAlready disabled all AWS IAM roles and deleted all other AWS resources I know of. AWS login not hacked as far as I can tell. But owing Amazon 3 billion dollars is a bit of a concern.\nAny ideas?",
+    "trigger": "breach",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1784285121000,
+    "discovered": 1784360755474,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48940976",
     "url": "https://news.ycombinator.com/item?id=48940976",
     "name": "@areoform — Ask HN: cybersecurity refusal for turning a jailbroken kindle into a monitor",
