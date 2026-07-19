@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_48958273",
+    "url": "https://news.ycombinator.com/item?id=48958273",
+    "name": "@tedggh — LG ThinQ Terms of Use",
+    "source": "HackerNews",
+    "snippet": "LG ThinQ Terms of Use\nSome of my kitchen appliances are LG and I installed the LG ThinQ app on my phone.\nSometimes I like to leave a cold dish in the oven before I go out then remotely start it when I’m on my way back home, so I arrive to a nice hot dinner.\nAfter a recent HN post about LG malware and further research, I decided to kick my appliances out of the network.\nI also tried to remove my user account just to find out that in order to use the app I need to first accept the new terms of use.\nI asked ChatGPT for a summary. This seems a lot more aggressive than the standard terms of use of other products and services.\n1. No arbitration opt-out. You give up court, jury trial, class actions, mass actions, and collective claims. Most disputes must go through individual arbitration, and LG says your only alternative is to stop using the service. Claims generally must be brought within one year. (Sections 20.b and 20.c)\n2. Broad rights over anything you submit. LG receives a perpetual, i",
+    "trigger": "iso27001",
+    "context": "27 comments",
+    "stage": "inbox",
+    "created": 1784383495000,
+    "discovered": 1784448805174,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48945681",
     "url": "https://news.ycombinator.com/item?id=48945681",
     "name": "@mstolpm — Ask HN: Any AWS billing issues known? Amazon forecast of 3 billion dollars",
