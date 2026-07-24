@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_49027642",
+    "url": "https://news.ycombinator.com/item?id=49027642",
+    "name": "@jdlib — Ask HN: What verb best describes what a developer does in 2026?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: What verb best describes what a developer does in 2026?\nBefore agents entered the scene, the answer was obvious: A developer &quot;writes&quot; or &quot;creates&quot; software.\nWhile software craftsmen mourned the death of their craft, reality moved on. In February 2025, Andrej Karpathy ingeniously coined the term &quot;vibe coding&quot; (which hit Merriam-Webster as a slang term shortly after) to describe the shift from \nhand-writing code to steering the agent. But the honeymoon didn&#x27;t last. Amateurs quickly ruined the vibe when their weekend projects got routinely annihilated upon hitting production, finally giving vibe-coding a bad rep.\nAdmitting to agent authorship feels honest, but also sounds like a confession and does nothing to build a professional identity: &quot;I wrote this with the help of [Agent].&quot; or &quot;I let [Agent] write this.&quot;\nBrand-derived verbs feel clumsy:\n* I clankered\n* I clauded &#x2F; I claudified\n* I codexed\nMy best shots so far:\n* I t",
+    "trigger": "starter",
+    "context": "3 comments",
+    "stage": "inbox",
+    "created": 1784838767000,
+    "discovered": 1784881480518,
+    "score": 26,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_49024805",
+    "url": "https://news.ycombinator.com/item?id=49024805",
+    "name": "@aashir-saas — Are we in the era of AI slop landing pages?",
+    "source": "HackerNews",
+    "snippet": "Are we in the era of AI slop landing pages?\nSorry for making it sound like a rant, but is anyone else actually tired of seeing the same AI slop landing pages? Those same card layouts and color shcemes? And those fake metrics, &quot;Trusted by 10,000+ professionals&quot;, no bro my SimilarWeb extension shows 0 traffic on your site for the past 3 months..\nI mean yeah I get it that you need to ship fast but maybe like delay your launch for 12-24 hrs and make at least a half decent and appealing landing page. These landing pages remind me of that scene from Toy Story where there was a shelf full of Buzz lightyear figurines. Do people actually have 0 taste?\nDo you guys trust such apps especially in B2B space? With a landing page that screams 0% trust and 100% AI generated, you bet I&#x27;m not gonna give you access to my credentials or repos etc..\nYour landing page is the first impression of your app, at least make it count..\nThis concludes my rant  Anyone else feels the same?",
+    "trigger": "starter",
+    "context": "8 comments",
+    "stage": "inbox",
+    "created": 1784826073000,
+    "discovered": 1784881480519,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_48958273",
     "url": "https://news.ycombinator.com/item?id=48958273",
     "name": "@tedggh — LG ThinQ Terms of Use",
