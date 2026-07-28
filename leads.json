@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49078318",
+    "url": "https://news.ycombinator.com/item?id=49078318",
+    "name": "@cute_boi — Internet is no longer accessible?",
+    "source": "HackerNews",
+    "snippet": "Internet is no longer accessible?\n- There are tons of CAPTCHAs, and many of them are impossible to solve even with real chrome and no adblock extension.\n- Every website is asking for 2FA, and I get logged out every time.\n- MFA codes sent to my phone do not seem to work properly.\n- Registering a new Google account requires a phone number, and I also need to install app to prove i am not a bot.\n- Websites are asking me to rotate my head and grant microphone access.\n- Website blocks copy paste, so you have to manually type everything ....\n- Banking application will force you to update even if it isn&#x27;t security related.\n- Everyone assumes you are bot.",
+    "trigger": "iso27001",
+    "context": "14 comments",
+    "stage": "inbox",
+    "created": 1785203995000,
+    "discovered": 1785227423700,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49027642",
     "url": "https://news.ycombinator.com/item?id=49027642",
     "name": "@jdlib — Ask HN: What verb best describes what a developer does in 2026?",
