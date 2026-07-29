@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_49085002",
+    "url": "https://news.ycombinator.com/item?id=49085002",
+    "name": "@Luxter — Ask HN: How do you audit your app for compliance?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How do you audit your app for compliance?\nCompliance software like Vanta, Drata and similar only read 3rd party APIs (AWS, Github, Okta etc.) but cannot automatically audit your app that actually uses them, e.g. who had admin access in your app at given point in time.\nI&#x27;m an engineer in Poland with no compliance background, so if you did an audit for your app in the past (SOC 2&#x2F;ISO 27001&#x2F;HIPAA&#x2F;PCI etc.):\n1. What did you produce (Screenshots? SQL query? CSV?)\n2. Who did it in your company? How long did it take? Is it a recurring task?\n3. Did you build anything in-house for it? Are you still maintaining it?\nIf you used a tool for that then I&#x27;d appreciate if you tell me which one.",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1785250927000,
+    "discovered": 1785314239102,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_49082127",
+    "url": "https://news.ycombinator.com/item?id=49082127",
+    "name": "@jezzwar — Can anti-fraud make large-scale attacks unprofitable?",
+    "source": "HackerNews",
+    "snippet": "Can anti-fraud make large-scale attacks unprofitable?\nI’m interested in feedback from people who have experience with fraud prevention, security, ad-tech, or abuse systems.\nLet’s assume a platform where users receive some form of benefit based on verified real activity. A major concern is whether organized fraud operations can scale profitably.\nA common assumption is that attackers will always find a way around individual defenses. So instead of trying to make abuse impossible, the approach is to increase the cost of abuse:\ndevice reputation and fingerprinting;\nIP&#x2F;network reputation;\nVPN&#x2F;proxy&#x2F;datacenter detection;\nbehavioral analysis;\naccount reputation over time;\ngraph analysis to detect connected accounts;\nrisk-based limits and delayed payouts;\nmanual review and feedback loops.\nThe idea is that a fraudster might be able to create accounts, but maintaining profitable accounts at scale becomes difficult.\nThe question:\nDoes this actually change the economics of fraud, or",
+    "trigger": "starter",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1785236850000,
+    "discovered": 1785314258690,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49078318",
     "url": "https://news.ycombinator.com/item?id=49078318",
     "name": "@cute_boi — Internet is no longer accessible?",
