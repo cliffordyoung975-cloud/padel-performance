@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49129778",
+    "url": "https://news.ycombinator.com/item?id=49129778",
+    "name": "@Taikhoom2010 — Is Stripe the Internet?",
+    "source": "HackerNews",
+    "snippet": "Is Stripe the Internet?\nI think Stripe’s internal strategy is a consolidation of products within its sector. Similar across other industries, such as cybersecurity, where I think Cloudflare is attempting to do the same. The broader idea is clearly enterprise consolidation. I think now is the correct period in the technology cycle for such consolidation.\nThe influx of many enterprise companies was due to the advent from on premise computing&#x2F;storage to the cloud, lowering the barrier to creating new companies. Hence, it was somewhat possible to create “Niche” enterprise businesses, such as a Dropbox or an Intercom. These businesses were able to create sustainable recurring profits because of a business model boom and customer captivity in terms of enterprise switching costs. Hence, none of these businesses are disappearing and should remain stable companies for a long time. There is a broader move to add company-adjacent products to further entrench customers and somewhat diversify",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1785541647000,
+    "discovered": 1785572200587,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49085002",
     "url": "https://news.ycombinator.com/item?id=49085002",
     "name": "@Luxter — Ask HN: How do you audit your app for compliance?",
