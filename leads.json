@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49141723",
+    "url": "https://news.ycombinator.com/item?id=49141723",
+    "name": "@KinetiNode — ask HN: How do I run Android 15 on a system with Andr 12 vendors?",
+    "source": "HackerNews",
+    "snippet": "ask HN: How do I run Android 15 on a system with Andr 12 vendors?\nHi HN, \nI&#x27;m trying to Flash a new OS onto my old smartphone that was provided by my college.. I removed the MDM softwares that come pre installed using adb so im good to go but there are some problems im facing ,\nI want to use a higher android version (currently on android 12) , my device is fully VNDK compliant and supports project treble. Since there is no actual custom ROM for my specific device i need to use GSIs (generic suystem images) I found one GSI (CrDroid GSI) that should work fully.. According to AOSP and project treble any version of android should work on my device even if the system vendor is stuck with android 12. \nBut practically you can only go like 2 versions ahead before things start breaking. i want to use android 15 but its ourt of reach. Ive asked several AIs for this too and they just say &quot;Deal with it&quot; , I mean not wrong but is there any work around?? (If you want to know HOW GSIs",
+    "trigger": "iso27001",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1785652580000,
+    "discovered": 1785658867220,
+    "score": 53,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49129778",
     "url": "https://news.ycombinator.com/item?id=49129778",
     "name": "@Taikhoom2010 — Is Stripe the Internet?",
