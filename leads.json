@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49181570",
+    "url": "https://news.ycombinator.com/item?id=49181570",
+    "name": "@mstaoru — Ask HN: How do you correct spatial reasoning of LLMs?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How do you correct spatial reasoning of LLMs?\nI&#x27;m working on a complex multi-part 3D-printed product, and I needed some engineering input from LLMs. I use highest Gemini Pro reasoning levels, Fable, and K3 Max with everything tuned to highest.\nThe problem I&#x27;m facing is mounting a sensor on a barbell sleeve. The sensor is a semi-hollow 100mm cylinder, 60mm diameter, with a 50mm diameter 50mm deep tube cutout for the sleeve. (It&#x27;s a bit more complex than that.)\nI&#x27;m trying to brainstorm different clamping mechanisms, and evaluate durability and manufacturability of several designs.\nNo matter what I try, the output of all LLMs is absolutely wild, especially if you ask to make a technical drawing. Anthropic reliably been the worst, and Gemini, surprisingly, the best.\nBut none understand what goes where in any detail, besides spewing paragraph and paragraph of wild ideas including rotational cam clamps over a recessed ring TPU collet (apparently, a &quot;brilliant",
+    "trigger": "starter",
+    "context": "7 comments",
+    "stage": "inbox",
+    "created": 1785930836000,
+    "discovered": 1786005159002,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49150707",
     "url": "https://news.ycombinator.com/item?id=49150707",
     "name": "@Taikhoom2010 — Ask HN: What Is Stripe Today?",
