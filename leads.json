@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49200069",
+    "url": "https://news.ycombinator.com/item?id=49200069",
+    "name": "@Flightmussy — Discord Support System is protecting the Hackers",
+    "source": "HackerNews",
+    "snippet": "Discord Support System is protecting the Hackers\nToday my mail got hacked, where they had access for 30 min before I did the security changes. It was an old mail which I do not use often.\nI was supposed to get a recovery link, but did not. I tried to register with my mail for Discord Support, but could not.\nThe hackers exploited the weaknesses of their hopeless bureaucratic of their system, by blocking everything from Discord before going into my Discord to change the mail.\nNow that I finally have understood it, Discord won&#x27;t suddenly answer me and help me. I am following their bullshit protocol while the hackers have the access of my account right now.\nI think even fucking Temu has a better support system than Discord.",
+    "trigger": "breach",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1786039065000,
+    "discovered": 1786086709155,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49181570",
     "url": "https://news.ycombinator.com/item?id=49181570",
     "name": "@mstaoru — Ask HN: How do you correct spatial reasoning of LLMs?",
