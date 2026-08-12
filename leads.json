@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49262312",
+    "url": "https://news.ycombinator.com/item?id=49262312",
+    "name": "@ttruett — Ask HN: How do you keep 54 LLM workflows on the right models?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How do you keep 54 LLM workflows on the right models?\nI have a Django app with 54 LLM-backed workflows. Up until recently I&#x27;ve exclusively used Anthropic models via AWS Bedrock but just set up OpenRouter to test the new Gemini models given they seem to match Sonnet&#x2F;Haiku intelligence but with 3-5x output speed. I&#x27;m using Pydantic AI for validation&#x2F;normalization.\nI currently maintain a registry that describes a workflow&#x27;s purpose, what we&#x27;re optimizing for (intelligence, speed, cost), its eval, and a human-readable bar that must be achieved.\nI&#x27;m curious what strategies&#x2F;systems people are using to keep track of everything and ensure an optimal model is being used for a given workflow.",
+    "trigger": "breach",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1786472236000,
+    "discovered": 1786519257512,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49200069",
     "url": "https://news.ycombinator.com/item?id=49200069",
     "name": "@Flightmussy — Discord Support System is protecting the Hackers",
