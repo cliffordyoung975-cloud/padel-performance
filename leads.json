@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49376072",
+    "url": "https://news.ycombinator.com/item?id=49376072",
+    "name": "@seeking_gruntle — Ask HN: No Path from Techie to Management?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: No Path from Techie to Management?\nWhen I was a much more junior techie I would apply for management roles in my company only to be told that I needed more experience and to upgrade my credentials. Years later I have certifications, a graduate degree and have advanced through the technical ranks. Now when I apply to management roles I am told that they are looking for a fresh perspective after hiring junior to intermediate applicants into the roles.\nI am not an isolated example at my work and as a result we have lost some excellent talent. Is this happening at other companies or is mine an outlier?\nOutside of this problem I really like where I work and the people that I work with but I feel that I may need to move on if I want to advance my career. I can&#x27;t think of a way to address this problem with the higher ups without torching my future further.",
+    "trigger": "noexpertise",
+    "context": "11 comments",
+    "stage": "inbox",
+    "created": 1787239943000,
+    "discovered": 1787294494587,
+    "score": 35,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49346770",
     "url": "https://news.ycombinator.com/item?id=49346770",
     "name": "@smashah — I made a secure way for agents to request secrets from you using HyperDHT",
