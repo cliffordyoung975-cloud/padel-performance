@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49450625",
+    "url": "https://news.ycombinator.com/item?id=49450625",
+    "name": "@tgmatt — Ask HN: Phished Microsoft account, recovery useless",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Phished Microsoft account, recovery useless\nSo my little brother (child) managed to fall for a phishing scam and got his Microsoft &#x2F; Minecraft account stolen by some scumbag, and the recovery process has been denied by Microsoft.\nWe provided previous passwords, address where it had been used, last 4 digits of a card used to make purchases on it, all to no avail. He is even part of the Microsoft Family I set up, with his mother as the owner.\nThe password and recovery email have of course been changed, so we currently have no recourse to get the account back.\nDoes anyone know any solutions to this, or a contact at Microsoft that we can get assistance from? This seems utterly outrageous that an account of a child that is part of a family account can have his account stolen, and the family owner can&#x27;t recover the account. How is that a thing?",
+    "trigger": "breach",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1787757306000,
+    "discovered": 1787851189904,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49376072",
     "url": "https://news.ycombinator.com/item?id=49376072",
     "name": "@seeking_gruntle — Ask HN: No Path from Techie to Management?",
