@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49514427",
+    "url": "https://news.ycombinator.com/item?id=49514427",
+    "name": "@hmate9 — Dropbox Data Breach",
+    "source": "HackerNews",
+    "snippet": "Dropbox Data Breach\nI received a security notice from Dropbox today saying that my account was accessed without authorization between August 4 and August 21, 2026, and that Dropbox believes files in the account were viewed or downloaded.\nAccording to the email, Dropbox uses Lenovo as an identity provider, allowing users to authenticate to Dropbox with a verified Lenovo ID.\nDropbox says:\nan issue with Lenovo’s email verification process allowed an unauthorized party to register a Lenovo ID using your email address and then use that Lenovo ID to log into the Dropbox account associated with that email address.\nSo, as I understand it, the attack path was roughly:\n1. Attacker registers a Lenovo ID using the victim’s email address.\n2. Lenovo incorrectly treats the email address as verified.\n3. Dropbox trusts the Lenovo identity.\n4. Attacker gets access to the Dropbox account associated with that email address.\nDropbox says it has since expired all sessions authenticated through Lenovo ID and",
+    "trigger": "iso27001",
+    "context": "6 comments",
+    "stage": "inbox",
+    "created": 1788207618000,
+    "discovered": 1788260788062,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49450625",
     "url": "https://news.ycombinator.com/item?id=49450625",
     "name": "@tgmatt — Ask HN: Phished Microsoft account, recovery useless",
