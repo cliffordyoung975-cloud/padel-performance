@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49546432",
+    "url": "https://news.ycombinator.com/item?id=49546432",
+    "name": "@0xbadcafebee — Ask HN: Advice on Migrating from 1Password?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Advice on Migrating from 1Password?\nI just found out that 1Password is donating $300,000 to a project founded by a very controversial person, and I&#x27;m looking to move to a different password manager.\nHas anyone migrated from 1Password recently to another tool&#x2F;platform? Have you had a good experience with any tools in particular? Any advice, tips? I&#x27;m also interested in the corporate-use context; if I can convince my company to switch to an alternative with business controls, I&#x27;ll surely try.",
+    "trigger": "starter",
+    "context": "91 comments",
+    "stage": "inbox",
+    "created": 1788415303000,
+    "discovered": 1788432053369,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49514427",
     "url": "https://news.ycombinator.com/item?id=49514427",
     "name": "@hmate9 — Dropbox Data Breach",
