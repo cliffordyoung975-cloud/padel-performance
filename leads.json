@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_49583757",
+    "url": "https://news.ycombinator.com/item?id=49583757",
+    "name": "@dennysora-main — Ask HN: Do you route only certain websites through a VPN?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Do you route only certain websites through a VPN?\nI often need a particular exit IP to access certain websites. Switching my VPN back and forth gets annoying, and finding separate proxies isn&#x27;t much fun either. I also wanted one place to see how much traffic I&#x27;m using and whether the connection is actually working.\nSo I built a small tool for myself: a Chrome extension and a local dashboard, with a proxy connected to its own WireGuard tunnel. I choose the website domains that should use it, while my other apps keep their normal connection. It uses Mullvad at the moment, and I can set it up with my Mullvad account number. The dashboard handles the connection and shows traffic over time, domain stats, and errors.\nThere&#x27;s also an &quot;Add page&quot; button that finds domains the page requests, including things like images, scripts, and APIs, and adds them to the proxy rules. It&#x27;s still domain-based routing, so the same domains in another tab follow those rules",
+    "trigger": "starter",
+    "context": "4 comments",
+    "stage": "inbox",
+    "created": 1788674483000,
+    "discovered": 1788689765426,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_49575384",
+    "url": "https://news.ycombinator.com/item?id=49575384",
+    "name": "@concentricmew — Let's demand that Apple allow enabling AI as on-device only, no cloud",
+    "source": "HackerNews",
+    "snippet": "Let's demand that Apple allow enabling AI as on-device only, no cloud\nAs of the current macOS 27 Golden Gate beta, it seems like AI features are enabled by default with no main switch to reliably disable all of them and, most importantly, zero transparency and configuration of which requests and tasks are handled on-device and which go to the cloud.\nThere may be varying opinions about on-device AI, but being on-device means it does not leak your data and files anywhere, which is a huge win. However, cloud AI necessarily requires sending the data relevant to the task off your device, and is a huge privacy breach.\nWhile one can try blocking such requests using firewalls, blocking certain hosts and IP addresses, switching individual toggles in apps and using default write commands to toggle some options not exposed in the GUI, each of these approaches is opaque and fragile.\nLet&#x27;s reach out to Apple through all available channels, including the Feedback Assistant app, to demand that t",
+    "trigger": "breach",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1788606509000,
+    "discovered": 1788689776113,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49546432",
     "url": "https://news.ycombinator.com/item?id=49546432",
     "name": "@0xbadcafebee — Ask HN: Advice on Migrating from 1Password?",
