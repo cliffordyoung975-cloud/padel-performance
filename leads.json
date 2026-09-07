@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_49586069",
+    "url": "https://news.ycombinator.com/item?id=49586069",
+    "name": "@dennysora-main — Ask HN: Are we normalizing surveillance in the name of safety?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Are we normalizing surveillance in the name of safety?\nI don’t know if this is just my imagination.\nIn recent years, I feel like the whole world is slowly moving toward this direction:\n“Because we need to protect people, we need to monitor them.”\nAs a Taiwanese person, I’m very familiar with this kind of logic from the CCP next door.\nBut for some reason, I feel like more and more of the world is also moving in this direction.\nFor example:\n* Asking an important open-source infrastructure project like Linux to add age verification.\n* Credit card companies asking Japan to follow all kinds of unreasonable rules.\n* Using courts to force companies, in the name of human rights or safety, to monitor cloud data.\n* Requiring VPNs to be controlled or regulated.\nThese are just some simple examples. I don’t have detailed statistics, but I really feel like there have been more and more cases like this recently.\nIt is often wrapped in something morally justified, and then surveillance and con",
+    "trigger": "noexpertise",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1788698914000,
+    "discovered": 1788780955638,
+    "score": 30,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_49588597",
+    "url": "https://news.ycombinator.com/item?id=49588597",
+    "name": "@muddi900 — Ask HN: How safe are our password managers in face of LLM cyber attacks?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How safe are our password managers in face of LLM cyber attacks?\nHey\nWith LLMs having infinite attack resources compared to human researchers, how safe are we?\nWe already know that you don&#x27;t need top tier frontier models to create an attack vector. You can just loop a mid-sized model until it bears result. Or run a small swarm of agents to achieve the same goal\nHow long until a criminal actor with running exo[1] over 2 mac studios breaches password managers?\nI understand that the storage of passwords might be encrypted, but they might find vulnerabilities at the client or transport level.\nHow may we mitigate this?\n[1] https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=49585683",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1788714738000,
+    "discovered": 1788780965269,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49583757",
     "url": "https://news.ycombinator.com/item?id=49583757",
     "name": "@dennysora-main — Ask HN: Do you route only certain websites through a VPN?",
