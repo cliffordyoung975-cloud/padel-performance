@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49639079",
+    "url": "https://news.ycombinator.com/item?id=49639079",
+    "name": "@Flowkon — Flowkon",
+    "source": "HackerNews",
+    "snippet": "Flowkon\nBest Email Finder Tool for Verified LinkedIn Data in 2026\nFinding verified business emails from LinkedIn prospects is an important part of modern B2B prospecting. Flowkon combines email finding and verification with LinkedIn prospecting and multichannel outreach, so sales teams can move from finding a prospect to starting a conversation without switching between multiple tools.\nWith Flowkon, teams can find and verify business email addresses from LinkedIn prospects, then include those contacts in personalized LinkedIn and email sequences. Dynamic personalization helps tailor messages using details such as a prospect&#x27;s name, company, and job title.\nFlowkon also connects outreach activity with popular CRMs including Salesforce, HubSpot, monday.com, Zoho, and Pipedrive, helping teams keep prospect and campaign information organized.\nFor teams looking beyond a standalone email finder, Flowkon offers a more complete workflow: find prospects → verify emails → personalize outreac",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1789020567000,
+    "discovered": 1789036658546,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49586069",
     "url": "https://news.ycombinator.com/item?id=49586069",
     "name": "@dennysora-main — Ask HN: Are we normalizing surveillance in the name of safety?",
