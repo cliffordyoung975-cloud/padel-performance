@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49681380",
+    "url": "https://news.ycombinator.com/item?id=49681380",
+    "name": "@emerongi — Ask HN: Should we start airgapping our personal devices?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Should we start airgapping our personal devices?\nGiven AI&#x27;s strong cybersecurity capabilities, it seems that there is a realistic future where AI will start finding a foothold on all internet-connected devices.\nHow do we continue to share information between humans, while AI is wreaking havoc on the systems that used to provide the means to do so?\nWill we be airgapping our personal devices and using known-infected ones to access the internet?",
+    "trigger": "starter",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1789287576000,
+    "discovered": 1789297563018,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49639079",
     "url": "https://news.ycombinator.com/item?id=49639079",
     "name": "@Flowkon — Flowkon",
