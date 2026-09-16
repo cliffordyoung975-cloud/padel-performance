@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49723043",
+    "url": "https://news.ycombinator.com/item?id=49723043",
+    "name": "@Stranger5901 — Ask HN: How do you test an app from a region you're not physically in?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How do you test an app from a region you're not physically in?\nWe run a small B2B product for a few overseas markets. We keep seeing bugs that only reproduce locally: country-specific payment SDK behavior, stale CDN edge cache, and TLS&#x2F;TTFB issues that only appear on local mobile networks.\nVPN and emulators are insufficient. VPN does not replicate carrier routing or device integrity checks like Play Integrity. Commercial device farms rarely guarantee physical device location, which is what we need.\nWe’re thinking of hosting physical devices in target countries and remote-controlling them. The connection is solvable, but we’re worried about operations: carrier NAT traversal, unattended OS updates, battery&#x2F;thermal drift, and long-running failure modes.\nWhat has worked for you? Self-hosted remote hardware, device farms with location limits, or accepting user-reported bugs?",
+    "trigger": "starter",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1789542669000,
+    "discovered": 1789555909398,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49689926",
     "url": "https://news.ycombinator.com/item?id=49689926",
     "name": "@proc0 — X nuked my premium account out of nowhere",
