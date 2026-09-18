@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49742976",
+    "url": "https://news.ycombinator.com/item?id=49742976",
+    "name": "@keymasta — Ask HN: How to recover Google auth after phone stolen?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How to recover Google auth after phone stolen?\nAs we know, google has been effective at automating a lot of their systems, to the point where it can feel like there isn&#x27;t any help available from a human. So what is supposed to be the plan when this type of situation happens?\nBasically I have a situation that after my phone was stolen, I can&#x27;t get into any of my accounts that are either connected to google, or connected to the phone via 2FA. This has made it complicated&#x2F;impossible not only to get info about my phone, but also my banking, email, drive, etc.\nOf course they offer you &quot;multiple options&quot; to recover an account, but not if you forgot your old email&#x27;s password. At that point the options you get are,\n  a) Use old phone (obviously the phone is long gone)\n  b) Use current phone (the phone is gone)\n  c) Use old email (I haven&#x27;t used it in like 12 years)\n\nDoes anyone know if their is a process to appeal 2FA or anything to deal with this typ",
+    "trigger": "iso27001",
+    "context": "107 comments",
+    "stage": "inbox",
+    "created": 1789661848000,
+    "discovered": 1789727701932,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49723043",
     "url": "https://news.ycombinator.com/item?id=49723043",
     "name": "@Stranger5901 — Ask HN: How do you test an app from a region you're not physically in?",
