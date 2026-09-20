@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49773428",
+    "url": "https://news.ycombinator.com/item?id=49773428",
+    "name": "@gobountyhunter — Parth Anand – Projectsadak.in Hacked",
+    "source": "HackerNews",
+    "snippet": "Parth Anand – Projectsadak.in Hacked\nProject Sadak (projectsadak.in) has been hacked.\nThe entire public report layer was deleted. Every pothole report appears to be gone\nThe founder is yet to reply. He also claims to conduct research at MIT, which makes this Firestore security failure especially painful to watch.",
+    "trigger": "breach",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1789889757000,
+    "discovered": 1789900719390,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49742976",
     "url": "https://news.ycombinator.com/item?id=49742976",
     "name": "@keymasta — Ask HN: How to recover Google auth after phone stolen?",
