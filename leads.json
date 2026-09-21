@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49784273",
+    "url": "https://news.ycombinator.com/item?id=49784273",
+    "name": "@gobountyhunter — Project sadak – user data breached",
+    "source": "HackerNews",
+    "snippet": "Project sadak – user data breached\nHi,\nThe founder is Parth anand, who claims to be a researcher at MIT, which is very surprising given the lack of technical depth he possesses. \nI just found out that there&#x27;s been a data breach on Project Sadak, a porthole reporting platform. The Firebase rules were not in place, and the user data was not secure. I was able to get the entire transcript of reports, as well as the data, and have sent the exact security guideline report to the founder. He has still not replied with confirmation that the platform is up and ready, only that they have secured it, which I&#x27;m not able to see on the platform.\nI gave the founder 24 hours to make the changes in hopes that I can post about it publicly, but I haven&#x27;t seen any positive responses from his end.",
+    "trigger": "breach",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1789976832000,
+    "discovered": 1789992085790,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49773428",
     "url": "https://news.ycombinator.com/item?id=49773428",
     "name": "@gobountyhunter — Parth Anand – Projectsadak.in Hacked",
