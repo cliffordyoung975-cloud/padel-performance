@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49816853",
+    "url": "https://news.ycombinator.com/item?id=49816853",
+    "name": "@r2sk5t — Accident: JSX E145 Houston 2024, gear collapse and runway excursion on landing",
+    "source": "HackerNews",
+    "snippet": "Accident: JSX E145 Houston 2024, gear collapse and runway excursion on landing\nThe NTSB analysed:\nDuring descent into William P. Hobby International Airport (HOU), air traffic control (ATC) advised the Delux Public Charter, doing business as JSX Air, flight crew to expect runway 4 for landing and that winds were from 130° at 16 knots (kts), gusting to 24 kts, which was below the Embraer EMB-145LR’s recommended maximum gust of 30 kts. According to the cockpit voice recorder (CVR) transcript, the captain, who was the pilot flying, expressed concern about the crosswind, but the first officer (FO), who was the pilot monitoring, stated it was “not that bad” of a crosswind. On approach, about 1,300 ft above ground level (agl), the autopilot was disconnected. Shortly thereafter, the pitch trim was moved in the aircraft nose down (AND) direction, while the captain pulled aft on the control column to maintain an aircraft nose up (ANU) attitude.\nThroughout the approach, the AND pitch trim contin",
+    "trigger": "starter",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1790174180000,
+    "discovered": 1790248052612,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49784273",
     "url": "https://news.ycombinator.com/item?id=49784273",
     "name": "@gobountyhunter — Project sadak – user data breached",
