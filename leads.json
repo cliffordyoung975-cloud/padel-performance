@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49835507",
+    "url": "https://news.ycombinator.com/item?id=49835507",
+    "name": "@zafka — Ask HN: Folks familiar with infections after TKA",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Folks familiar with infections after TKA\nI am looking for Ortho&#x2F;infectious disease practitioners or researchers who have experience with compromised post-op TKA&#x27;s. specifically: Enterobacter cloacae, and a yeast variety yet to be revealed- Obviously I do not expect medical advice, just looking for any new info in case it has not reached my spouses team.  Surgery 1 month ago, after 30 days, wound began leaking- DAIR was performed 7 days ago after 5 days culture showed bacteria, today it was revealed yeast also present. Still waiting on sensitivities.  Thanks in advance. My apologies to all those who really don&#x27;t want to think about this kind of stuff.",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1790277169000,
+    "discovered": 1790334601631,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49816853",
     "url": "https://news.ycombinator.com/item?id=49816853",
     "name": "@r2sk5t — Accident: JSX E145 Houston 2024, gear collapse and runway excursion on landing",
