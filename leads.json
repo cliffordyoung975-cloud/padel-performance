@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49892480",
+    "url": "https://news.ycombinator.com/item?id=49892480",
+    "name": "@joyahmed — I made DevGo to manage all projects and servers",
+    "source": "HackerNews",
+    "snippet": "I made DevGo to manage all projects and servers\nI use several machines and my workflow moves around Windows with WSL, Mac, Ubuntu Desktop and Ubuntu Server for different purposes. Managing projects, opening terminals, editors, agents, and everything else was really a nightmare for me.\nFirst, I used to do it on Windows and WSL by simply hardcoding PowerShell scripts, and obviously, it wasn&#x27;t that satisfying. So I created DevGo with Tauri 2, Rust, and React 19. FYI, DevGo was first a simple WinForms app built with C#, and it still exists.\nNow the Tauri build of DevGo serves me in so many ways and has made me much more productive. I have added server management to DevGo too. Not that there aren&#x27;t free and open-source GUIs for managing servers, but you know what? DevGo doesn&#x27;t ask you for any credentials or secrets to store. It detects your SSH config and adds the servers automatically. Then helps you do many of the things that we manually do repeatedly.\nI remember setting u",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1790686866000,
+    "discovered": 1790689165862,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49835507",
     "url": "https://news.ycombinator.com/item?id=49835507",
     "name": "@zafka — Ask HN: Folks familiar with infections after TKA",
