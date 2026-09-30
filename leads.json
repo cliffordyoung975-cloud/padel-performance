@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49906864",
+    "url": "https://news.ycombinator.com/item?id=49906864",
+    "name": "@nirav_rohra — Getting Banned by ChatGPT, Thrice",
+    "source": "HackerNews",
+    "snippet": "Getting Banned by ChatGPT, Thrice\nSo sometime ago one of my account(plus) got deactivated because of cyber use&#x2F;risk, I had no clue summarizing cybersecurity papers trigger their advanced system\nso I tried disputing it and there shitty review system auto rejected my appeal, support was equally useless\nI ended up creating a new account(plus) and going through id verification etc stuff to get into there cyber program, now they deactivated my current account - with persisting shitty AI support&#x2F;appeal system and no explanation\nIn the first instance I requested my data and there privacy team basically said &quot;no&quot;\nI ended up just reporting the incident to the bank and getting charge back on there service\nthey also deactivated a third account of mine that I havent used in like past 3 years or so\nDo u guys think Claude is the way forward? or any better provider?",
+    "trigger": "compliance",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1790763913000,
+    "discovered": 1790769351172,
+    "score": 38,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49892480",
     "url": "https://news.ycombinator.com/item?id=49892480",
     "name": "@joyahmed — I made DevGo to manage all projects and servers",
