@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49947372",
+    "url": "https://news.ycombinator.com/item?id=49947372",
+    "name": "@TomGarden — How do you control your phone use?",
+    "source": "HackerNews",
+    "snippet": "How do you control your phone use?\nI&#x27;ve spent considerable time in my adult life on &quot;choice architecture&quot;, meaning ways to coax desired behavior out of myself without exerting willpower. Phone use has been the main concern.\nSome things I&#x27;ve tried:\nI bought a Kitchen Safe timed box and would leave it in there for hours, sometimes days.\nI limited available iPhone apps with iMazing\nI hacked together blocking systems in Tasker on a Pixel.\nCurrently, I&#x27;m running a vibe coded blocker app, device owner mode, on the pixel. Works ok, but a fair amount of upkeep and edge cases.\nWhat, if anything, have you tried?",
+    "trigger": "breach",
+    "context": "7 comments",
+    "stage": "inbox",
+    "created": 1791058513000,
+    "discovered": 1791114492202,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49906864",
     "url": "https://news.ycombinator.com/item?id=49906864",
     "name": "@nirav_rohra — Getting Banned by ChatGPT, Thrice",
