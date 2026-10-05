@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49964045",
+    "url": "https://news.ycombinator.com/item?id=49964045",
+    "name": "@goldenmember — Tell HN: Uceprotect is extorting website owners",
+    "source": "HackerNews",
+    "snippet": "Tell HN: Uceprotect is extorting website owners\nI recently discovered by accident that our website was being blocked by Orange&#x27;s security filters.\nAfter a quick check, I found that our IP address is listed on UCEPROTECT Level 3. The listing is based on the reputation of the entire ASN 14061 (DigitalOcean, US) [1]. In other words, even if your IP did nothing wrong, it will still be listed because of its ASN.\nIf your site is innocent and listed only because it&#x27;s hosted on DigitalOcean, UCEPROTECT offers to whitelist it for about $30&#x2F;month or $108&#x2F;year [2].\nI checked the ASNs of several other popular hosting providers, and they&#x27;re all listed too. So if your site is hosted on DigitalOcean or any other major provider, it&#x27;s probably blacklisted as well. That can cut you off from customers on mobile networks like Orange, whose &quot;cybersecurity protection&quot; uses blacklists like UCEPROTECT to filter traffic.\nHonestly, in my 20-year career, this is the first",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1791203755000,
+    "discovered": 1791207447944,
+    "score": 45,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49947372",
     "url": "https://news.ycombinator.com/item?id=49947372",
     "name": "@TomGarden — How do you control your phone use?",
