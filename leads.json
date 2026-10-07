@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_49989791",
+    "url": "https://news.ycombinator.com/item?id=49989791",
+    "name": "@kolinko — Ask HN: Anyone did workshops for students on using agents/Claude Code?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Anyone did workshops for students on using agents/Claude Code?\nI have a series if workshops on a business university with 4th year students.\nI have two hours with them and I wonder what exercises I could give a group of 10 during class to make them understand and play around with Claude Code - to show them how it’s different to chat in practice.\nThe challenges I’m facing:\n- they have their own laptops, so each is a different OS with different settings. Ideas around this?\n- Ideas for tasks that would be doable and show how CC is better than the regular chat?\n- how to handle the subscriptions?\n- and coordinate work in general?\nI’m thinking of setting up a fake company in a sandbox, with emails and so on, with a backstory - that they are a ceo, all IT got demolished by ransomware, the IT guy ran away to Caymans, and that they now need to figure out org chart, rebuild CRM and set up a website from scratch. But I wonder if this may be too heavy.",
+    "trigger": "breach",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1791360998000,
+    "discovered": 1791376795074,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49964045",
     "url": "https://news.ycombinator.com/item?id=49964045",
     "name": "@goldenmember — Tell HN: Uceprotect is extorting website owners",
