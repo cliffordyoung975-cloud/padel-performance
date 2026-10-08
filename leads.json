@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50005449",
+    "url": "https://news.ycombinator.com/item?id=50005449",
+    "name": "@youneedtoknowth — Tell HN: News flash is that you guys were writing slop waaay before AI",
+    "source": "HackerNews",
+    "snippet": "Tell HN: News flash is that you guys were writing slop waaay before AI\nI am sickened by the self delusional comments and behaviors from a lot of software engineers. People need to stop pretending that their work was not sloppy prior to AI. All of y’all are and were not Karpathy, or even some mid-tier programmer. For 99.9 percent of you, your were and always have been: 1) the reason for bad times during pull requests and peer reviews, 2) the reason why “it works on your machine”, 3) the reason why pair programming was invented, 4) the reason why technical debt is fucking hard to often solve, 5) the reason why deadlines got pushed, 6) why planes literally fell out of the sky, or other bad shit happened, 7) the cause for a lot of ransomware and other serious issues related to software.\nAll AI code is not slop, some of it is better than yours.\nAll AI code is not “vibeCod1NG!”. If it’s good, it’s good. You can tell, don’t lie to yourself or others.\nBring up standards and be specific, or shu",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1791465287000,
+    "discovered": 1791469096697,
+    "score": 51,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_49989791",
     "url": "https://news.ycombinator.com/item?id=49989791",
     "name": "@kolinko — Ask HN: Anyone did workshops for students on using agents/Claude Code?",
