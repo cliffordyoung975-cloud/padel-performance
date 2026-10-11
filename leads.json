@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50037004",
+    "url": "https://news.ycombinator.com/item?id=50037004",
+    "name": "@coherenttemple — Ask HN: Locked out of Google despite knowing password and having email access",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Locked out of Google despite knowing password and having email access\nI&#x27;m trying to recover my Google account. I know the password, but unfortunately I&#x27;ve lost access to the phone number where Google keeps trying to send the verification code. It used to just ask me to fill in the missing digits of the number.\nI still have access to Gmail through a third-party Android email app, where I can send and receive emails normally, but I can&#x27;t sign in to my Google account anywhere else. The account is old, I never set up a recovery email and I haven&#x27;t used it outside the email app for a long time. I&#x27;ve tried various devices, networks, and VPN combinations without success.\nGoogle&#x27;s own recovery help says:\n&quot;Tip: We may send a verification code to the email address on the account you&#x27;re trying to recover. This way, you can get the verification code if you have access to your Gmail inbox through a third-party email client or email forwarding.&quot;\nB",
+    "trigger": "starter",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1791665200000,
+    "discovered": 1791720434120,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50005449",
     "url": "https://news.ycombinator.com/item?id=50005449",
     "name": "@youneedtoknowth — Tell HN: News flash is that you guys were writing slop waaay before AI",
