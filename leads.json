@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_50061674",
+    "url": "https://news.ycombinator.com/item?id=50061674",
+    "name": "@aac1122 — Ask HN: How to slow down AI development speed(also, estimate my ideas)",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How to slow down AI development speed(also, estimate my ideas)\nHello everybody. So, the first: we should abandon likes and go to top-lists instead of them, and say &quot;this is on first place of importance&quot;, &quot;this is third place&quot;, and finally we will find the medium: &quot;2nd place in average&quot;. To avoid sybil-attacks and get needed money, we may register proofs that we are really person with this e-mail, date and place of birth, first and last name to charity companies - they may reveal data about you like &quot;this is a unique person&quot;, &quot;this is 18+ person&quot; etc., whether we want to deanonymize registered person or not.(Proof of Personhood&#x2F;PoP + Sovereign Identity?)\nThen, we should alarm&#x2F;whistleblow the AI disaster as the most important things in the world*\nThen, we should watch somehow who uses&#x2F;trains AI. Some suggestions: OS, providers, antivirus systems. If you&#x27;re closing this data or openly train AI too fast -\nThen we",
+    "trigger": "iso27001",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1791833373000,
+    "discovered": 1791898496321,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_50061349",
+    "url": "https://news.ycombinator.com/item?id=50061349",
+    "name": "@aac1122 — Ask HN: How to slow down AI development speed(also, estimate my ideas, please)",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How to slow down AI development speed(also, estimate my ideas, please)\nHello everybody. So, the first: we should abandon likes and go to top-lists instead of them, and say &quot;this is on first place of importance&quot;, &quot;this is third place&quot;, and finally we will find the medium: &quot;2nd place in average&quot;. To avoid sybil-attacks and get needed money, we may register proofs that we are really person with this e-mail, date and place of birth, first and last name to charity companies - they may reveal data about you like &quot;this is a unique person&quot;, &quot;this is 18+ person&quot; etc., whether we want to deanonymize registered person or not.(Proof of Personhood&#x2F;PoP + Sovereign Identity?)\nThen, we should alarm&#x2F;whistleblow the AI disaster as the most important things in the world*\nThen, we should watch somehow who uses&#x2F;trains AI. Some suggestions: OS, providers, antivirus systems. If you&#x27;re closing this data or openly train AI too fast -",
+    "trigger": "iso27001",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1791832337000,
+    "discovered": 1791898496321,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50037004",
     "url": "https://news.ycombinator.com/item?id=50037004",
     "name": "@coherenttemple — Ask HN: Locked out of Google despite knowing password and having email access",
