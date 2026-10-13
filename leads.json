@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50072334",
+    "url": "https://news.ycombinator.com/item?id=50072334",
+    "name": "@girvin — Launch: Assury Cross platform agent lifecycle mangement",
+    "source": "HackerNews",
+    "snippet": "Launch: Assury Cross platform agent lifecycle mangement\nHey HN, I am David Girvi, co-founder of Assury.ai. We are practitioners who became vendors last year. I wanted to share that we have launched agent lifecycle management for cross-platform agents. One centralized spot for all your agents. AWS, Databricks, Snowflake, Salesforce, etc. Lifecycle does auto-discovery in every environment, plus auto-tagging. We bring everything into a tamper-proof, searchable audit trail. Easily see who or what teams own the agents etc. We also have Kill&#x2F;resume controls based on tagging so you can granularly shut down certain groups during an incident. We built this also to handle swarms, as one of our design partners has 30k agent swarms that spin up and down for research. Our thesis is that we want everyone to use the agents that will help them with their work. We want to be the observability, audit, governance, and incident response for all those different platforms. We started with one of the fi",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1791901761000,
+    "discovered": 1791902646458,
+    "score": 30,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50061674",
     "url": "https://news.ycombinator.com/item?id=50061674",
     "name": "@aac1122 — Ask HN: How to slow down AI development speed(also, estimate my ideas)",
