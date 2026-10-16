@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50116839",
+    "url": "https://news.ycombinator.com/item?id=50116839",
+    "name": "@appstorelottery — Unity Mass-Suspends Accounts",
+    "source": "HackerNews",
+    "snippet": "Unity Mass-Suspends Accounts\nYears ago after the last Unity CEO issue, a lot of Unity developers began searching for a new development platform due to pricing changes. Unity tends to send a lot of information that developers ignore via email, however last Tuesday they sent two emails in quick succession (a) TFA has been disabled on your account and a follow up email (b) Your account has been suspended.\nIn a world of phishing attempts - I personally ignored these emails only to discover today that Unity had indeed suspended my account. Considering the many, many thousands of dollars I have spent on Asset Store purchases over the years - and that they are now locked in this account - in addition to the fact that Unity cannot be used without either unsuspending the account (or creating a new one)... I&#x27;m concerned as to why Unity went about doing it this way. Was there a data breach? Or is it just plain incompetence on their part to approach the problem this way?\nFor those of you yet",
+    "trigger": "breach",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1792148213000,
+    "discovered": 1792152165363,
+    "score": 55,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50072334",
     "url": "https://news.ycombinator.com/item?id=50072334",
     "name": "@girvin — Launch: Assury Cross platform agent lifecycle mangement",
