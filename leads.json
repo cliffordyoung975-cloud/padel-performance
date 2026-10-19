@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50148946",
+    "url": "https://news.ycombinator.com/item?id=50148946",
+    "name": "@indy — OpenCode and OpenAI issue refunds after security breach of OpenCode console",
+    "source": "HackerNews",
+    "snippet": "OpenCode and OpenAI issue refunds after security breach of OpenCode console\nJust got this email from OpenCode security:\nWe&#x27;re following up on your OpenAI credentials that may have been exposed. We&#x27;ve worked with OpenAI to revoke all of them and they have issued refunds for any unauthorized usage.\nAdditionally, if your account was banned as part of this process it should be reinstated.\nNo need to reply to this email unless you still have some issues\nThank you and apologies once again",
+    "trigger": "starter",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1792390299000,
+    "discovered": 1792411752713,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50116839",
     "url": "https://news.ycombinator.com/item?id=50116839",
     "name": "@appstorelottery — Unity Mass-Suspends Accounts",
