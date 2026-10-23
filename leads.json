@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_50196829",
+    "url": "https://news.ycombinator.com/item?id=50196829",
+    "name": "@BehanPrW — Ask HN: Which AI Security tool do you use and why for your repositories?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Which AI Security tool do you use and why for your repositories?\nHello World!\nSo I am new to the world of cybersecurity, and after some back and forth with AI, I chose to use a specific tool that was recommended for automated vulnerability detection &amp; patching, but I think the issue I encountered is something common to all similar platforms that provide AI security fixes in 2026.\nIt proposed a fix to an issue labeled &#x27;critical&#x27;. I gave the specific file and the fix to Gemini, and, it disagreed strongly.\nMy trust in the platform immediately degraded.\nIt shows in my thinking that AI security platforms for repositories are unreliable, unless you cross check every critical&#x2F;high vulnerability as a human with another AI tool as well. For example, for another issue labeled &#x27;High&#x27;, the fix, I cross-checked, was correct in that case.\nBut that that one &#x27;critical&#x27; issue, which turned out to be not a bug at all, and certainly not critical at all, has",
+    "trigger": "iso27001",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1792683137000,
+    "discovered": 1792753261804,
+    "score": 56,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_50206706",
+    "url": "https://news.ycombinator.com/item?id=50206706",
+    "name": "@kunal9955 — Cloud Penetration Testing Vs.Cloud Security Assessment:Which Checklist You Need?",
+    "source": "HackerNews",
+    "snippet": "Cloud Penetration Testing Vs.Cloud Security Assessment:Which Checklist You Need?\nCloud environments ease application and data storage and help support distributed teams. Public storage buckets, broad identity permissions, and exposed services can all be openings for an attack. There are two ways to review these risks: cloud penetration testing and a cloud security assessment. While they have the same goal, they don’t always have the same means. A cloud security assessment, for example, is typically done to review the cloud environment and determine security gaps and misconfigurations. On the other hand, penetration testing looks to see if there are ways to exploit the vulnerabilities in the cloud. Which approach is better depends on the organization’s cloud configuration and security maturity. The best cloud security framework is the one that is most relevant to an organization’s business. It should give sufficient guidance to ensure progress is being made toward the organization’s goa",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1792750386000,
+    "discovered": 1792753281026,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50189771",
     "url": "https://news.ycombinator.com/item?id=50189771",
     "name": "@spenvo — The Kessler Syndrome (where blowups multiply exponentially) applied to software",
