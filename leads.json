@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50220301",
+    "url": "https://news.ycombinator.com/item?id=50220301",
+    "name": "@aleda145 — Ask HN: Linux at work revoked due to MDM, how to fight?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Linux at work revoked due to MDM, how to fight?\nI&#x27;m a software engineer that likes Linux.\nMy employer is going all in on their B2B strategy. We&#x27;re implementing full mobile device management. I just got news that I will need to hand in my laptop EOY and get a Mac instead.\nI&#x27;m of course a little upset. I had a verbal agreement with my former manager (he has quit) that I would get a Linux laptop when I signed.\nI&#x27;m not sure what the best way to make my case is. I don&#x27;t want to be combative (Linux or I quit!). I don&#x27;t want to make the IT department lose face by questioning them picking a  MDM vendor without Linux support.\nHas anyone been in this situation? All help appreciated!\nWorkplace: used to be a unicorn startup, did some layoffs. about 500~ people now. A handful Linux users (1%)",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1792841828000,
+    "discovered": 1792842434761,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50196829",
     "url": "https://news.ycombinator.com/item?id=50196829",
     "name": "@BehanPrW — Ask HN: Which AI Security tool do you use and why for your repositories?",
