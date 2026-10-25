@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50227527",
+    "url": "https://news.ycombinator.com/item?id=50227527",
+    "name": "@bsutto — ReVault – new secure archive format",
+    "source": "HackerNews",
+    "snippet": "ReVault – new secure archive format\nreVault is a new, secure-by-default archive format called a lockbox, designed to be simple to use.\nI&#x27;ve been working on reVault for about 2 years. It was originally written in Dart, but with the improvements in AI, I decided to port it to Rust using AI.\nIt&#x27;s now in beta, so I&#x27;m looking for feedback, particularly around the different language bindings.\nA lockbox is encrypted, signed and compressed by default. Each can be disabled selectively.\n  - Hybrid post-quantum or passphrase encryption, including metadata.\n  - Zstd compression.\n  - Pure Rust libraries wherever possible.\n\nWe intend to phase out remaining C code as alternatives become available. The project has been scanned using OpenAI&#x27;s Daybreak cyber security tools.\nThe manual is a work in progress:\nhttps:&#x2F;&#x2F;docs.revault.onepub.dev&#x2F;\nreVault supports Linux, macOS and Windows, x64 and arm64, plus Wasm. The core is Rust, with bindings for C&#x2F;C++, Java, Dart, Py",
+    "trigger": "iso27001",
+    "context": "2 comments",
+    "stage": "inbox",
+    "created": 1792893681000,
+    "discovered": 1792925052519,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50220301",
     "url": "https://news.ycombinator.com/item?id=50220301",
     "name": "@aleda145 — Ask HN: Linux at work revoked due to MDM, how to fight?",
