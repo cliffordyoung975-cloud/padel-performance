@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50256433",
+    "url": "https://news.ycombinator.com/item?id=50256433",
+    "name": "@noduerme — Tell HN: Last night, I had a dream",
+    "source": "HackerNews",
+    "snippet": "Tell HN: Last night, I had a dream\nLast night I had a dream:\nA company I worked for said there were a lot of typos, human mistakes and inconsistencies in their database. There were a billion rows in the DB, but only 250 million or so had &quot;mistakes&quot;. They asked if we could have Claude go through and clean them all up. I talked them down to 125 million, and then let it run.\nWhen it was finished, someone asked if we could diff what Claude had changed when it fixed all those rows.\nI went looking for a backup, but all the backups were the same as the current version. It was like the past didn&#x27;t exist.\nI went on archive.org and looked for old web pages, but found that they had all been changed, filled with LLM writing. I thought, did the AI figure out time travel? No, I realized it had just hacked all the archive sites and corrupted the backups of everything, to change history. So no one would ever know for sure what had been altered and what hadn&#x27;t.\nThat was my dream. I",
+    "trigger": "iso27001",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1793092677000,
+    "discovered": 1793100983100,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50227527",
     "url": "https://news.ycombinator.com/item?id=50227527",
     "name": "@bsutto — ReVault – new secure archive format",
