@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50333216",
+    "url": "https://news.ycombinator.com/item?id=50333216",
+    "name": "@runwithdata — Ask HN: Why is AWS such a pain for using Bedrock?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Why is AWS such a pain for using Bedrock?\nSo we&#x27;ve been granted with AWS Credits which we would like to use for our product, fair and square. Though the terms say you can use them for inference on AWS, this is actually not the case: Anthropic, OpenAI, Kimi, and ZLM are all blocked by an unpublished policy (&quot;not available for this account&quot;) Yes, we&#x27;re not the first who needs exactly those. So our Account Manager submitted a request to allow using them. The account was reviewed for several days and they came back with &quot;Prior requesting an increase on capabilities you must first utilize for some time the current availability on your resources.&quot; Kafkaesque. I mean, how can we utilize something we can&#x27;t use? How did you manage to get access to those models?",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1793594645000,
+    "discovered": 1793630809990,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50317731",
     "url": "https://news.ycombinator.com/item?id=50317731",
     "name": "@littleweep — Ask HN: What has been your favorite VPN provider?",
