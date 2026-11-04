@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50362698",
+    "url": "https://news.ycombinator.com/item?id=50362698",
+    "name": "@spacebuffer — Ask HN: How to Keep the Edge as an Engineer?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: How to Keep the Edge as an Engineer?\nHi, for the past few months I&#x27;ve been thinking a lot about my work as a software engineer and how I&#x27;ll be able to provide benefits to companies I work for in the coming years, given the fast pace of progress of LLMs\nEvery time I think I found an edge that will help me stay I relevant, AIs seem to get really good at it in a few weeks&#x2F;months. I&#x27;ll give a few examples.\nWhen gpt-4 was really popular we saw an increase of badly written vibe-coded apps, I thought cybersecurity was a good career path to persue since sometime will eventually need to secure these apps if they start being used in production. but now we&#x27;re seeing new models find security vulnerabilities at an insane rate.\nMore recently I had to deal with a few difficult problems at work where I had to cross-reference different logs in the DB and the server to pinpoint the issue quickly so production wouldn&#x27;t be impacted for very long. I really enjoyed that",
+    "trigger": "starter",
+    "context": "3 comments",
+    "stage": "inbox",
+    "created": 1793780189000,
+    "discovered": 1793800009547,
+    "score": 26,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50333216",
     "url": "https://news.ycombinator.com/item?id=50333216",
     "name": "@runwithdata — Ask HN: Why is AWS such a pain for using Bedrock?",
