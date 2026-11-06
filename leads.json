@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50380857",
+    "url": "https://news.ycombinator.com/item?id=50380857",
+    "name": "@tkdb — Ask HN: What is going on with SMS 2FA?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: What is going on with SMS 2FA?\nSomething strange just happened:\nI&#x27;m signing up for an AWS account.\nI am required to verify a payment method. A code is sent to my cellular number via text. The helpful little autofill on mac pops up (from mac messages, which shows me messages from my phone), showing me the code, and I simply accept it and verify without ever looking at my phone or messages.\nI glance at my phone, but no message came in. I could not have typed in the message because I don&#x27;t have it, but my mac auto-complete found it.\nI get to the next step, and now AWS wants to verify my identity using another text message to the same number. The experience repeats - I wait maybe 40 seconds, and mac autocomplete pops up to fill in the correct 4 digit code. But I have no messages, I could not have typed it in manually.\nAs of this writing (about 10 minutes later) I still don&#x27;t have any messages on my phone or messages app on my mac showing me the codes.\nWhat is going o",
+    "trigger": "starter",
+    "context": "4 comments",
+    "stage": "inbox",
+    "created": 1793894672000,
+    "discovered": 1793972699619,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50362698",
     "url": "https://news.ycombinator.com/item?id=50362698",
     "name": "@spacebuffer — Ask HN: How to Keep the Edge as an Engineer?",
