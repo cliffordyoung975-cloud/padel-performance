@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50403882",
+    "url": "https://news.ycombinator.com/item?id=50403882",
+    "name": "@Mattboxx — I turned an ESP32-S3 into a Tailscale gateway with recovery functions",
+    "source": "HackerNews",
+    "snippet": "I turned an ESP32-S3 into a Tailscale gateway with recovery functions\nHi, I’ve been working on ESP32 Tailnet Gateway, an open-source firmware that turns an ESP32-S3 into a small Tailscale&#x2F;Headscale gateway\nThe main use case is connecting IoT devices that can’t run a VPN client to services on another network with a low cost device.\nThe idea is to have a small, independently powered device that can provide connectivity and help recover a NAS or PC when the main server is offline.\nI’ve made site with web flasher:\nhttps:&#x2F;&#x2F;mattboxx.github.io&#x2F;esp32-tailnet-gateway&#x2F;\nGithub repo link:\nhttps:&#x2F;&#x2F;github.com&#x2F;Mattboxx&#x2F;esp32-tailnet-gateway",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1794053771000,
+    "discovered": 1794054496993,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50380857",
     "url": "https://news.ycombinator.com/item?id=50380857",
     "name": "@tkdb — Ask HN: What is going on with SMS 2FA?",
