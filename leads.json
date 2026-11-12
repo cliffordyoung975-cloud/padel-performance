@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50463667",
+    "url": "https://news.ycombinator.com/item?id=50463667",
+    "name": "@platopic — Ask HN: Researchers / PhDs interested in quantitative AutoResearch?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Researchers / PhDs interested in quantitative AutoResearch?\nI&#x27;m looking for researchers and PhD students in statistics, learning theory, RL, open-endedness or self-driving labs.\nIf you&#x27;re interested, please email me at plato666777@gmail.com with any note &#x2F; interest &#x2F; credential and we can take it from there!\nI am located in the Bay Area and recently had some very promising results. Looking to build this out now and get to know folks who might be interested in the same.\nI&#x27;m posting something vague for now. I&#x27;ll share details with anyone who reaches out that is a match.\nExpect more news shortly :)",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1794464057000,
+    "discovered": 1794494306666,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50444692",
     "url": "https://news.ycombinator.com/item?id=50444692",
     "name": "@jodacola — Ask HN: Should I be stockpiling goods because of AI and cybersecurity?",
