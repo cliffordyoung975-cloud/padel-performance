@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50533058",
+    "url": "https://news.ycombinator.com/item?id=50533058",
+    "name": "@bernaforcillo — Asking for help on LinkedIn was a waste of time, so I'll try here",
+    "source": "HackerNews",
+    "snippet": "Asking for help on LinkedIn was a waste of time, so I'll try here\nI am conducting personal research on the impact of compliance with CRA and NIS2 regulations on operational activities and product development in European and non-European companies.\nI thought LinkedIn would be the best way to find relevant opinions and personal experiences in this field, and last week I began contacting CISOs, CTOs, and PMs at SMEs to conduct brief interviews with them as part of my research.\nTLDR: The results were dismal—out of more than 150 people I contacted, only a very few responded to my message. I wanted to repost this here; if you can or would like to help, please let me know.",
+    "trigger": "compliance",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1794930560000,
+    "discovered": 1794933439946,
+    "score": 35,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50463667",
     "url": "https://news.ycombinator.com/item?id=50463667",
     "name": "@platopic — Ask HN: Researchers / PhDs interested in quantitative AutoResearch?",
