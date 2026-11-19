@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_50556148",
+    "url": "https://news.ycombinator.com/item?id=50556148",
+    "name": "@tesnorindian — Madras School System and AI Learning Share Similarity",
+    "source": "HackerNews",
+    "snippet": "Madras School System and AI Learning Share Similarity\nMadras School education system (https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Madras_School) that was the bedrock of mass public structured education in the late 18-19th century has several similarities on how AI is trained today.\nThey both ensures that knowledge dissemination is free.\nThe similarities they share are as follows\n1) Madras school &amp; AI distillation (Teacher-Student models) encourages Students to teach others instead of just teachers thereby reducing cost.\n2) Madras school &amp; Reinforcement learning rewards or awards penalty scores based on the assessment&#x2F;feedback.\n3) Both systems ultimately ended in rote learning and hallucinations.\nThe other day when I noticed that several leading professors of top universities were sharing their top courses for free on YT. I immediately remembered our education system (Madras School) and how it had a profound impact in today&#x27;s education system especially public ma",
+    "trigger": "starter",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1795063145000,
+    "discovered": 1795101368352,
+    "score": 26,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_50551096",
+    "url": "https://news.ycombinator.com/item?id=50551096",
+    "name": "@HoldOnAMinute — Ask HN: Windows malware removal in Bay Area",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Windows malware removal in Bay Area\nA relative uses something called &quot;Microsoft Windows&quot; on their computer.  I&#x27;m not familiar with it.  They want to get the malware removed.  I wanted to check with the HN community to see if anyone can recommend a serious professional who can de-worm their laptop.  Thank You.",
+    "trigger": "starter",
+    "context": "3 comments",
+    "stage": "inbox",
+    "created": 1795030947000,
+    "discovered": 1795101368352,
+    "score": 30,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50533058",
     "url": "https://news.ycombinator.com/item?id=50533058",
     "name": "@bernaforcillo — Asking for help on LinkedIn was a waste of time, so I'll try here",
