@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_50577102",
+    "url": "https://news.ycombinator.com/item?id=50577102",
+    "name": "@txase — Pssst: Your Agents Aren't Actually Sandboxed",
+    "source": "HackerNews",
+    "snippet": "Pssst: Your Agents Aren't Actually Sandboxed\ntl;dr: I&#x27;m building a project to do sandboxing right, I&#x27;ll be at reInvent, would love to chat there if anyone else is trying to figure this out, too: chase@archodex.com.\nPeople are running around trying to sandbox their agents in creative ways, but I&#x27;ve become jaded by most approaches. Most sandboxes, local or remote, are sandboxing your files and processes away from agents, which is good. But they do hardly anything for network traffic. I don&#x27;t think file and process isolation alone should count as truly being sandboxed.\nAt some point agents need to do something, and that means using your credentials to interact with API services. But sandboxes today stop at domain-level filters, meaning they can&#x27;t tell between read-only, read&#x2F;write, or control-plane traffic, much less tell a standard GET request for a file on github vs a supply chain attack using github as a c2 channel.\nI&#x27;m working on a project that tries",
+    "trigger": "noexpertise",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1795191673000,
+    "discovered": 1795270387812,
+    "score": 30,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_50585039",
+    "url": "https://news.ycombinator.com/item?id=50585039",
+    "name": "@redrix — Portkey Security Incident",
+    "source": "HackerNews",
+    "snippet": "Portkey Security Incident\nFrom:\nPortkey Product Security &lt;product-security-alerts@paloaltonetworks.com&gt;\nDate:\nFriday, November 20, 2026\nSubject:\nIMPORTANT NOTICE: Security Incident Affecting Portkey AI Gateway\nDear Customer,\nWe are contacting you regarding a security incident involving Portkey AI Gateway. In this incident, an unauthorized third party compromised a Portkey AI Gateway API key and gained access to customer data in our environment. As soon as we detected the event, we took steps to remedy the compromise and secure our systems. We also engaged our Unit 42 security team to conduct a comprehensive investigation.\nIn the course of our investigation, we discovered that some information related to your account was taken by an unauthorized third party between November 5-10, 2026. This data was exfiltrated from backend storage providers used in the Portkey AI Gateway infrastructure.\nThe impacted data may include one or more of the following:\n• Personal data, including account",
+    "trigger": "noexpertise",
+    "context": "0 comments",
+    "stage": "inbox",
+    "created": 1795225924000,
+    "discovered": 1795270388596,
+    "score": 30,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50572906",
     "url": "https://news.ycombinator.com/item?id=50572906",
     "name": "@agasto — Best Study Abroad Consultants in Kerala – Start Your Global Education Journey",
