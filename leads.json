@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50608585",
+    "url": "https://news.ycombinator.com/item?id=50608585",
+    "name": "@luckybastard — Ask HN: Cybersecurity risk of taking personal devices on business trip to China",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Cybersecurity risk of taking personal devices on business trip to China\nI am going on a business trip to China in the next couple of weeks and my company prohibits taking your work laptop to China and instead issues employees security-hardened devices for use during such trips.  I am not in an especially sensitive role so I have no reason to expect to be targeted but I am starting to question the wisdom of taking my personal devices with me on this trip.  After all, an attacker would not know (or care) that the device is not corporate issued.  My personal policy is to avoid using work devices for any personal use so not having a personal device for the duration of the trip would be a pain in the butt.\nAm I being overly paranoid or is this a reasonable precaution?",
+    "trigger": "starter",
+    "context": "1 comments",
+    "stage": "inbox",
+    "created": 1795419324000,
+    "discovered": 1795454676041,
+    "score": 20,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50577102",
     "url": "https://news.ycombinator.com/item?id=50577102",
     "name": "@txase — Pssst: Your Agents Aren't Actually Sandboxed",
