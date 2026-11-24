@@ -1,5 +1,35 @@
 [
   {
+    "id": "hn_50626772",
+    "url": "https://news.ycombinator.com/item?id=50626772",
+    "name": "@humbleferret — Ask HN: Everything will get breached. How do you limit the blast radius?",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Everything will get breached. How do you limit the blast radius?\nGot another breach email this morning, this travel operator had my passport number and travel history stored. At this point I feel every service we use is going to get dumped eventually.\nI consider unique passwords and hardware 2FA as no brainers, they stop credential stuffing, but they don&#x27;t help when a service leaks your actual identity. There are just so many services that require personal data like your passport number, phone number etc. And I think the fallout will only get worse as agentic workflows and local models become more mainstream and people start giving them more and more personal data.\nAssuming every vendor database is basically public eventually, how are you actually limiting the blast radius without turning everyday life into a massive faff?",
+    "trigger": "iso27001",
+    "context": "5 comments",
+    "stage": "inbox",
+    "created": 1795520351000,
+    "discovered": 1795539472060,
+    "score": 50,
+    "notes": "",
+    "auto": true
+  },
+  {
+    "id": "hn_50625996",
+    "url": "https://news.ycombinator.com/item?id=50625996",
+    "name": "@bfbf — Why are so many services using email magic links for login?",
+    "source": "HackerNews",
+    "snippet": "Why are so many services using email magic links for login?\nI&#x27;ve noticed a big uptick in login screens defaulting to sending email magic links rather than asking for a password. Notably Claude does this (which during the Outlook outage last week completely blocked me from accessing it).\nI can only assume that this is a misguided attempt to make login easier for the people who use the Forgot Password link all the the time instead of a proper password manager.\nIt&#x27;s 1FA where your single factor is access a different service (your email) rather than a known secret.\nIs there an actual best practice HIG or security guideline that recommends this approach? To my mind, it&#x27;s both less secure and less convenient. I&#x27;m wondering if it&#x27;s an anti pattern where someone (or an LLM) has copied a service which does this, and that creates a feedback loop where more orgs jump on the bandwagon.",
+    "trigger": "starter",
+    "context": "13 comments",
+    "stage": "inbox",
+    "created": 1795514006000,
+    "discovered": 1795539481854,
+    "score": 25,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50608585",
     "url": "https://news.ycombinator.com/item?id=50608585",
     "name": "@luckybastard — Ask HN: Cybersecurity risk of taking personal devices on business trip to China",
