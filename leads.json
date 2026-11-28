@@ -1,5 +1,20 @@
 [
   {
+    "id": "hn_50672053",
+    "url": "https://news.ycombinator.com/item?id=50672053",
+    "name": "@punkpeye — Ask HN: Users asking to remove their commits under GDPR",
+    "source": "HackerNews",
+    "snippet": "Ask HN: Users asking to remove their commits under GDPR\nSeeing a spike of people asking to remove their commits from open-source GitHub repositories that I am the owner of because those commits carry their personal email or other identifiers.\nHow are you handling these?",
+    "trigger": "compliance",
+    "context": "5 comments",
+    "stage": "inbox",
+    "created": 1795816438000,
+    "discovered": 1795878162691,
+    "score": 35,
+    "notes": "",
+    "auto": true
+  },
+  {
     "id": "hn_50648976",
     "url": "https://news.ycombinator.com/item?id=50648976",
     "name": "@s_u_d_o — Is it time to switch to Cybersecurity?",
